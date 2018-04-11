@@ -579,7 +579,7 @@
     </message>
     <message>
         <location filename="../pages/Mining.qml" line="83"/>
-        <source>Mining with your computer helps strengthen the Monero network. The more that people mine, the harder it is for the network to be attacked, and every little bit helps.&lt;br&gt; &lt;br&gt;Mining also gives you a small chance to earn some Monero. Your computer will create hashes looking for block solutions. If you find a block, you will get the associated reward. Good luck!</source>
+        <source>Mining with your computer helps strengthen the Monero Classic network. The more that people mine, the harder it is for the network to be attacked, and every little bit helps.&lt;br&gt; &lt;br&gt;Mining also gives you a small chance to earn some Monero Classic. Your computer will create hashes looking for block solutions. If you find a block, you will get the associated reward. Good luck!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1118,7 +1118,7 @@
     </message>
     <message>
         <location filename="../pages/Settings.qml" line="517"/>
-        <source>Embedded Monero version: </source>
+        <source>Embedded Monero Classic version: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1802,13 +1802,13 @@ For the case with Spend Proof, you don&apos;t need to specify the recipient addr
     <name>WizardConfigure</name>
     <message>
         <location filename="../wizard/WizardConfigure.qml" line="79"/>
-        <source>We’re almost there - let’s just configure some Monero preferences</source>
-        <translation>हमने बस समाप्त कर लिया है - चलिए कुछ Monero प्राथमिकताएं कॉन्फ़िगर करते हैं</translation>
+        <source>We’re almost there - let’s just configure some Monero Classic preferences</source>
+        <translation>हमने बस समाप्त कर लिया है - चलिए कुछ Monero Classic प्राथमिकताएं कॉन्फ़िगर करते हैं</translation>
     </message>
     <message>
         <location filename="../wizard/WizardConfigure.qml" line="97"/>
-        <source>Kickstart the Monero blockchain?</source>
-        <translation>Kickstart the Monero ब्लॉकचेन?</translation>
+        <source>Kickstart the Monero Classic blockchain?</source>
+        <translation>Kickstart the Monero Classic ब्लॉकचेन?</translation>
     </message>
     <message>
         <location filename="../wizard/WizardConfigure.qml" line="115"/>
@@ -1822,8 +1822,8 @@ For the case with Spend Proof, you don&apos;t need to specify the recipient addr
     </message>
     <message>
         <location filename="../wizard/WizardConfigure.qml" line="144"/>
-        <source>Disk conservation mode uses substantially less disk-space, but the same amount of bandwidth as a regular Monero instance. However, storing the full blockchain is beneficial to the security of the Monero network. If you are on a device with limited disk space, then this option is appropriate for you.</source>
-        <translation>डिस्क संरक्षण मोड काफी कम डिस्क-स्पेस प्रयोग करता है, लेकिन इसके लिए सामान्य Monero इंस्टैंस के बराबर बैंडविड्थ की आवश्यकता होती है। हालाँकि, Monero नेटवर्क की सुरक्षा के लिए पूरा ब्लॉकचेन संग्रहीत करना लाभदायक होता है। यदि आप कम डिस्क स्पेस वाली डिवाइस पर हैं तो यह विकल्प आपके लिए उपयुक्त है।</translation>
+        <source>Disk conservation mode uses substantially less disk-space, but the same amount of bandwidth as a regular Monero Classic instance. However, storing the full blockchain is beneficial to the security of the Monero Classic network. If you are on a device with limited disk space, then this option is appropriate for you.</source>
+        <translation>डिस्क संरक्षण मोड काफी कम डिस्क-स्पेस प्रयोग करता है, लेकिन इसके लिए सामान्य Monero Classic इंस्टैंस के बराबर बैंडविड्थ की आवश्यकता होती है। हालाँकि, Monero Classic नेटवर्क की सुरक्षा के लिए पूरा ब्लॉकचेन संग्रहीत करना लाभदायक होता है। यदि आप कम डिस्क स्पेस वाली डिवाइस पर हैं तो यह विकल्प आपके लिए उपयुक्त है।</translation>
     </message>
     <message>
         <location filename="../wizard/WizardConfigure.qml" line="157"/>
@@ -1832,8 +1832,8 @@ For the case with Spend Proof, you don&apos;t need to specify the recipient addr
     </message>
     <message>
         <location filename="../wizard/WizardConfigure.qml" line="175"/>
-        <source>Mining secures the Monero network, and also pays a small reward for the work done. This option will let Monero mine when your computer is on mains power and is idle. It will stop mining when you continue working.</source>
-        <translation>माइनिंग Monero नेटवर्क को सुरक्षित बनाता है, और साथ ही किये गए कार्य के लिए छोटा पुरस्कार भी देता है। यह विकल्प Monero को तब माइन करने देता है जब आपका कंप्यूटर मेंस पॉवर पर होता है और निष्क्रिय होता है। जब आप काम करना शुरू करते हैं तो यह माइनिंग बंद कर देता है।</translation>
+        <source>Mining secures the Monero Classic network, and also pays a small reward for the work done. This option will let Monero Classic mine when your computer is on mains power and is idle. It will stop mining when you continue working.</source>
+        <translation>माइनिंग Monero Classic नेटवर्क को सुरक्षित बनाता है, और साथ ही किये गए कार्य के लिए छोटा पुरस्कार भी देता है। यह विकल्प Monero Classic को तब माइन करने देता है जब आपका कंप्यूटर मेंस पॉवर पर होता है और निष्क्रिय होता है। जब आप काम करना शुरू करते हैं तो यह माइनिंग बंद कर देता है।</translation>
     </message>
 </context>
 <context>
@@ -1856,7 +1856,7 @@ For the case with Spend Proof, you don&apos;t need to specify the recipient addr
     <name>WizardDaemonSettings</name>
     <message>
         <location filename="../wizard/WizardDaemonSettings.qml" line="114"/>
-        <source>To be able to communicate with the Monero network your wallet needs to be connected to a Monero node. For best privacy it&apos;s recommended to run your own node.                         &lt;br&gt;&lt;br&gt;                         If you don&apos;t have the option to run an own node there&apos;s an option to connect to a remote node.</source>
+        <source>To be able to communicate with the Monero Classic network your wallet needs to be connected to a Monero Classic node. For best privacy it&apos;s recommended to run your own node.                         &lt;br&gt;&lt;br&gt;                         If you don&apos;t have the option to run an own node there&apos;s an option to connect to a remote node.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1889,8 +1889,8 @@ For the case with Spend Proof, you don&apos;t need to specify the recipient addr
     <name>WizardDonation</name>
     <message>
         <location filename="../wizard/WizardDonation.qml" line="93"/>
-        <source>Monero development is solely supported by donations</source>
-        <translation>Monero का विकास पूरी तरह से डोनेशन से समर्थित है</translation>
+        <source>Monero Classic development is solely supported by donations</source>
+        <translation>Monero Classic का विकास पूरी तरह से डोनेशन से समर्थित है</translation>
     </message>
     <message>
         <location filename="../wizard/WizardDonation.qml" line="113"/>
@@ -1904,8 +1904,8 @@ For the case with Spend Proof, you don&apos;t need to specify the recipient addr
     </message>
     <message>
         <location filename="../wizard/WizardDonation.qml" line="164"/>
-        <source>For every transaction, a small transaction fee is charged. This option lets you add an additional amount, as a percentage of that fee, to your transaction to support Monero development. For instance, a 50% autodonation take a transaction fee of 0.005 XMR and add a 0.0025 XMR to support Monero development.</source>
-        <translation>प्रत्येक लेनदेन के लिए एक छोटा शुल्क लगाया जाता है। यह विकल्प आपको Monero का विकास समर्थित करने के लिए अपने लेनदेन में शुल्क के प्रतिशत के रूप में एक अतिरिक्त राशि जोड़ने की अनुमति देता है। उदाहरण के लिए, 50% ऑटो-डोनेशन 0.005 XMR का लेनदेन शुल्क लेता है और Monero के विकास को समर्थित करने के लिए 0.0025 XMR जोड़ता है।</translation>
+        <source>For every transaction, a small transaction fee is charged. This option lets you add an additional amount, as a percentage of that fee, to your transaction to support Monero Classic development. For instance, a 50% autodonation take a transaction fee of 0.005 XMR and add a 0.0025 XMR to support Monero Classic development.</source>
+        <translation>प्रत्येक लेनदेन के लिए एक छोटा शुल्क लगाया जाता है। यह विकल्प आपको Monero Classic का विकास समर्थित करने के लिए अपने लेनदेन में शुल्क के प्रतिशत के रूप में एक अतिरिक्त राशि जोड़ने की अनुमति देता है। उदाहरण के लिए, 50% ऑटो-डोनेशन 0.005 XMR का लेनदेन शुल्क लेता है और Monero Classic के विकास को समर्थित करने के लिए 0.0025 XMR जोड़ता है।</translation>
     </message>
     <message>
         <location filename="../wizard/WizardDonation.qml" line="176"/>
@@ -1914,8 +1914,8 @@ For the case with Spend Proof, you don&apos;t need to specify the recipient addr
     </message>
     <message>
         <location filename="../wizard/WizardDonation.qml" line="194"/>
-        <source>Mining secures the Monero network, and also pays a small reward for the work done. This option will let Monero mine when your computer is on mains power and is idle. It will stop mining when you continue working.</source>
-        <translation>माइनिंग Monero नेटवर्क को सुरक्षित बनाता है, और साथ ही किये गए कार्य के लिए छोटा पुरस्कार भी देता है। यह विकल्प Monero को तब माइन करने देता है जब आपका कंप्यूटर मेंस पॉवर पर होता है और निष्क्रिय होता है। जब आप काम करना शुरू करते हैं तो यह माइनिंग बंद कर देता है।</translation>
+        <source>Mining secures the Monero Classic network, and also pays a small reward for the work done. This option will let Monero Classic mine when your computer is on mains power and is idle. It will stop mining when you continue working.</source>
+        <translation>माइनिंग Monero Classic नेटवर्क को सुरक्षित बनाता है, और साथ ही किये गए कार्य के लिए छोटा पुरस्कार भी देता है। यह विकल्प Monero Classic को तब माइन करने देता है जब आपका कंप्यूटर मेंस पॉवर पर होता है और निष्क्रिय होता है। जब आप काम करना शुरू करते हैं तो यह माइनिंग बंद कर देता है।</translation>
     </message>
 </context>
 <context>
@@ -2104,8 +2104,8 @@ For the case with Spend Proof, you don&apos;t need to specify the recipient addr
     <name>WizardOptions</name>
     <message>
         <location filename="../wizard/WizardOptions.qml" line="74"/>
-        <source>Welcome to Monero!</source>
-        <translation>Monero में आपका स्वागत है!</translation>
+        <source>Welcome to Monero Classic!</source>
+        <translation>Monero Classic में आपका स्वागत है!</translation>
     </message>
     <message>
         <location filename="../wizard/WizardOptions.qml" line="85"/>
@@ -2173,8 +2173,8 @@ For the case with Spend Proof, you don&apos;t need to specify the recipient addr
     <name>WizardWelcome</name>
     <message>
         <location filename="../wizard/WizardWelcome.qml" line="73"/>
-        <source>Welcome to Monero!</source>
-        <translation type="unfinished">Monero में आपका स्वागत है!</translation>
+        <source>Welcome to Monero Classic!</source>
+        <translation type="unfinished">Monero Classic में आपका स्वागत है!</translation>
     </message>
     <message>
         <location filename="../wizard/WizardWelcome.qml" line="83"/>
@@ -2479,7 +2479,7 @@ Description: </source>
     </message>
     <message>
         <location filename="../main.qml" line="1243"/>
-        <source>Monero</source>
+        <source>Monero Classic</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

@@ -579,8 +579,8 @@
     </message>
     <message>
         <location filename="../pages/Mining.qml" line="83"/>
-        <source>Mining with your computer helps strengthen the Monero network. The more that people mine, the harder it is for the network to be attacked, and every little bit helps.&lt;br&gt; &lt;br&gt;Mining also gives you a small chance to earn some Monero. Your computer will create hashes looking for block solutions. If you find a block, you will get the associated reward. Good luck!</source>
-        <translation>挖矿可增进 Monero 网络的安全性，只要越多使用者在挖矿，Monero 网络就会越难以被攻击。&lt;br&gt; &lt;br&gt;挖矿同时能让您有机会赚取额外的门罗币，因为在挖矿时，您的计算机将被用来寻找 Monero 区块的解答，每当您找到一个区块的解答，您即可以获得其附带的门罗币奖励，祝您好运！</translation>
+        <source>Mining with your computer helps strengthen the Monero Classic network. The more that people mine, the harder it is for the network to be attacked, and every little bit helps.&lt;br&gt; &lt;br&gt;Mining also gives you a small chance to earn some Monero Classic. Your computer will create hashes looking for block solutions. If you find a block, you will get the associated reward. Good luck!</source>
+        <translation>挖矿可增进 Monero Classic 网络的安全性，只要越多使用者在挖矿，Monero Classic 网络就会越难以被攻击。&lt;br&gt; &lt;br&gt;挖矿同时能让您有机会赚取额外的门罗币，因为在挖矿时，您的计算机将被用来寻找 Monero Classic 区块的解答，每当您找到一个区块的解答，您即可以获得其附带的门罗币奖励，祝您好运！</translation>
     </message>
     <message>
         <location filename="../pages/Mining.qml" line="93"/>
@@ -1108,8 +1108,8 @@
     </message>
     <message>
         <location filename="../pages/Settings.qml" line="517"/>
-        <source>Embedded Monero version: </source>
-        <translation>内嵌Monero版本: </translation>
+        <source>Embedded Monero Classic version: </source>
+        <translation>内嵌Monero Classic版本: </translation>
     </message>
     <message>
         <location filename="../pages/Settings.qml" line="523"/>
@@ -1819,13 +1819,13 @@ For the case with Spend Proof, you don&apos;t need to specify the recipient addr
     <name>WizardConfigure</name>
     <message>
         <location filename="../wizard/WizardConfigure.qml" line="79"/>
-        <source>We’re almost there - let’s just configure some Monero preferences</source>
-        <translation>就快完成了 - Monero 还需要一点设置</translation>
+        <source>We’re almost there - let’s just configure some Monero Classic preferences</source>
+        <translation>就快完成了 - Monero Classic 还需要一点设置</translation>
     </message>
     <message>
         <location filename="../wizard/WizardConfigure.qml" line="97"/>
-        <source>Kickstart the Monero blockchain?</source>
-        <translation>开始同步 Monero 区块链?</translation>
+        <source>Kickstart the Monero Classic blockchain?</source>
+        <translation>开始同步 Monero Classic 区块链?</translation>
     </message>
     <message>
         <location filename="../wizard/WizardConfigure.qml" line="115"/>
@@ -1839,8 +1839,8 @@ For the case with Spend Proof, you don&apos;t need to specify the recipient addr
     </message>
     <message>
         <location filename="../wizard/WizardConfigure.qml" line="144"/>
-        <source>Disk conservation mode uses substantially less disk-space, but the same amount of bandwidth as a regular Monero instance. However, storing the full blockchain is beneficial to the security of the Monero network. If you are on a device with limited disk space, then this option is appropriate for you.</source>
-        <translation>硬盘节约模式能精简区块链的数据而减少硬盘空间的使用量，但保存完整的区块链能加强 Monero 网络的安全性，当您需要在容量较小的硬盘上执行，那么这个功能就很适合您，此功能对于网络带宽的用量没有影响。</translation>
+        <source>Disk conservation mode uses substantially less disk-space, but the same amount of bandwidth as a regular Monero Classic instance. However, storing the full blockchain is beneficial to the security of the Monero Classic network. If you are on a device with limited disk space, then this option is appropriate for you.</source>
+        <translation>硬盘节约模式能精简区块链的数据而减少硬盘空间的使用量，但保存完整的区块链能加强 Monero Classic 网络的安全性，当您需要在容量较小的硬盘上执行，那么这个功能就很适合您，此功能对于网络带宽的用量没有影响。</translation>
     </message>
     <message>
         <location filename="../wizard/WizardConfigure.qml" line="157"/>
@@ -1849,8 +1849,8 @@ For the case with Spend Proof, you don&apos;t need to specify the recipient addr
     </message>
     <message>
         <location filename="../wizard/WizardConfigure.qml" line="175"/>
-        <source>Mining secures the Monero network, and also pays a small reward for the work done. This option will let Monero mine when your computer is on mains power and is idle. It will stop mining when you continue working.</source>
-        <translation>启动挖矿功能可让 Monero 的系统网络更加安全，且在工作完成时获得小额的奖励金。这个功能只会在计算机插着电源并且闲置时才会自动启动，当您继续使用计算机后即会停止挖矿。</translation>
+        <source>Mining secures the Monero Classic network, and also pays a small reward for the work done. This option will let Monero Classic mine when your computer is on mains power and is idle. It will stop mining when you continue working.</source>
+        <translation>启动挖矿功能可让 Monero Classic 的系统网络更加安全，且在工作完成时获得小额的奖励金。这个功能只会在计算机插着电源并且闲置时才会自动启动，当您继续使用计算机后即会停止挖矿。</translation>
     </message>
 </context>
 <context>
@@ -1873,7 +1873,7 @@ For the case with Spend Proof, you don&apos;t need to specify the recipient addr
     <name>WizardDaemonSettings</name>
     <message>
         <location filename="../wizard/WizardDaemonSettings.qml" line="114"/>
-        <source>To be able to communicate with the Monero network your wallet needs to be connected to a Monero node. For best privacy it&apos;s recommended to run your own node.                         &lt;br&gt;&lt;br&gt;                         If you don&apos;t have the option to run an own node there&apos;s an option to connect to a remote node.</source>
+        <source>To be able to communicate with the Monero Classic network your wallet needs to be connected to a Monero Classic node. For best privacy it&apos;s recommended to run your own node.                         &lt;br&gt;&lt;br&gt;                         If you don&apos;t have the option to run an own node there&apos;s an option to connect to a remote node.</source>
         <translation>为了能跟门罗币网络通讯,你的钱包需要连接上一个门罗币节点. 为了最好的隐私，我们建议你运行一个自己的节点 &lt;br&gt;&lt;br&gt; 如果你无法运行一个自己的节点的话，可以选择连上一个远程的节点. </translation>
     </message>
     <message>
@@ -1906,13 +1906,13 @@ For the case with Spend Proof, you don&apos;t need to specify the recipient addr
     <name>WizardDonation</name>
     <message>
         <location filename="../wizard/WizardDonation.qml" line="93"/>
-        <source>Monero development is solely supported by donations</source>
-        <translation>Monero的开发完全由赞助所支持</translation>
+        <source>Monero Classic development is solely supported by donations</source>
+        <translation>Monero Classic的开发完全由赞助所支持</translation>
     </message>
     <message>
         <location filename="../wizard/WizardDonation.qml" line="113"/>
         <source>Enable auto-donations of?</source>
-        <translation>激活自动赞助给Monero的开发团队?</translation>
+        <translation>激活自动赞助给Monero Classic的开发团队?</translation>
     </message>
     <message>
         <location filename="../wizard/WizardDonation.qml" line="153"/>
@@ -1921,8 +1921,8 @@ For the case with Spend Proof, you don&apos;t need to specify the recipient addr
     </message>
     <message>
         <location filename="../wizard/WizardDonation.qml" line="164"/>
-        <source>For every transaction, a small transaction fee is charged. This option lets you add an additional amount, as a percentage of that fee, to your transaction to support Monero development. For instance, a 50% autodonation take a transaction fee of 0.005 XMR and add a 0.0025 XMR to support Monero development.</source>
-        <translation>在每一笔交易中 Monero 系统都会收取小额的手续费，而这个选项则是让你可以增加额外的金额赞助 Monero 的开发，比例以当次交易的手续费计算，譬如 50% 的自动赞助将会从0.005 XMR的手续费算出 0.0025 XMR 的金额赞助给 Monero 开发团队。</translation>
+        <source>For every transaction, a small transaction fee is charged. This option lets you add an additional amount, as a percentage of that fee, to your transaction to support Monero Classic development. For instance, a 50% autodonation take a transaction fee of 0.005 XMR and add a 0.0025 XMR to support Monero Classic development.</source>
+        <translation>在每一笔交易中 Monero Classic 系统都会收取小额的手续费，而这个选项则是让你可以增加额外的金额赞助 Monero Classic 的开发，比例以当次交易的手续费计算，譬如 50% 的自动赞助将会从0.005 XMR的手续费算出 0.0025 XMR 的金额赞助给 Monero Classic 开发团队。</translation>
     </message>
     <message>
         <location filename="../wizard/WizardDonation.qml" line="176"/>
@@ -1931,8 +1931,8 @@ For the case with Spend Proof, you don&apos;t need to specify the recipient addr
     </message>
     <message>
         <location filename="../wizard/WizardDonation.qml" line="194"/>
-        <source>Mining secures the Monero network, and also pays a small reward for the work done. This option will let Monero mine when your computer is on mains power and is idle. It will stop mining when you continue working.</source>
-        <translation>启动挖矿功能可让 Monero 的网络更加安全，且在工作完成时获得小额的奖励金。这个功能只会在计算机插着电源并且闲置时才会自动启动，当您继续使用计算机后即会停止挖矿。</translation>
+        <source>Mining secures the Monero Classic network, and also pays a small reward for the work done. This option will let Monero Classic mine when your computer is on mains power and is idle. It will stop mining when you continue working.</source>
+        <translation>启动挖矿功能可让 Monero Classic 的网络更加安全，且在工作完成时获得小额的奖励金。这个功能只会在计算机插着电源并且闲置时才会自动启动，当您继续使用计算机后即会停止挖矿。</translation>
     </message>
 </context>
 <context>
@@ -2122,8 +2122,8 @@ For the case with Spend Proof, you don&apos;t need to specify the recipient addr
     <name>WizardOptions</name>
     <message>
         <location filename="../wizard/WizardOptions.qml" line="74"/>
-        <source>Welcome to Monero!</source>
-        <translation>欢迎使用 Monero！</translation>
+        <source>Welcome to Monero Classic!</source>
+        <translation>欢迎使用 Monero Classic！</translation>
     </message>
     <message>
         <location filename="../wizard/WizardOptions.qml" line="85"/>
@@ -2192,8 +2192,8 @@ For the case with Spend Proof, you don&apos;t need to specify the recipient addr
     <name>WizardWelcome</name>
     <message>
         <location filename="../wizard/WizardWelcome.qml" line="73"/>
-        <source>Welcome to Monero!</source>
-        <translation>欢迎使用 Monero！</translation>
+        <source>Welcome to Monero Classic!</source>
+        <translation>欢迎使用 Monero Classic！</translation>
     </message>
     <message>
         <location filename="../wizard/WizardWelcome.qml" line="83"/>
@@ -2360,8 +2360,8 @@ Ringsize: </source>
     </message>
     <message>
         <location filename="../main.qml" line="822"/>
-        <source>This address received %1 monero, with %2 confirmation(s).</source>
-        <translation>这个地址接收了 %1 monero，并通过 %2 次的确认。</translation>
+        <source>This address received %1 monero classic, with %2 confirmation(s).</source>
+        <translation>这个地址接收了 %1 monero classic，并通过 %2 次的确认。</translation>
     </message>
     <message>
         <location filename="../main.qml" line="833"/>
@@ -2437,7 +2437,7 @@ Ringsize: </source>
     <message>
         <location filename="../main.qml" line="1650"/>
         <source>New version of monero-wallet-gui is available: %1&lt;br&gt;%2</source>
-        <translation>有可用的新版本 Monero 钱包:  %1&lt;br&gt;%2</translation>
+        <translation>有可用的新版本 Monero Classic 钱包:  %1&lt;br&gt;%2</translation>
     </message>
     <message>
         <location filename="../main.qml" line="593"/>
@@ -2494,8 +2494,8 @@ Description: </source>
     </message>
     <message>
         <location filename="../main.qml" line="819"/>
-        <source>This address received %1 monero, but the transaction is not yet mined</source>
-        <translation>这个地址已收到 %1 monero币，但这笔交易尚未被矿工确认</translation>
+        <source>This address received %1 monero classic, but the transaction is not yet mined</source>
+        <translation>这个地址已收到 %1 monero classic币，但这笔交易尚未被矿工确认</translation>
     </message>
     <message>
         <location filename="../main.qml" line="826"/>
@@ -2524,8 +2524,8 @@ Description: </source>
     </message>
     <message>
         <location filename="../main.qml" line="1243"/>
-        <source>Monero</source>
-        <translation>Monero</translation>
+        <source>Monero Classic</source>
+        <translation>Monero Classic</translation>
     </message>
     <message>
         <location filename="../main.qml" line="1317"/>

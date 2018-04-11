@@ -579,8 +579,8 @@
     </message>
     <message>
         <location filename="../pages/Mining.qml" line="83"/>
-        <source>Mining with your computer helps strengthen the Monero network. The more that people mine, the harder it is for the network to be attacked, and every little bit helps.&lt;br&gt; &lt;br&gt;Mining also gives you a small chance to earn some Monero. Your computer will create hashes looking for block solutions. If you find a block, you will get the associated reward. Good luck!</source>
-        <translation>Minatul cu propriul calculator ajută la creșterea puterii rețelei Monero. Cu cât se minează mai mult, cu atât rețeaua e mai greu de atacat și fiecare miner ajută.&lt;br&gt; &lt;br&gt;Minatul îți oferă de asemenea o mică șansă de a câștiga un pic de Monero. Calculatorul tău va crea hash-uri în căutarea de soluții pentru blocuri. Dacă descoperi un bloc, primești recompensa aferentă. Succes!</translation>
+        <source>Mining with your computer helps strengthen the Monero Classic network. The more that people mine, the harder it is for the network to be attacked, and every little bit helps.&lt;br&gt; &lt;br&gt;Mining also gives you a small chance to earn some Monero Classic. Your computer will create hashes looking for block solutions. If you find a block, you will get the associated reward. Good luck!</source>
+        <translation>Minatul cu propriul calculator ajută la creșterea puterii rețelei Monero Classic. Cu cât se minează mai mult, cu atât rețeaua e mai greu de atacat și fiecare miner ajută.&lt;br&gt; &lt;br&gt;Minatul îți oferă de asemenea o mică șansă de a câștiga un pic de Monero Classic. Calculatorul tău va crea hash-uri în căutarea de soluții pentru blocuri. Dacă descoperi un bloc, primești recompensa aferentă. Succes!</translation>
     </message>
     <message>
         <location filename="../pages/Mining.qml" line="93"/>
@@ -1198,8 +1198,8 @@ Fișierul vechi de cache va fi redenumit și poate fi refolosit în viitor.
     </message>
     <message>
         <location filename="../pages/Settings.qml" line="517"/>
-        <source>Embedded Monero version: </source>
-        <translation>Versiune Monero integrată: </translation>
+        <source>Embedded Monero Classic version: </source>
+        <translation>Versiune Monero Classic integrată: </translation>
     </message>
     <message>
         <location filename="../pages/Settings.qml" line="609"/>
@@ -1819,13 +1819,13 @@ Pentru cazurile cu Dovadă de plată, nu e necesară adresa destinatarului.</tra
     <name>WizardConfigure</name>
     <message>
         <location filename="../wizard/WizardConfigure.qml" line="79"/>
-        <source>We’re almost there - let’s just configure some Monero preferences</source>
-        <translation>Aproape am terminat - mai avem de configurat câteva setări Monero</translation>
+        <source>We’re almost there - let’s just configure some Monero Classic preferences</source>
+        <translation>Aproape am terminat - mai avem de configurat câteva setări Monero Classic</translation>
     </message>
     <message>
         <location filename="../wizard/WizardConfigure.qml" line="97"/>
-        <source>Kickstart the Monero blockchain?</source>
-        <translation>Pornește blockchain-ul Monero?</translation>
+        <source>Kickstart the Monero Classic blockchain?</source>
+        <translation>Pornește blockchain-ul Monero Classic?</translation>
     </message>
     <message>
         <location filename="../wizard/WizardConfigure.qml" line="115"/>
@@ -1839,8 +1839,8 @@ Pentru cazurile cu Dovadă de plată, nu e necesară adresa destinatarului.</tra
     </message>
     <message>
         <location filename="../wizard/WizardConfigure.qml" line="144"/>
-        <source>Disk conservation mode uses substantially less disk-space, but the same amount of bandwidth as a regular Monero instance. However, storing the full blockchain is beneficial to the security of the Monero network. If you are on a device with limited disk space, then this option is appropriate for you.</source>
-        <translation>Modul de economisire spațiu pe disc folosește mult mai puțin spațiu, dar la fel de multă lățime de bandă ca și o instanță normală Monero. Totuși, stocarea întregului blockchain este benefică pentru securitatea rețelei Monero. Dacă folosești un dispozitiv cu spațiu de stocare limitat, această setare este potrivită pentru tine.</translation>
+        <source>Disk conservation mode uses substantially less disk-space, but the same amount of bandwidth as a regular Monero Classic instance. However, storing the full blockchain is beneficial to the security of the Monero Classic network. If you are on a device with limited disk space, then this option is appropriate for you.</source>
+        <translation>Modul de economisire spațiu pe disc folosește mult mai puțin spațiu, dar la fel de multă lățime de bandă ca și o instanță normală Monero Classic. Totuși, stocarea întregului blockchain este benefică pentru securitatea rețelei Monero Classic. Dacă folosești un dispozitiv cu spațiu de stocare limitat, această setare este potrivită pentru tine.</translation>
     </message>
     <message>
         <location filename="../wizard/WizardConfigure.qml" line="157"/>
@@ -1849,8 +1849,8 @@ Pentru cazurile cu Dovadă de plată, nu e necesară adresa destinatarului.</tra
     </message>
     <message>
         <location filename="../wizard/WizardConfigure.qml" line="175"/>
-        <source>Mining secures the Monero network, and also pays a small reward for the work done. This option will let Monero mine when your computer is on mains power and is idle. It will stop mining when you continue working.</source>
-        <translation>Minatul securizează rețeaua Monero și, de asemenea, oferă o mică sumă ca recompensă pentru munca efectuată. Această setare permite minatul Monero atunci când calculatorul este inactiv și conectat la rețeaua electrică. Minatul se va opri atunci când reîncepi să folosești calculatorul.</translation>
+        <source>Mining secures the Monero Classic network, and also pays a small reward for the work done. This option will let Monero Classic mine when your computer is on mains power and is idle. It will stop mining when you continue working.</source>
+        <translation>Minatul securizează rețeaua Monero Classic și, de asemenea, oferă o mică sumă ca recompensă pentru munca efectuată. Această setare permite minatul Monero Classic atunci când calculatorul este inactiv și conectat la rețeaua electrică. Minatul se va opri atunci când reîncepi să folosești calculatorul.</translation>
     </message>
 </context>
 <context>
@@ -1873,8 +1873,8 @@ Pentru cazurile cu Dovadă de plată, nu e necesară adresa destinatarului.</tra
     <name>WizardDaemonSettings</name>
     <message>
         <location filename="../wizard/WizardDaemonSettings.qml" line="114"/>
-        <source>To be able to communicate with the Monero network your wallet needs to be connected to a Monero node. For best privacy it&apos;s recommended to run your own node.                         &lt;br&gt;&lt;br&gt;                         If you don&apos;t have the option to run an own node there&apos;s an option to connect to a remote node.</source>
-        <translation>Pentru a putea comunica cu rețeaua Monero, portofelul tău trebuie să fie conectat la un serviciu (nod) Monero. Pentru confidențialitate maximă, se recomandă să rulezi propriul tău serviciu.                         &lt;br&gt;&lt;br&gt;                         Dacă poți să rulezi un serviciu local, te poți conecta la unul remote.</translation>
+        <source>To be able to communicate with the Monero Classic network your wallet needs to be connected to a Monero Classic node. For best privacy it&apos;s recommended to run your own node.                         &lt;br&gt;&lt;br&gt;                         If you don&apos;t have the option to run an own node there&apos;s an option to connect to a remote node.</source>
+        <translation>Pentru a putea comunica cu rețeaua Monero Classic, portofelul tău trebuie să fie conectat la un serviciu (nod) Monero Classic. Pentru confidențialitate maximă, se recomandă să rulezi propriul tău serviciu.                         &lt;br&gt;&lt;br&gt;                         Dacă poți să rulezi un serviciu local, te poți conecta la unul remote.</translation>
     </message>
     <message>
         <location filename="../wizard/WizardDaemonSettings.qml" line="126"/>
@@ -1906,8 +1906,8 @@ Pentru cazurile cu Dovadă de plată, nu e necesară adresa destinatarului.</tra
     <name>WizardDonation</name>
     <message>
         <location filename="../wizard/WizardDonation.qml" line="93"/>
-        <source>Monero development is solely supported by donations</source>
-        <translation>Dezvoltarea Monero este susținută exclusiv prin donații</translation>
+        <source>Monero Classic development is solely supported by donations</source>
+        <translation>Dezvoltarea Monero Classic este susținută exclusiv prin donații</translation>
     </message>
     <message>
         <location filename="../wizard/WizardDonation.qml" line="113"/>
@@ -1921,8 +1921,8 @@ Pentru cazurile cu Dovadă de plată, nu e necesară adresa destinatarului.</tra
     </message>
     <message>
         <location filename="../wizard/WizardDonation.qml" line="164"/>
-        <source>For every transaction, a small transaction fee is charged. This option lets you add an additional amount, as a percentage of that fee, to your transaction to support Monero development. For instance, a 50% autodonation take a transaction fee of 0.005 XMR and add a 0.0025 XMR to support Monero development.</source>
-        <translation>Pentru fiecare tranzacție se plătește un mic comision de tranzacție. Această setare îți permite să adaugi o mică sumă la tranzacție, ca procent din comisionul respectiv, pentru a susține dezvoltarea Monero. De exemplu, pentru un comision de 0.005 XMR, o donație automată de 50% adaugă 0.0025 XMR pentru susținerea dezvoltării Monero.</translation>
+        <source>For every transaction, a small transaction fee is charged. This option lets you add an additional amount, as a percentage of that fee, to your transaction to support Monero Classic development. For instance, a 50% autodonation take a transaction fee of 0.005 XMR and add a 0.0025 XMR to support Monero Classic development.</source>
+        <translation>Pentru fiecare tranzacție se plătește un mic comision de tranzacție. Această setare îți permite să adaugi o mică sumă la tranzacție, ca procent din comisionul respectiv, pentru a susține dezvoltarea Monero Classic. De exemplu, pentru un comision de 0.005 XMR, o donație automată de 50% adaugă 0.0025 XMR pentru susținerea dezvoltării Monero Classic.</translation>
     </message>
     <message>
         <location filename="../wizard/WizardDonation.qml" line="176"/>
@@ -1931,8 +1931,8 @@ Pentru cazurile cu Dovadă de plată, nu e necesară adresa destinatarului.</tra
     </message>
     <message>
         <location filename="../wizard/WizardDonation.qml" line="194"/>
-        <source>Mining secures the Monero network, and also pays a small reward for the work done. This option will let Monero mine when your computer is on mains power and is idle. It will stop mining when you continue working.</source>
-        <translation>Minatul securizează rețeaua Monero și, de asemenea, oferă o mică sumă ca recompensă pentru munca efectuată. Această setare permite minatul Monero atunci când calculatorul este inactiv și conectat la rețeaua electrică. Minatul se va opri atunci când reîncepi să folosești calculatorul.</translation>
+        <source>Mining secures the Monero Classic network, and also pays a small reward for the work done. This option will let Monero Classic mine when your computer is on mains power and is idle. It will stop mining when you continue working.</source>
+        <translation>Minatul securizează rețeaua Monero Classic și, de asemenea, oferă o mică sumă ca recompensă pentru munca efectuată. Această setare permite minatul Monero Classic atunci când calculatorul este inactiv și conectat la rețeaua electrică. Minatul se va opri atunci când reîncepi să folosești calculatorul.</translation>
     </message>
 </context>
 <context>
@@ -2122,8 +2122,8 @@ Pentru cazurile cu Dovadă de plată, nu e necesară adresa destinatarului.</tra
     <name>WizardOptions</name>
     <message>
         <location filename="../wizard/WizardOptions.qml" line="74"/>
-        <source>Welcome to Monero!</source>
-        <translation>Bine ai venit la Monero!</translation>
+        <source>Welcome to Monero Classic!</source>
+        <translation>Bine ai venit la Monero Classic!</translation>
     </message>
     <message>
         <location filename="../wizard/WizardOptions.qml" line="85"/>
@@ -2192,8 +2192,8 @@ Pentru cazurile cu Dovadă de plată, nu e necesară adresa destinatarului.</tra
     <name>WizardWelcome</name>
     <message>
         <location filename="../wizard/WizardWelcome.qml" line="73"/>
-        <source>Welcome to Monero!</source>
-        <translation>Bine ai venit la Monero!</translation>
+        <source>Welcome to Monero Classic!</source>
+        <translation>Bine ai venit la Monero Classic!</translation>
     </message>
     <message>
         <location filename="../wizard/WizardWelcome.qml" line="83"/>
@@ -2525,8 +2525,8 @@ Descriere: </translation>
     </message>
     <message>
         <location filename="../main.qml" line="1243"/>
-        <source>Monero</source>
-        <translation>Monero</translation>
+        <source>Monero Classic</source>
+        <translation>Monero Classic</translation>
     </message>
     <message>
         <location filename="../main.qml" line="1317"/>

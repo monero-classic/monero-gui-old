@@ -579,8 +579,8 @@
     </message>
     <message>
         <location filename="../pages/Mining.qml" line="83"/>
-        <source>Mining with your computer helps strengthen the Monero network. The more that people mine, the harder it is for the network to be attacked, and every little bit helps.&lt;br&gt; &lt;br&gt;Mining also gives you a small chance to earn some Monero. Your computer will create hashes looking for block solutions. If you find a block, you will get the associated reward. Good luck!</source>
-        <translation>Těžba s počítačem pomáhá posílit síť Monero. Čím víc lidí těží, tím těžší je, aby byla síť napadena, a každé, byť i jen malé přispění pomáhá. &lt;br&gt; &lt;br&gt;Těžba vám také dává malou šanci vydělat nějaký Monero. Váš počítač vytvoří hash, který pokud bude řešením pasujícím do bloku, dostanete související odměnu. Hodně štěstí!</translation>
+        <source>Mining with your computer helps strengthen the Monero Classic network. The more that people mine, the harder it is for the network to be attacked, and every little bit helps.&lt;br&gt; &lt;br&gt;Mining also gives you a small chance to earn some Monero Classic. Your computer will create hashes looking for block solutions. If you find a block, you will get the associated reward. Good luck!</source>
+        <translation>Těžba s počítačem pomáhá posílit síť Monero Classic. Čím víc lidí těží, tím těžší je, aby byla síť napadena, a každé, byť i jen malé přispění pomáhá. &lt;br&gt; &lt;br&gt;Těžba vám také dává malou šanci vydělat nějaký Monero Classic. Váš počítač vytvoří hash, který pokud bude řešením pasujícím do bloku, dostanete související odměnu. Hodně štěstí!</translation>
     </message>
     <message>
         <location filename="../pages/Mining.qml" line="93"/>
@@ -1108,8 +1108,8 @@
     </message>
     <message>
         <location filename="../pages/Settings.qml" line="517"/>
-        <source>Embedded Monero version: </source>
-        <translation>Vestavěná verze Monero: </translation>
+        <source>Embedded Monero Classic version: </source>
+        <translation>Vestavěná verze Monero Classic: </translation>
     </message>
     <message>
         <location filename="../pages/Settings.qml" line="523"/>
@@ -1817,12 +1817,12 @@ For the case of outgoing payments, you can get a &apos;Spend Proof&apos; that pr
     <name>WizardConfigure</name>
     <message>
         <location filename="../wizard/WizardConfigure.qml" line="79"/>
-        <source>We’re almost there - let’s just configure some Monero preferences</source>
-        <translation>Jsme skoro tam - teď jednoduše nakonfigurujte některé předvolby Monero</translation>
+        <source>We’re almost there - let’s just configure some Monero Classic preferences</source>
+        <translation>Jsme skoro tam - teď jednoduše nakonfigurujte některé předvolby Monero Classic</translation>
     </message>
     <message>
         <location filename="../wizard/WizardConfigure.qml" line="97"/>
-        <source>Kickstart the Monero blockchain?</source>
+        <source>Kickstart the Monero Classic blockchain?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1837,8 +1837,8 @@ For the case of outgoing payments, you can get a &apos;Spend Proof&apos; that pr
     </message>
     <message>
         <location filename="../wizard/WizardConfigure.qml" line="144"/>
-        <source>Disk conservation mode uses substantially less disk-space, but the same amount of bandwidth as a regular Monero instance. However, storing the full blockchain is beneficial to the security of the Monero network. If you are on a device with limited disk space, then this option is appropriate for you.</source>
-        <translation>Režim zachování disku používá podstatně méně místa na disku, ale stejné množství šířky pásma internetového připojení jako běžná instance Monero. Ukládání plné podoby blockchainu je však přínosem pro bezpečnost sítě Monero. Pokud jste v zařízení s omezeným prostorem na disku, pak je tato volba pro vás vhodná.</translation>
+        <source>Disk conservation mode uses substantially less disk-space, but the same amount of bandwidth as a regular Monero Classic instance. However, storing the full blockchain is beneficial to the security of the Monero Classic network. If you are on a device with limited disk space, then this option is appropriate for you.</source>
+        <translation>Režim zachování disku používá podstatně méně místa na disku, ale stejné množství šířky pásma internetového připojení jako běžná instance Monero Classic. Ukládání plné podoby blockchainu je však přínosem pro bezpečnost sítě Monero Classic. Pokud jste v zařízení s omezeným prostorem na disku, pak je tato volba pro vás vhodná.</translation>
     </message>
     <message>
         <location filename="../wizard/WizardConfigure.qml" line="157"/>
@@ -1847,8 +1847,8 @@ For the case of outgoing payments, you can get a &apos;Spend Proof&apos; that pr
     </message>
     <message>
         <location filename="../wizard/WizardConfigure.qml" line="175"/>
-        <source>Mining secures the Monero network, and also pays a small reward for the work done. This option will let Monero mine when your computer is on mains power and is idle. It will stop mining when you continue working.</source>
-        <translation>Těžení zajišťuje síť Monero a platí také malou odměnu za vykonanou práci. Tato možnost umožní aplikaci Monero těžbu, pokud je počítač napájen ze sítě a je nečinný. Při pokračování v práci zastaví těžbu.</translation>
+        <source>Mining secures the Monero Classic network, and also pays a small reward for the work done. This option will let Monero Classic mine when your computer is on mains power and is idle. It will stop mining when you continue working.</source>
+        <translation>Těžení zajišťuje síť Monero Classic a platí také malou odměnu za vykonanou práci. Tato možnost umožní aplikaci Monero Classic těžbu, pokud je počítač napájen ze sítě a je nečinný. Při pokračování v práci zastaví těžbu.</translation>
     </message>
 </context>
 <context>
@@ -1871,8 +1871,8 @@ For the case of outgoing payments, you can get a &apos;Spend Proof&apos; that pr
     <name>WizardDaemonSettings</name>
     <message>
         <location filename="../wizard/WizardDaemonSettings.qml" line="114"/>
-        <source>To be able to communicate with the Monero network your wallet needs to be connected to a Monero node. For best privacy it&apos;s recommended to run your own node.                         &lt;br&gt;&lt;br&gt;                         If you don&apos;t have the option to run an own node there&apos;s an option to connect to a remote node.</source>
-        <translation>Chcete-li komunikovat se sítí Monero, musí být vaše peněženka připojena k uzlu Monero. Pro nejlepší soukromí doporučujeme spustit vlastní uzel. &lt;br&gt;&lt;br&gt; Pokud nemáte možnost spustit vlastní uzel, je možnost připojení k vzdálenému uzlu.</translation>
+        <source>To be able to communicate with the Monero Classic network your wallet needs to be connected to a Monero Classic node. For best privacy it&apos;s recommended to run your own node.                         &lt;br&gt;&lt;br&gt;                         If you don&apos;t have the option to run an own node there&apos;s an option to connect to a remote node.</source>
+        <translation>Chcete-li komunikovat se sítí Monero Classic, musí být vaše peněženka připojena k uzlu Monero Classic. Pro nejlepší soukromí doporučujeme spustit vlastní uzel. &lt;br&gt;&lt;br&gt; Pokud nemáte možnost spustit vlastní uzel, je možnost připojení k vzdálenému uzlu.</translation>
     </message>
     <message>
         <location filename="../wizard/WizardDaemonSettings.qml" line="126"/>
@@ -1904,8 +1904,8 @@ For the case of outgoing payments, you can get a &apos;Spend Proof&apos; that pr
     <name>WizardDonation</name>
     <message>
         <location filename="../wizard/WizardDonation.qml" line="93"/>
-        <source>Monero development is solely supported by donations</source>
-        <translation>Vývoj Monero je podporován výhradně z dobrovolných příspěvků</translation>
+        <source>Monero Classic development is solely supported by donations</source>
+        <translation>Vývoj Monero Classic je podporován výhradně z dobrovolných příspěvků</translation>
     </message>
     <message>
         <location filename="../wizard/WizardDonation.qml" line="113"/>
@@ -1919,8 +1919,8 @@ For the case of outgoing payments, you can get a &apos;Spend Proof&apos; that pr
     </message>
     <message>
         <location filename="../wizard/WizardDonation.qml" line="164"/>
-        <source>For every transaction, a small transaction fee is charged. This option lets you add an additional amount, as a percentage of that fee, to your transaction to support Monero development. For instance, a 50% autodonation take a transaction fee of 0.005 XMR and add a 0.0025 XMR to support Monero development.</source>
-        <translation>Pro každou transakci je účtován malý transakční poplatek. Tato volba vám umožní přidat částku z tohoto poplatku do vaší transakce na podporu vývoje společnosti Monero. Například 50% autodonace převezme transakční poplatek 0,005 XMR a přidá 0,0025 XMR k podpoře vývoje společnosti Monero.</translation>
+        <source>For every transaction, a small transaction fee is charged. This option lets you add an additional amount, as a percentage of that fee, to your transaction to support Monero Classic development. For instance, a 50% autodonation take a transaction fee of 0.005 XMR and add a 0.0025 XMR to support Monero Classic development.</source>
+        <translation>Pro každou transakci je účtován malý transakční poplatek. Tato volba vám umožní přidat částku z tohoto poplatku do vaší transakce na podporu vývoje společnosti Monero Classic. Například 50% autodonace převezme transakční poplatek 0,005 XMR a přidá 0,0025 XMR k podpoře vývoje společnosti Monero Classic.</translation>
     </message>
     <message>
         <location filename="../wizard/WizardDonation.qml" line="176"/>
@@ -1929,8 +1929,8 @@ For the case of outgoing payments, you can get a &apos;Spend Proof&apos; that pr
     </message>
     <message>
         <location filename="../wizard/WizardDonation.qml" line="194"/>
-        <source>Mining secures the Monero network, and also pays a small reward for the work done. This option will let Monero mine when your computer is on mains power and is idle. It will stop mining when you continue working.</source>
-        <translation>Těžení zajišťuje síť Monero a platí také malou odměnu za vykonanou práci. Tato možnost umožní aplikaci Monero, pokud je počítač napájen ze sítě a je nečinný. Při pokračování v práci zastaví těžbu.</translation>
+        <source>Mining secures the Monero Classic network, and also pays a small reward for the work done. This option will let Monero Classic mine when your computer is on mains power and is idle. It will stop mining when you continue working.</source>
+        <translation>Těžení zajišťuje síť Monero Classic a platí také malou odměnu za vykonanou práci. Tato možnost umožní aplikaci Monero Classic, pokud je počítač napájen ze sítě a je nečinný. Při pokračování v práci zastaví těžbu.</translation>
     </message>
 </context>
 <context>
@@ -2119,8 +2119,8 @@ For the case of outgoing payments, you can get a &apos;Spend Proof&apos; that pr
     <name>WizardOptions</name>
     <message>
         <location filename="../wizard/WizardOptions.qml" line="74"/>
-        <source>Welcome to Monero!</source>
-        <translation>Vítejte v Monero!</translation>
+        <source>Welcome to Monero Classic!</source>
+        <translation>Vítejte v Monero Classic!</translation>
     </message>
     <message>
         <location filename="../wizard/WizardOptions.qml" line="85"/>
@@ -2189,8 +2189,8 @@ For the case of outgoing payments, you can get a &apos;Spend Proof&apos; that pr
     <name>WizardWelcome</name>
     <message>
         <location filename="../wizard/WizardWelcome.qml" line="73"/>
-        <source>Welcome to Monero!</source>
-        <translation>Vítejte v Monero!</translation>
+        <source>Welcome to Monero Classic!</source>
+        <translation>Vítejte v Monero Classic!</translation>
     </message>
     <message>
         <location filename="../wizard/WizardWelcome.qml" line="83"/>
@@ -2523,8 +2523,8 @@ Popis: </translation>
     </message>
     <message>
         <location filename="../main.qml" line="1243"/>
-        <source>Monero</source>
-        <translation>Monero</translation>
+        <source>Monero Classic</source>
+        <translation>Monero Classic</translation>
     </message>
     <message>
         <location filename="../main.qml" line="1317"/>

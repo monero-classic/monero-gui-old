@@ -564,8 +564,8 @@
     </message>
     <message>
         <location filename="../pages/Mining.qml" line="83"/>
-        <source>Mining with your computer helps strengthen the Monero network. The more that people mine, the harder it is for the network to be attacked, and every little bit helps.&lt;br&gt; &lt;br&gt;Mining also gives you a small chance to earn some Monero. Your computer will create hashes looking for block solutions. If you find a block, you will get the associated reward. Good luck!</source>
-        <translation>Rudareći svojim računarom ojačavate Monero mrežu. Što je veći broj rudara, utoliko je teže napasti mrežu, upravo zbog toga i najmanji doprinos u rudarenju pomaže.&lt;br&gt; &lt;br&gt;Rudarenje takođe pruža malu šansu da zaradite nešto Monera. Vaš računar će generišući haševe tražiti odgovarajuće rešenje za naredni blok. Ukoliko uspete da nađete blok, dobićete nagradu vezanu za taj blok u vidu Monera. Srećno!</translation>
+        <source>Mining with your computer helps strengthen the Monero Classic network. The more that people mine, the harder it is for the network to be attacked, and every little bit helps.&lt;br&gt; &lt;br&gt;Mining also gives you a small chance to earn some Monero Classic. Your computer will create hashes looking for block solutions. If you find a block, you will get the associated reward. Good luck!</source>
+        <translation>Rudareći svojim računarom ojačavate Monero Classic mrežu. Što je veći broj rudara, utoliko je teže napasti mrežu, upravo zbog toga i najmanji doprinos u rudarenju pomaže.&lt;br&gt; &lt;br&gt;Rudarenje takođe pruža malu šansu da zaradite nešto Monera. Vaš računar će generišući haševe tražiti odgovarajuće rešenje za naredni blok. Ukoliko uspete da nađete blok, dobićete nagradu vezanu za taj blok u vidu Monera. Srećno!</translation>
     </message>
     <message>
         <location filename="../pages/Mining.qml" line="93"/>
@@ -1065,8 +1065,8 @@
     </message>
     <message>
         <location filename="../pages/Settings.qml" line="491"/>
-        <source>Embedded Monero version: </source>
-        <translation>Ugrađena Monero verzija: </translation>
+        <source>Embedded Monero Classic version: </source>
+        <translation>Ugrađena Monero Classic verzija: </translation>
     </message>
     <message>
         <location filename="../pages/Settings.qml" line="497"/>
@@ -1775,13 +1775,13 @@ Molimo nadogradite softver na najnoviju verziju ili se povežite sa drugim daemo
     <name>WizardConfigure</name>
     <message>
         <location filename="../wizard/WizardConfigure.qml" line="79"/>
-        <source>We’re almost there - let’s just configure some Monero preferences</source>
-        <translation>Skoro smo gotovi - još samo da podesimo par Monero prioriteta</translation>
+        <source>We’re almost there - let’s just configure some Monero Classic preferences</source>
+        <translation>Skoro smo gotovi - još samo da podesimo par Monero Classic prioriteta</translation>
     </message>
     <message>
         <location filename="../wizard/WizardConfigure.qml" line="97"/>
-        <source>Kickstart the Monero blockchain?</source>
-        <translation>Poguraj start Monero blokčejna?</translation>
+        <source>Kickstart the Monero Classic blockchain?</source>
+        <translation>Poguraj start Monero Classic blokčejna?</translation>
     </message>
     <message>
         <location filename="../wizard/WizardConfigure.qml" line="115"/>
@@ -1795,8 +1795,8 @@ Molimo nadogradite softver na najnoviju verziju ili se povežite sa drugim daemo
     </message>
     <message>
         <location filename="../wizard/WizardConfigure.qml" line="144"/>
-        <source>Disk conservation mode uses substantially less disk-space, but the same amount of bandwidth as a regular Monero instance. However, storing the full blockchain is beneficial to the security of the Monero network. If you are on a device with limited disk space, then this option is appropriate for you.</source>
-        <translation>Režim štednje diska koristi znatno manje prostora na disku, ali istu količinu protoka kao i normalna Monero instanca. Međutim, skladištenje kompletnog blokčejna je izuzetno značajno za sigurnost Monero mreže. Ako koristite uređaj sa ograničenim prostorom memorije, onda je ova opcija štednje prostora prikladna za Vas.</translation>
+        <source>Disk conservation mode uses substantially less disk-space, but the same amount of bandwidth as a regular Monero Classic instance. However, storing the full blockchain is beneficial to the security of the Monero Classic network. If you are on a device with limited disk space, then this option is appropriate for you.</source>
+        <translation>Režim štednje diska koristi znatno manje prostora na disku, ali istu količinu protoka kao i normalna Monero Classic instanca. Međutim, skladištenje kompletnog blokčejna je izuzetno značajno za sigurnost Monero Classic mreže. Ako koristite uređaj sa ograničenim prostorom memorije, onda je ova opcija štednje prostora prikladna za Vas.</translation>
     </message>
     <message>
         <location filename="../wizard/WizardConfigure.qml" line="157"/>
@@ -1805,8 +1805,8 @@ Molimo nadogradite softver na najnoviju verziju ili se povežite sa drugim daemo
     </message>
     <message>
         <location filename="../wizard/WizardConfigure.qml" line="175"/>
-        <source>Mining secures the Monero network, and also pays a small reward for the work done. This option will let Monero mine when your computer is on mains power and is idle. It will stop mining when you continue working.</source>
-        <translation>Rudarenje obezbeđuje sigurnost Monero mreže i isplaćuje malu nagradu za izvršen rad. Ova opcija pokreće Monero rudarenje dokle god se računar napaja direktno iz zida, bez baterije, i dokle god nije u upotrebi. Rudarenje prestaje po nastavku rada korisnika na računaru.</translation>
+        <source>Mining secures the Monero Classic network, and also pays a small reward for the work done. This option will let Monero Classic mine when your computer is on mains power and is idle. It will stop mining when you continue working.</source>
+        <translation>Rudarenje obezbeđuje sigurnost Monero Classic mreže i isplaćuje malu nagradu za izvršen rad. Ova opcija pokreće Monero Classic rudarenje dokle god se računar napaja direktno iz zida, bez baterije, i dokle god nije u upotrebi. Rudarenje prestaje po nastavku rada korisnika na računaru.</translation>
     </message>
 </context>
 <context>
@@ -1829,8 +1829,8 @@ Molimo nadogradite softver na najnoviju verziju ili se povežite sa drugim daemo
     <name>WizardDaemonSettings</name>
     <message>
         <location filename="../wizard/WizardDaemonSettings.qml" line="114"/>
-        <source>To be able to communicate with the Monero network your wallet needs to be connected to a Monero node. For best privacy it&apos;s recommended to run your own node.                         &lt;br&gt;&lt;br&gt;                         If you don&apos;t have the option to run an own node there&apos;s an option to connect to a remote node.</source>
-        <translation>Vaš novčanik mora biti povezan sa Monero node-om kako bi komunikacija sa Monero mrežom bila moguća. Za najstrožu privatnost povežite se na svoj lokalni Monero node sa punim blokčejnom.                         &lt;br&gt;&lt;br&gt;                         Ukoliko niste u mogućnosti da pokrenete i koristite sopstveni, lokalni Monero node, uvek se možete povezati na udaljeni node.</translation>
+        <source>To be able to communicate with the Monero Classic network your wallet needs to be connected to a Monero Classic node. For best privacy it&apos;s recommended to run your own node.                         &lt;br&gt;&lt;br&gt;                         If you don&apos;t have the option to run an own node there&apos;s an option to connect to a remote node.</source>
+        <translation>Vaš novčanik mora biti povezan sa Monero Classic node-om kako bi komunikacija sa Monero Classic mrežom bila moguća. Za najstrožu privatnost povežite se na svoj lokalni Monero Classic node sa punim blokčejnom.                         &lt;br&gt;&lt;br&gt;                         Ukoliko niste u mogućnosti da pokrenete i koristite sopstveni, lokalni Monero Classic node, uvek se možete povezati na udaljeni node.</translation>
     </message>
     <message>
         <location filename="../wizard/WizardDaemonSettings.qml" line="126"/>
@@ -1862,7 +1862,7 @@ Molimo nadogradite softver na najnoviju verziju ili se povežite sa drugim daemo
     <name>WizardDonation</name>
     <message>
         <location filename="../wizard/WizardDonation.qml" line="93"/>
-        <source>Monero development is solely supported by donations</source>
+        <source>Monero Classic development is solely supported by donations</source>
         <translation>Razvoj Monera je potpomognut isključivo donacijama</translation>
     </message>
     <message>
@@ -1877,7 +1877,7 @@ Molimo nadogradite softver na najnoviju verziju ili se povežite sa drugim daemo
     </message>
     <message>
         <location filename="../wizard/WizardDonation.qml" line="164"/>
-        <source>For every transaction, a small transaction fee is charged. This option lets you add an additional amount, as a percentage of that fee, to your transaction to support Monero development. For instance, a 50% autodonation take a transaction fee of 0.005 XMR and add a 0.0025 XMR to support Monero development.</source>
+        <source>For every transaction, a small transaction fee is charged. This option lets you add an additional amount, as a percentage of that fee, to your transaction to support Monero Classic development. For instance, a 50% autodonation take a transaction fee of 0.005 XMR and add a 0.0025 XMR to support Monero Classic development.</source>
         <translation>Uz svaku transakciju, mala provizija se naplaćuje. Ova opcija omogućava da uz dodatak male sume kao procenat te provizije pomognete razvoj Monera. Na primer, 50% auto-donacije od transakcione provizije od 0.005 XMR će dodati još 0.0025 XMR u svrhu pomoći razvoja Monera.</translation>
     </message>
     <message>
@@ -1887,8 +1887,8 @@ Molimo nadogradite softver na najnoviju verziju ili se povežite sa drugim daemo
     </message>
     <message>
         <location filename="../wizard/WizardDonation.qml" line="194"/>
-        <source>Mining secures the Monero network, and also pays a small reward for the work done. This option will let Monero mine when your computer is on mains power and is idle. It will stop mining when you continue working.</source>
-        <translation>Rudarenje obezbeđuje sigurnost Monero mreže i isplaćuje malu nagradu za izvršen rad. Ova opcija pokreće Monero rudarenje dokle god se računar napaja direktno iz zida, bez baterije, i dokle god nije u upotrebi. Rudarenje prestaje po nastavku rada korisnika na računaru.</translation>
+        <source>Mining secures the Monero Classic network, and also pays a small reward for the work done. This option will let Monero Classic mine when your computer is on mains power and is idle. It will stop mining when you continue working.</source>
+        <translation>Rudarenje obezbeđuje sigurnost Monero Classic mreže i isplaćuje malu nagradu za izvršen rad. Ova opcija pokreće Monero Classic rudarenje dokle god se računar napaja direktno iz zida, bez baterije, i dokle god nije u upotrebi. Rudarenje prestaje po nastavku rada korisnika na računaru.</translation>
     </message>
 </context>
 <context>
@@ -2078,8 +2078,8 @@ Molimo nadogradite softver na najnoviju verziju ili se povežite sa drugim daemo
     <name>WizardOptions</name>
     <message>
         <location filename="../wizard/WizardOptions.qml" line="74"/>
-        <source>Welcome to Monero!</source>
-        <translation>Monero Vam želi dobrodošlicu!</translation>
+        <source>Welcome to Monero Classic!</source>
+        <translation>Monero Classic Vam želi dobrodošlicu!</translation>
     </message>
     <message>
         <location filename="../wizard/WizardOptions.qml" line="85"/>
@@ -2148,8 +2148,8 @@ Molimo nadogradite softver na najnoviju verziju ili se povežite sa drugim daemo
     <name>WizardWelcome</name>
     <message>
         <location filename="../wizard/WizardWelcome.qml" line="73"/>
-        <source>Welcome to Monero!</source>
-        <translation>Monero Vam želi dobrodošlicu!</translation>
+        <source>Welcome to Monero Classic!</source>
+        <translation>Monero Classic Vam želi dobrodošlicu!</translation>
     </message>
     <message>
         <location filename="../wizard/WizardWelcome.qml" line="83"/>
@@ -2457,8 +2457,8 @@ Opis: </translation>
     </message>
     <message>
         <location filename="../main.qml" line="1234"/>
-        <source>Monero</source>
-        <translation>Monero</translation>
+        <source>Monero Classic</source>
+        <translation>Monero Classic</translation>
     </message>
     <message>
         <location filename="../main.qml" line="1284"/>

@@ -579,8 +579,8 @@
     </message>
     <message>
         <location filename="../pages/Mining.qml" line="83"/>
-        <source>Mining with your computer helps strengthen the Monero network. The more that people mine, the harder it is for the network to be attacked, and every little bit helps.&lt;br&gt; &lt;br&gt;Mining also gives you a small chance to earn some Monero. Your computer will create hashes looking for block solutions. If you find a block, you will get the associated reward. Good luck!</source>
-        <translation>Bilgisayarınızla birlikte madencilik yapmak Monero ağını güçlendirmeye yardımcı olur. İnsanların benimsediği derecede, ağın saldırıya ne kadar zorlaşırsa, ve insanlara biraz yardımcı olur. &lt;br&gt; &lt;br&gt; Madencilik ayrıca bazı Monero kazanmak için küçük bir şans verir. Bilgisayarınız blok çözümleri arayan karma değerler oluşturacaktır. Bir blok bulursanız, size verilen ödülleri alacaksınız. İyi şanslar!</translation>
+        <source>Mining with your computer helps strengthen the Monero Classic network. The more that people mine, the harder it is for the network to be attacked, and every little bit helps.&lt;br&gt; &lt;br&gt;Mining also gives you a small chance to earn some Monero Classic. Your computer will create hashes looking for block solutions. If you find a block, you will get the associated reward. Good luck!</source>
+        <translation>Bilgisayarınızla birlikte madencilik yapmak Monero Classic ağını güçlendirmeye yardımcı olur. İnsanların benimsediği derecede, ağın saldırıya ne kadar zorlaşırsa, ve insanlara biraz yardımcı olur. &lt;br&gt; &lt;br&gt; Madencilik ayrıca bazı Monero Classic kazanmak için küçük bir şans verir. Bilgisayarınız blok çözümleri arayan karma değerler oluşturacaktır. Bir blok bulursanız, size verilen ödülleri alacaksınız. İyi şanslar!</translation>
     </message>
     <message>
         <location filename="../pages/Mining.qml" line="93"/>
@@ -1113,8 +1113,8 @@
     </message>
     <message>
         <location filename="../pages/Settings.qml" line="517"/>
-        <source>Embedded Monero version: </source>
-        <translation>Gömülü Monero sürümü: </translation>
+        <source>Embedded Monero Classic version: </source>
+        <translation>Gömülü Monero Classic sürümü: </translation>
     </message>
     <message>
         <location filename="../pages/Settings.qml" line="523"/>
@@ -1804,13 +1804,13 @@ Harcama Kanıtı ile ilgili davada, alıcı adresini belirtmeniz gerekmez. </tra
     <name>WizardConfigure</name>
     <message>
         <location filename="../wizard/WizardConfigure.qml" line="79"/>
-        <source>We’re almost there - let’s just configure some Monero preferences</source>
-        <translation>Neredeyse geldik - sadece bazı Monero tercihlerini yapılandıralım</translation>
+        <source>We’re almost there - let’s just configure some Monero Classic preferences</source>
+        <translation>Neredeyse geldik - sadece bazı Monero Classic tercihlerini yapılandıralım</translation>
     </message>
     <message>
         <location filename="../wizard/WizardConfigure.qml" line="97"/>
-        <source>Kickstart the Monero blockchain?</source>
-        <translation>Monero&apos;nun blokaj zincirini başlatmak mı?</translation>
+        <source>Kickstart the Monero Classic blockchain?</source>
+        <translation>Monero Classic&apos;nun blokaj zincirini başlatmak mı?</translation>
     </message>
     <message>
         <location filename="../wizard/WizardConfigure.qml" line="115"/>
@@ -1824,8 +1824,8 @@ Harcama Kanıtı ile ilgili davada, alıcı adresini belirtmeniz gerekmez. </tra
     </message>
     <message>
         <location filename="../wizard/WizardConfigure.qml" line="144"/>
-        <source>Disk conservation mode uses substantially less disk-space, but the same amount of bandwidth as a regular Monero instance. However, storing the full blockchain is beneficial to the security of the Monero network. If you are on a device with limited disk space, then this option is appropriate for you.</source>
-        <translation>Disk koruma modu, normal bir Monero örneğiyle aynı disk alanı genişliğini, ancak aynı miktarda bant genişliğini kullanır. Bununla birlikte, tam blok zincirin depolanması, Monero ağının güvenliğine yararlıdır. Sınırlı disk alanı olan bir cihazdaysanız, bu seçenek sizin için uygundur.</translation>
+        <source>Disk conservation mode uses substantially less disk-space, but the same amount of bandwidth as a regular Monero Classic instance. However, storing the full blockchain is beneficial to the security of the Monero Classic network. If you are on a device with limited disk space, then this option is appropriate for you.</source>
+        <translation>Disk koruma modu, normal bir Monero Classic örneğiyle aynı disk alanı genişliğini, ancak aynı miktarda bant genişliğini kullanır. Bununla birlikte, tam blok zincirin depolanması, Monero Classic ağının güvenliğine yararlıdır. Sınırlı disk alanı olan bir cihazdaysanız, bu seçenek sizin için uygundur.</translation>
     </message>
     <message>
         <location filename="../wizard/WizardConfigure.qml" line="157"/>
@@ -1834,8 +1834,8 @@ Harcama Kanıtı ile ilgili davada, alıcı adresini belirtmeniz gerekmez. </tra
     </message>
     <message>
         <location filename="../wizard/WizardConfigure.qml" line="175"/>
-        <source>Mining secures the Monero network, and also pays a small reward for the work done. This option will let Monero mine when your computer is on mains power and is idle. It will stop mining when you continue working.</source>
-        <translation>Madencilik, Monero ağını güvence altına alır ve yapılan iş için küçük bir ödül de verir. Bu seçenek, bilgisayarınız ana güçte iken ve boşta olduğunda Monero&apos;ya izin verir. Çalışmaya devam ettiğinizde madenciliği durduracaktır.</translation>
+        <source>Mining secures the Monero Classic network, and also pays a small reward for the work done. This option will let Monero Classic mine when your computer is on mains power and is idle. It will stop mining when you continue working.</source>
+        <translation>Madencilik, Monero Classic ağını güvence altına alır ve yapılan iş için küçük bir ödül de verir. Bu seçenek, bilgisayarınız ana güçte iken ve boşta olduğunda Monero Classic&apos;ya izin verir. Çalışmaya devam ettiğinizde madenciliği durduracaktır.</translation>
     </message>
 </context>
 <context>
@@ -1858,8 +1858,8 @@ Harcama Kanıtı ile ilgili davada, alıcı adresini belirtmeniz gerekmez. </tra
     <name>WizardDaemonSettings</name>
     <message>
         <location filename="../wizard/WizardDaemonSettings.qml" line="114"/>
-        <source>To be able to communicate with the Monero network your wallet needs to be connected to a Monero node. For best privacy it&apos;s recommended to run your own node.                         &lt;br&gt;&lt;br&gt;                         If you don&apos;t have the option to run an own node there&apos;s an option to connect to a remote node.</source>
-        <translation>Monero ağıyla iletişim kurabilmek için cüzdanınızın bir Monero düğümüne bağlı olması gerekir. En iyi gizlilik için kendi düğümünü çalıştırmanız önerilir. Kendi düğümünü çalıştırma seçeneğine sahip değilseniz, uzaktaki bir düğüme bağlanma seçeneği vardır.</translation>
+        <source>To be able to communicate with the Monero Classic network your wallet needs to be connected to a Monero Classic node. For best privacy it&apos;s recommended to run your own node.                         &lt;br&gt;&lt;br&gt;                         If you don&apos;t have the option to run an own node there&apos;s an option to connect to a remote node.</source>
+        <translation>Monero Classic ağıyla iletişim kurabilmek için cüzdanınızın bir Monero Classic düğümüne bağlı olması gerekir. En iyi gizlilik için kendi düğümünü çalıştırmanız önerilir. Kendi düğümünü çalıştırma seçeneğine sahip değilseniz, uzaktaki bir düğüme bağlanma seçeneği vardır.</translation>
     </message>
     <message>
         <location filename="../wizard/WizardDaemonSettings.qml" line="126"/>
@@ -1891,8 +1891,8 @@ Harcama Kanıtı ile ilgili davada, alıcı adresini belirtmeniz gerekmez. </tra
     <name>WizardDonation</name>
     <message>
         <location filename="../wizard/WizardDonation.qml" line="93"/>
-        <source>Monero development is solely supported by donations</source>
-        <translation>Monero gelişimi sadece bağışlarla destekleniyor</translation>
+        <source>Monero Classic development is solely supported by donations</source>
+        <translation>Monero Classic gelişimi sadece bağışlarla destekleniyor</translation>
     </message>
     <message>
         <location filename="../wizard/WizardDonation.qml" line="113"/>
@@ -1906,8 +1906,8 @@ Harcama Kanıtı ile ilgili davada, alıcı adresini belirtmeniz gerekmez. </tra
     </message>
     <message>
         <location filename="../wizard/WizardDonation.qml" line="164"/>
-        <source>For every transaction, a small transaction fee is charged. This option lets you add an additional amount, as a percentage of that fee, to your transaction to support Monero development. For instance, a 50% autodonation take a transaction fee of 0.005 XMR and add a 0.0025 XMR to support Monero development.</source>
-        <translation>Her işlem için küçük bir işlem ücreti alınır. Bu seçenek, Monero&apos;nun geliştirilmesini desteklemek için işleminize, bu ücretin bir yüzdesi olarak ek bir miktar eklemenize izin verir. Örneğin %50 otomatik bağış, 0.005 XMR işlem ücreti alır ve Monero gelişimini desteklemek için 0.0025 XMR ekler.</translation>
+        <source>For every transaction, a small transaction fee is charged. This option lets you add an additional amount, as a percentage of that fee, to your transaction to support Monero Classic development. For instance, a 50% autodonation take a transaction fee of 0.005 XMR and add a 0.0025 XMR to support Monero Classic development.</source>
+        <translation>Her işlem için küçük bir işlem ücreti alınır. Bu seçenek, Monero Classic&apos;nun geliştirilmesini desteklemek için işleminize, bu ücretin bir yüzdesi olarak ek bir miktar eklemenize izin verir. Örneğin %50 otomatik bağış, 0.005 XMR işlem ücreti alır ve Monero Classic gelişimini desteklemek için 0.0025 XMR ekler.</translation>
     </message>
     <message>
         <location filename="../wizard/WizardDonation.qml" line="176"/>
@@ -1916,8 +1916,8 @@ Harcama Kanıtı ile ilgili davada, alıcı adresini belirtmeniz gerekmez. </tra
     </message>
     <message>
         <location filename="../wizard/WizardDonation.qml" line="194"/>
-        <source>Mining secures the Monero network, and also pays a small reward for the work done. This option will let Monero mine when your computer is on mains power and is idle. It will stop mining when you continue working.</source>
-        <translation>Madencilik, Monero ağını güvence altına alır ve yapılan iş için küçük bir ödül de verir. Bu seçenek, bilgisayarınız ana güçte iken ve boşta kaldığında Monero&apos;ya izin verir. Çalışmaya devam ettiğinizde madenciliği durduracaktır.</translation>
+        <source>Mining secures the Monero Classic network, and also pays a small reward for the work done. This option will let Monero Classic mine when your computer is on mains power and is idle. It will stop mining when you continue working.</source>
+        <translation>Madencilik, Monero Classic ağını güvence altına alır ve yapılan iş için küçük bir ödül de verir. Bu seçenek, bilgisayarınız ana güçte iken ve boşta kaldığında Monero Classic&apos;ya izin verir. Çalışmaya devam ettiğinizde madenciliği durduracaktır.</translation>
     </message>
 </context>
 <context>
@@ -2107,8 +2107,8 @@ Harcama Kanıtı ile ilgili davada, alıcı adresini belirtmeniz gerekmez. </tra
     <name>WizardOptions</name>
     <message>
         <location filename="../wizard/WizardOptions.qml" line="74"/>
-        <source>Welcome to Monero!</source>
-        <translation>Monero&apos;ya hoşgeldiniz!</translation>
+        <source>Welcome to Monero Classic!</source>
+        <translation>Monero Classic&apos;ya hoşgeldiniz!</translation>
     </message>
     <message>
         <location filename="../wizard/WizardOptions.qml" line="85"/>
@@ -2177,8 +2177,8 @@ Harcama Kanıtı ile ilgili davada, alıcı adresini belirtmeniz gerekmez. </tra
     <name>WizardWelcome</name>
     <message>
         <location filename="../wizard/WizardWelcome.qml" line="73"/>
-        <source>Welcome to Monero!</source>
-        <translation>Monero&apos;ya hoşgeldiniz!</translation>
+        <source>Welcome to Monero Classic!</source>
+        <translation>Monero Classic&apos;ya hoşgeldiniz!</translation>
     </message>
     <message>
         <location filename="../wizard/WizardWelcome.qml" line="83"/>
@@ -2409,7 +2409,7 @@ Address: </source>
     <message>
         <location filename="../main.qml" line="1650"/>
         <source>New version of monero-wallet-gui is available: %1&lt;br&gt;%2</source>
-        <translation>Monero-wallet-gui&apos;nin yeni sürümü mevcut: %1&lt;br&gt;%2</translation>
+        <translation>Monero Classic-wallet-gui&apos;nin yeni sürümü mevcut: %1&lt;br&gt;%2</translation>
     </message>
     <message>
         <location filename="../main.qml" line="593"/>
@@ -2490,8 +2490,8 @@ Address: </source>
     </message>
     <message>
         <location filename="../main.qml" line="1243"/>
-        <source>Monero</source>
-        <translation>Monero</translation>
+        <source>Monero Classic</source>
+        <translation>Monero Classic</translation>
     </message>
     <message>
         <location filename="../main.qml" line="1317"/>

@@ -579,7 +579,7 @@
     </message>
     <message>
         <location filename="../pages/Mining.qml" line="83"/>
-        <source>Mining with your computer helps strengthen the Monero network. The more that people mine, the harder it is for the network to be attacked, and every little bit helps.&lt;br&gt; &lt;br&gt;Mining also gives you a small chance to earn some Monero. Your computer will create hashes looking for block solutions. If you find a block, you will get the associated reward. Good luck!</source>
+        <source>Mining with your computer helps strengthen the Monero Classic network. The more that people mine, the harder it is for the network to be attacked, and every little bit helps.&lt;br&gt; &lt;br&gt;Mining also gives you a small chance to earn some Monero Classic. Your computer will create hashes looking for block solutions. If you find a block, you will get the associated reward. Good luck!</source>
         <translation>あなたのコンピュータでマイニングを行うことで、モネロのネットワークをより強固にすることができます。マイニングをする人が増えるほど、ネットワークへの攻撃が難しくなります。一人一人の協力が大切です。&lt;br&gt; &lt;br&gt;マイニングをすると、低確率ですがモネロを獲得できる可能性があります。あなたのコンピュータは、ある計算問題の解となるブロックとそのハッシュ値を計算します。正解のブロックが見つかると、あなたはそれに伴う報酬を得ます。グッドラック!</translation>
     </message>
     <message>
@@ -1154,7 +1154,7 @@
     </message>
     <message>
         <location filename="../pages/Settings.qml" line="517"/>
-        <source>Embedded Monero version: </source>
+        <source>Embedded Monero Classic version: </source>
         <translation>埋め込まれたモネロのバージョン: </translation>
     </message>
     <message>
@@ -1819,12 +1819,12 @@ Spend Proofの場合、宛先アドレスを指定する必要はありません
     <name>WizardConfigure</name>
     <message>
         <location filename="../wizard/WizardConfigure.qml" line="79"/>
-        <source>We’re almost there - let’s just configure some Monero preferences</source>
+        <source>We’re almost there - let’s just configure some Monero Classic preferences</source>
         <translation>あと少しで完了です - いくつかの項目を設定してください</translation>
     </message>
     <message>
         <location filename="../wizard/WizardConfigure.qml" line="97"/>
-        <source>Kickstart the Monero blockchain?</source>
+        <source>Kickstart the Monero Classic blockchain?</source>
         <translation>モネロのブロックチェーンを初期化しますか？</translation>
     </message>
     <message>
@@ -1839,7 +1839,7 @@ Spend Proofの場合、宛先アドレスを指定する必要はありません
     </message>
     <message>
         <location filename="../wizard/WizardConfigure.qml" line="144"/>
-        <source>Disk conservation mode uses substantially less disk-space, but the same amount of bandwidth as a regular Monero instance. However, storing the full blockchain is beneficial to the security of the Monero network. If you are on a device with limited disk space, then this option is appropriate for you.</source>
+        <source>Disk conservation mode uses substantially less disk-space, but the same amount of bandwidth as a regular Monero Classic instance. However, storing the full blockchain is beneficial to the security of the Monero Classic network. If you are on a device with limited disk space, then this option is appropriate for you.</source>
         <translation>ディスク容量節約モードを有効にすると、使用するディスク容量はずっと小さくなりますが、通信帯域の使用量は通常モードと変わりません。ただし、モネロのネットワークの安全性を高める意味で、完全なブロックチェーンの全体を保存することが推奨されています。もしあなたのコンピュータのディスク容量が小さい場合は、このオプションを使用してください。</translation>
     </message>
     <message>
@@ -1849,7 +1849,7 @@ Spend Proofの場合、宛先アドレスを指定する必要はありません
     </message>
     <message>
         <location filename="../wizard/WizardConfigure.qml" line="175"/>
-        <source>Mining secures the Monero network, and also pays a small reward for the work done. This option will let Monero mine when your computer is on mains power and is idle. It will stop mining when you continue working.</source>
+        <source>Mining secures the Monero Classic network, and also pays a small reward for the work done. This option will let Monero Classic mine when your computer is on mains power and is idle. It will stop mining when you continue working.</source>
         <translation>モネロの採掘をすることでネットワークの安全性が高まり、また提供した計算量の対価として低い確率ですが報酬が得られます。このオプションは、あなたのコンピュータが電源に接続されていてなおかつアイドル状態の場合に、自動的にモネロの採掘を行うことを許可します。あなたが作業を再開すると、採掘は停止されます。</translation>
     </message>
 </context>
@@ -1873,7 +1873,7 @@ Spend Proofの場合、宛先アドレスを指定する必要はありません
     <name>WizardDaemonSettings</name>
     <message>
         <location filename="../wizard/WizardDaemonSettings.qml" line="114"/>
-        <source>To be able to communicate with the Monero network your wallet needs to be connected to a Monero node. For best privacy it&apos;s recommended to run your own node.                         &lt;br&gt;&lt;br&gt;                         If you don&apos;t have the option to run an own node there&apos;s an option to connect to a remote node.</source>
+        <source>To be able to communicate with the Monero Classic network your wallet needs to be connected to a Monero Classic node. For best privacy it&apos;s recommended to run your own node.                         &lt;br&gt;&lt;br&gt;                         If you don&apos;t have the option to run an own node there&apos;s an option to connect to a remote node.</source>
         <translation>モネロネットワークと通信するためにウォレットはモネロノードに接続されている必要があります。プライバシーを最大限に保護するため自分自身のノードを走らせることが推奨されています。
 &lt;br&gt;&lt;br&gt;                         自分自身のノードを走らせることができない場合はリモートノードに接続することも可能です。</translation>
     </message>
@@ -1907,7 +1907,7 @@ Spend Proofの場合、宛先アドレスを指定する必要はありません
     <name>WizardDonation</name>
     <message>
         <location filename="../wizard/WizardDonation.qml" line="93"/>
-        <source>Monero development is solely supported by donations</source>
+        <source>Monero Classic development is solely supported by donations</source>
         <translation>モネロの開発は寄付のみによって支えられています</translation>
     </message>
     <message>
@@ -1922,7 +1922,7 @@ Spend Proofの場合、宛先アドレスを指定する必要はありません
     </message>
     <message>
         <location filename="../wizard/WizardDonation.qml" line="164"/>
-        <source>For every transaction, a small transaction fee is charged. This option lets you add an additional amount, as a percentage of that fee, to your transaction to support Monero development. For instance, a 50% autodonation take a transaction fee of 0.005 XMR and add a 0.0025 XMR to support Monero development.</source>
+        <source>For every transaction, a small transaction fee is charged. This option lets you add an additional amount, as a percentage of that fee, to your transaction to support Monero Classic development. For instance, a 50% autodonation take a transaction fee of 0.005 XMR and add a 0.0025 XMR to support Monero Classic development.</source>
         <translation>取引には少額の手数料がかかります。このオプションはその手数料に加えて、手数料の何パーセントかをモネロの開発チームへの寄付として支払うことを許可します。例えば自動寄付の割合が50%で、取引の手数料が0.005 XMRであった場合、0.0025 XMRが開発チームへの寄付として取引に上乗せされます。</translation>
     </message>
     <message>
@@ -1932,7 +1932,7 @@ Spend Proofの場合、宛先アドレスを指定する必要はありません
     </message>
     <message>
         <location filename="../wizard/WizardDonation.qml" line="194"/>
-        <source>Mining secures the Monero network, and also pays a small reward for the work done. This option will let Monero mine when your computer is on mains power and is idle. It will stop mining when you continue working.</source>
+        <source>Mining secures the Monero Classic network, and also pays a small reward for the work done. This option will let Monero Classic mine when your computer is on mains power and is idle. It will stop mining when you continue working.</source>
         <translation>モネロの採掘をすることでネットワークの安全性が高まり、また提供した計算量の対価として低い確率ですが報酬が得られます。このオプションは、あなたのコンピュータが電源に接続されていてなおかつアイドル状態の場合に、自動的にモネロの採掘を行うことを許可します。あなたが作業を再開すると、採掘は停止されます。</translation>
     </message>
 </context>
@@ -2122,7 +2122,7 @@ Spend Proofの場合、宛先アドレスを指定する必要はありません
     <name>WizardOptions</name>
     <message>
         <location filename="../wizard/WizardOptions.qml" line="74"/>
-        <source>Welcome to Monero!</source>
+        <source>Welcome to Monero Classic!</source>
         <translation>モネロへようこそ!</translation>
     </message>
     <message>
@@ -2192,7 +2192,7 @@ Spend Proofの場合、宛先アドレスを指定する必要はありません
     <name>WizardWelcome</name>
     <message>
         <location filename="../wizard/WizardWelcome.qml" line="73"/>
-        <source>Welcome to Monero!</source>
+        <source>Welcome to Monero Classic!</source>
         <translation>モネロへようこそ!</translation>
     </message>
     <message>
@@ -2521,7 +2521,7 @@ Description: </source>
     </message>
     <message>
         <location filename="../main.qml" line="1243"/>
-        <source>Monero</source>
+        <source>Monero Classic</source>
         <translation>モネロ</translation>
     </message>
     <message>

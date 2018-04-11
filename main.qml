@@ -1,4 +1,4 @@
-// Copyright (c) 2014-2018, The Monero Project
+// Copyright (c) 2014-2018, The Monero Classic Project
 //
 // All rights reserved.
 //
@@ -43,7 +43,7 @@ import "wizard"
 
 ApplicationWindow {
     id: appWindow
-    title: "Monero"
+    title: "Monero Classic"
 
     property var currentItem
     property bool whatIsEnable: false
@@ -649,10 +649,10 @@ ApplicationWindow {
 
         // validate amount;
         if (amount !== "(all)") {
-            var amountxmr = walletManager.amountFromString(amount);
-            console.log("integer amount: ", amountxmr);
+            var amountxmc = walletManager.amountFromString(amount);
+            console.log("integer amount: ", amountxmc);
             console.log("integer unlocked",currentWallet.unlockedBalance)
-            if (amountxmr <= 0) {
+            if (amountxmc <= 0) {
                 hideProcessingSplash()
                 informationPopup.title = qsTr("Error") + translationManager.emptyString;
                 informationPopup.text  = qsTr("Amount is wrong: expected number from %1 to %2")
@@ -664,7 +664,7 @@ ApplicationWindow {
                 informationPopup.onCloseCallback = null
                 informationPopup.open()
                 return;
-            } else if (amountxmr > currentWallet.unlockedBalance) {
+            } else if (amountxmc > currentWallet.unlockedBalance) {
                 hideProcessingSplash()
                 informationPopup.title = qsTr("Error") + translationManager.emptyString;
                 informationPopup.text  = qsTr("Insufficient funds. Unlocked balance: %1")
@@ -681,7 +681,7 @@ ApplicationWindow {
         if (amount === "(all)")
             currentWallet.createTransactionAllAsync(address, paymentId, mixinCount, priority);
         else
-            currentWallet.createTransactionAsync(address, paymentId, amountxmr, mixinCount, priority);
+            currentWallet.createTransactionAsync(address, paymentId, amountxmc, mixinCount, priority);
     }
 
     //Choose where to save transaction
@@ -779,7 +779,7 @@ ApplicationWindow {
                     txid_text += ", "
                 txid_text += txid[i]
             }
-            informationPopup.text  = (viewOnly)? qsTr("Transaction saved to file: %1").arg(path) : qsTr("Monero sent successfully: %1 transaction(s) ").arg(txid.length) + txid_text + translationManager.emptyString
+            informationPopup.text  = (viewOnly)? qsTr("Transaction saved to file: %1").arg(path) : qsTr("Monero Classic sent successfully: %1 transaction(s) ").arg(txid.length) + txid_text + translationManager.emptyString
             informationPopup.icon  = StandardIcon.Information
             if (transactionDescription.length > 0) {
                 for (var i = 0; i < txid.length; ++i)
@@ -1297,7 +1297,7 @@ ApplicationWindow {
 //                PropertyChanges { target: frameArea; blocked: true }
                 PropertyChanges { target: titleBar; visible: true }
 //                PropertyChanges { target: titleBar; y: 0 }
-                PropertyChanges { target: titleBar; title: qsTr("Monero") + translationManager.emptyString }
+                PropertyChanges { target: titleBar; title: qsTr("Monero Classic") + translationManager.emptyString }
                 PropertyChanges { target: mobileHeader; visible: isMobile ? true : false }
             }
         ]

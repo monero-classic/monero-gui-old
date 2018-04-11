@@ -1,16 +1,16 @@
-; Monero Lithium Luna GUI Wallet Installer for Windows
-; Copyright (c) 2014-2018, The Monero Project
+; Monero Classic Lithium Luna GUI Wallet Installer for Windows
+; Copyright (c) 2014-2018, The Monero Classic Project
 ; See LICENSE
 
 [Setup]
-AppName=Monero GUI Wallet
+AppName=Monero Classic GUI Wallet
 ; For InnoSetup this is the property that uniquely identifies the application as such
 ; Thus it's important to keep this stable over releases
 ; With a different "AppName" InnoSetup would treat a mere update as a completely new application and thus mess up
 
 AppVersion=0.12.0.0
-DefaultDirName={pf}\Monero GUI Wallet
-DefaultGroupName=Monero GUI Wallet
+DefaultDirName={pf}\Monero Classic GUI Wallet
+DefaultGroupName=Monero Classic GUI Wallet
 UninstallDisplayIcon={app}\monero-wallet-gui.exe
 PrivilegesRequired=admin
 ArchitecturesInstallIn64BitMode=x64
@@ -39,38 +39,38 @@ Name: "en"; MessagesFile: "compiler:Default.isl"
 ; .exe/.dll file possibly with version info).
 ;
 ; This is far more robust than relying on version info or on file dates (flag "comparetimestamp").
-; As of version 0.12.0.0, the Monero .exe files do not carry version info anyway in their .exe headers.
+; As of version 0.12.0.0, the Monero Classic .exe files do not carry version info anyway in their .exe headers.
 ; The only small drawback seems to be somewhat longer update times because each and every file is
 ; copied again, even if already present with correct file date and identical content.
 ;
 ; Note that it would be very dangerous to use "ignoreversion" on files that may be shared with other
-; applications somehow. Luckily this is no issue here because ALL files are "private" to Monero.
+; applications somehow. Luckily this is no issue here because ALL files are "private" to Monero Classic.
 
 Source: "ReadMe.htm"; DestDir: "{app}"; Flags: ignoreversion
 Source: "FinishImage.bmp"; Flags: dontcopy
 
-; Monero GUI wallet
+; Monero Classic GUI wallet
 Source: "bin\monero-wallet-gui.exe"; DestDir: "{app}"; Flags: ignoreversion
 
-; Monero GUI wallet log file
+; Monero Classic GUI wallet log file
 ; The GUI wallet does not have the "--log-file" command-line option of the CLI wallet and insists to put the .log beside the .exe
 ; so pre-create the file and give the necessary permissions to the wallet to write into it
 ; Flag is "onlyifdoesntexist": We do not want to overwrite an already existing log
 Source: "monero-wallet-gui.log"; DestDir: "{app}"; Flags: onlyifdoesntexist; Permissions: users-modify
 
-; Monero CLI wallet
+; Monero Classic CLI wallet
 Source: "bin\monero-wallet-cli.exe"; DestDir: "{app}"; Flags: ignoreversion
 
-; Monero wallet RPC interface implementation
+; Monero Classic wallet RPC interface implementation
 Source: "bin\monero-wallet-rpc.exe"; DestDir: "{app}"; Flags: ignoreversion
 
-; Monero daemon
+; Monero Classic daemon
 Source: "bin\monerod.exe"; DestDir: "{app}"; Flags: ignoreversion
 
-; Monero daemon wrapped in a batch file that stops before the text window closes, to see any error messages
+; Monero Classic daemon wrapped in a batch file that stops before the text window closes, to see any error messages
 Source: "monero-daemon.bat"; DestDir: "{app}"; Flags: ignoreversion;
 
-; Monero blockchain utilities
+; Monero Classic blockchain utilities
 Source: "bin\monero-blockchain-export.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "bin\monero-blockchain-import.exe"; DestDir: "{app}"; Flags: ignoreversion
 
@@ -251,7 +251,7 @@ begin
 
   // Additional wizard page for entering a special blockchain location
   blockChainDefaultDir := ExpandConstant('{commonappdata}\bitmonero');
-  s := 'The default folder to store the Monero blockchain is ' + blockChainDefaultDir;
+  s := 'The default folder to store the Monero Classic blockchain is ' + blockChainDefaultDir;
   s := s + '. As this will need more than 50 GB of free space, you may want to use a folder on a different drive.';
   s := s + ' If yes, specify that folder here.';
 
@@ -329,7 +329,7 @@ begin
   if CurStep = ssPostInstall then begin
     // Re-build "monero-daemon.bat" according to actual install and blockchain directory used
     SetArrayLength(s, 3);
-    s[0] := 'REM Execute the Monero daemon and then stay with window open after it exits';
+    s[0] := 'REM Execute the Monero Classic daemon and then stay with window open after it exits';
     s[1] := '"' + ExpandConstant('{app}\monerod.exe') + '" ' + DaemonFlags('');
     s[2] := 'PAUSE';
     SaveStringsToFile(ExpandConstant('{app}\monero-daemon.bat'), s, false); 
@@ -348,7 +348,7 @@ end;
 
 
 [Icons]
-; Icons in the "Monero GUI Wallet" program group
+; Icons in the "Monero Classic GUI Wallet" program group
 ; Windows will almost always display icons in alphabetical order, per level, so specify the text accordingly
 Name: "{group}\GUI Wallet"; Filename: "{app}\monero-wallet-gui.exe"
 Name: "{group}\Uninstall GUI Wallet"; Filename: "{uninstallexe}"
@@ -356,19 +356,19 @@ Name: "{group}\Uninstall GUI Wallet"; Filename: "{uninstallexe}"
 ; Sub-folder "Utilities";
 ; Note that Windows 10, unlike Windows 7, ignores such sub-folders completely
 ; and insists on displaying ALL icons on one single level
-Name: "{group}\Utilities\Monero Daemon"; Filename: "{app}\monerod.exe"; Parameters: {code:DaemonFlags}
+Name: "{group}\Utilities\Monero Classic Daemon"; Filename: "{app}\monerod.exe"; Parameters: {code:DaemonFlags}
 Name: "{group}\Utilities\Read Me"; Filename: "{app}\ReadMe.htm"
 
 ; CLI wallet: Needs a working directory ("Start in:") set in the icon, because with no such directory set
 ; it tries to create new wallets without a path given in the probably non-writable program folder and will abort with an error
-Name: "{group}\Utilities\Textual (CLI) Wallet"; Filename: "{app}\monero-wallet-cli.exe"; WorkingDir: "{userdocs}\Monero\wallets"
+Name: "{group}\Utilities\Textual (CLI) Wallet"; Filename: "{app}\monero-wallet-cli.exe"; WorkingDir: "{userdocs}\Monero Classic\wallets"
 
 ; Icons for troubleshooting problems / testing / debugging
 ; To show that they are in some way different (not for everyday use), make them visually different
 ; from the others by text, and make them sort at the end by the help of "x" in front 
 Name: "{group}\Utilities\x (Check Blockchain Folder)"; Filename: "{win}\Explorer.exe"; Parameters: {code:BlockChainDir}
 Name: "{group}\Utilities\x (Check Daemon Log)"; Filename: "Notepad"; Parameters: {code:DaemonLog}
-Name: "{group}\Utilities\x (Check Default Wallet Folder)"; Filename: "{win}\Explorer.exe"; Parameters: "{userdocs}\Monero\wallets"
+Name: "{group}\Utilities\x (Check Default Wallet Folder)"; Filename: "{win}\Explorer.exe"; Parameters: "{userdocs}\Monero Classic\wallets"
 Name: "{group}\Utilities\x (Check GUI Wallet Log)"; Filename: "Notepad"; Parameters: "{app}\monero-wallet-gui.log"
 Name: "{group}\Utilities\x (Try Daemon, Exit Confirm)"; Filename: "{app}\monero-daemon.bat"
 Name: "{group}\Utilities\x (Try GUI Wallet Low Graphics Mode)"; Filename: "{app}\start-low-graphics-mode.bat"

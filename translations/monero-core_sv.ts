@@ -579,8 +579,8 @@
     </message>
     <message>
         <location filename="../pages/Mining.qml" line="83"/>
-        <source>Mining with your computer helps strengthen the Monero network. The more that people mine, the harder it is for the network to be attacked, and every little bit helps.&lt;br&gt; &lt;br&gt;Mining also gives you a small chance to earn some Monero. Your computer will create hashes looking for block solutions. If you find a block, you will get the associated reward. Good luck!</source>
-        <translation>Brytning med din dator hjälper till att stärka Moneros nätverk. Ju fler som bryter desto svårare blir det att angripa nätverket, och varje litet bidrag hjälper till.&lt;br&gt; &lt;br&gt;Brytningen ger dig även möjlighet att tjäna lite Monero. Din dator letar då efter lösningar för block genom att skapa hashar. Om du hittar ett block får du motsvarande blockersättning. Lycka till!</translation>
+        <source>Mining with your computer helps strengthen the Monero Classic network. The more that people mine, the harder it is for the network to be attacked, and every little bit helps.&lt;br&gt; &lt;br&gt;Mining also gives you a small chance to earn some Monero Classic. Your computer will create hashes looking for block solutions. If you find a block, you will get the associated reward. Good luck!</source>
+        <translation>Brytning med din dator hjälper till att stärka Monero Classics nätverk. Ju fler som bryter desto svårare blir det att angripa nätverket, och varje litet bidrag hjälper till.&lt;br&gt; &lt;br&gt;Brytningen ger dig även möjlighet att tjäna lite Monero Classic. Din dator letar då efter lösningar för block genom att skapa hashar. Om du hittar ett block får du motsvarande blockersättning. Lycka till!</translation>
     </message>
     <message>
         <location filename="../pages/Mining.qml" line="93"/>
@@ -1113,8 +1113,8 @@
     </message>
     <message>
         <location filename="../pages/Settings.qml" line="517"/>
-        <source>Embedded Monero version: </source>
-        <translation>Inbäddad Monero-version: </translation>
+        <source>Embedded Monero Classic version: </source>
+        <translation>Inbäddad Monero Classic-version: </translation>
     </message>
     <message>
         <location filename="../pages/Settings.qml" line="523"/>
@@ -1819,13 +1819,13 @@ I fallet med spenderbevis behöver du inte ange mottagaradressen.</translation>
     <name>WizardConfigure</name>
     <message>
         <location filename="../wizard/WizardConfigure.qml" line="79"/>
-        <source>We’re almost there - let’s just configure some Monero preferences</source>
-        <translation>Vi är nästan framme - låt oss bara göra några Monero-inställningar</translation>
+        <source>We’re almost there - let’s just configure some Monero Classic preferences</source>
+        <translation>Vi är nästan framme - låt oss bara göra några Monero Classic-inställningar</translation>
     </message>
     <message>
         <location filename="../wizard/WizardConfigure.qml" line="97"/>
-        <source>Kickstart the Monero blockchain?</source>
-        <translation>Kickstarta Moneros blockkedja?</translation>
+        <source>Kickstart the Monero Classic blockchain?</source>
+        <translation>Kickstarta Monero Classics blockkedja?</translation>
     </message>
     <message>
         <location filename="../wizard/WizardConfigure.qml" line="115"/>
@@ -1839,8 +1839,8 @@ I fallet med spenderbevis behöver du inte ange mottagaradressen.</translation>
     </message>
     <message>
         <location filename="../wizard/WizardConfigure.qml" line="144"/>
-        <source>Disk conservation mode uses substantially less disk-space, but the same amount of bandwidth as a regular Monero instance. However, storing the full blockchain is beneficial to the security of the Monero network. If you are on a device with limited disk space, then this option is appropriate for you.</source>
-        <translation>Disksparläge använder väsentligen mindre diskutrymme, men utnyttjar samma bandbredd som en vanlig Monero-instans. Att spara hela blockkedjan förbättrar säkerheten för hela Moneros nätverk. Om du använder en enhet med begränsat diskutrymme så passar detta alternativ för dig.</translation>
+        <source>Disk conservation mode uses substantially less disk-space, but the same amount of bandwidth as a regular Monero Classic instance. However, storing the full blockchain is beneficial to the security of the Monero Classic network. If you are on a device with limited disk space, then this option is appropriate for you.</source>
+        <translation>Disksparläge använder väsentligen mindre diskutrymme, men utnyttjar samma bandbredd som en vanlig Monero Classic-instans. Att spara hela blockkedjan förbättrar säkerheten för hela Monero Classics nätverk. Om du använder en enhet med begränsat diskutrymme så passar detta alternativ för dig.</translation>
     </message>
     <message>
         <location filename="../wizard/WizardConfigure.qml" line="157"/>
@@ -1849,8 +1849,8 @@ I fallet med spenderbevis behöver du inte ange mottagaradressen.</translation>
     </message>
     <message>
         <location filename="../wizard/WizardConfigure.qml" line="175"/>
-        <source>Mining secures the Monero network, and also pays a small reward for the work done. This option will let Monero mine when your computer is on mains power and is idle. It will stop mining when you continue working.</source>
-        <translation>Brytningen säkrar Moneros nätverk, och betalar även en liten ersättning för det arbete som utförs. Detta alternativ låter Monero bryta när din dator är nätansluten men inaktiv. Brytningen stoppas när du fortsätter att arbeta igen.</translation>
+        <source>Mining secures the Monero Classic network, and also pays a small reward for the work done. This option will let Monero Classic mine when your computer is on mains power and is idle. It will stop mining when you continue working.</source>
+        <translation>Brytningen säkrar Monero Classics nätverk, och betalar även en liten ersättning för det arbete som utförs. Detta alternativ låter Monero Classic bryta när din dator är nätansluten men inaktiv. Brytningen stoppas när du fortsätter att arbeta igen.</translation>
     </message>
 </context>
 <context>
@@ -1873,8 +1873,8 @@ I fallet med spenderbevis behöver du inte ange mottagaradressen.</translation>
     <name>WizardDaemonSettings</name>
     <message>
         <location filename="../wizard/WizardDaemonSettings.qml" line="114"/>
-        <source>To be able to communicate with the Monero network your wallet needs to be connected to a Monero node. For best privacy it&apos;s recommended to run your own node.                         &lt;br&gt;&lt;br&gt;                         If you don&apos;t have the option to run an own node there&apos;s an option to connect to a remote node.</source>
-        <translation>Plånboken måste vara ansluten till en Monero-nod för att för att kunna kommunicera med Moneros nätverk. För högsta sekretess rekommenderas att du kör din egen nod.                         &lt;br&gt;&lt;br&gt;                         Om du inte har möjlighet att köra din egen nod finns alternativet att ansluta till en fjärrnod.</translation>
+        <source>To be able to communicate with the Monero Classic network your wallet needs to be connected to a Monero Classic node. For best privacy it&apos;s recommended to run your own node.                         &lt;br&gt;&lt;br&gt;                         If you don&apos;t have the option to run an own node there&apos;s an option to connect to a remote node.</source>
+        <translation>Plånboken måste vara ansluten till en Monero Classic-nod för att för att kunna kommunicera med Monero Classics nätverk. För högsta sekretess rekommenderas att du kör din egen nod.                         &lt;br&gt;&lt;br&gt;                         Om du inte har möjlighet att köra din egen nod finns alternativet att ansluta till en fjärrnod.</translation>
     </message>
     <message>
         <location filename="../wizard/WizardDaemonSettings.qml" line="126"/>
@@ -1906,8 +1906,8 @@ I fallet med spenderbevis behöver du inte ange mottagaradressen.</translation>
     <name>WizardDonation</name>
     <message>
         <location filename="../wizard/WizardDonation.qml" line="93"/>
-        <source>Monero development is solely supported by donations</source>
-        <translation>Utvecklingen av Monero finansieras helt genom donationer</translation>
+        <source>Monero Classic development is solely supported by donations</source>
+        <translation>Utvecklingen av Monero Classic finansieras helt genom donationer</translation>
     </message>
     <message>
         <location filename="../wizard/WizardDonation.qml" line="113"/>
@@ -1921,8 +1921,8 @@ I fallet med spenderbevis behöver du inte ange mottagaradressen.</translation>
     </message>
     <message>
         <location filename="../wizard/WizardDonation.qml" line="164"/>
-        <source>For every transaction, a small transaction fee is charged. This option lets you add an additional amount, as a percentage of that fee, to your transaction to support Monero development. For instance, a 50% autodonation take a transaction fee of 0.005 XMR and add a 0.0025 XMR to support Monero development.</source>
-        <translation>För varje transaktion tas en liten transaktionsavgift ut. Detta alternativ låter dig lägga till ett ytterligare belopp till din transaktion, angivet som en procent av transaktionsavgiften, för att stödja utvecklingen av Monero. Till exempel, en 50 % automatisk donation tar en transaktionsavgift på 0,005 XMR och lägger på 0,0025 XMR för att stödja utvecklingen av Monero.</translation>
+        <source>For every transaction, a small transaction fee is charged. This option lets you add an additional amount, as a percentage of that fee, to your transaction to support Monero Classic development. For instance, a 50% autodonation take a transaction fee of 0.005 XMR and add a 0.0025 XMR to support Monero Classic development.</source>
+        <translation>För varje transaktion tas en liten transaktionsavgift ut. Detta alternativ låter dig lägga till ett ytterligare belopp till din transaktion, angivet som en procent av transaktionsavgiften, för att stödja utvecklingen av Monero Classic. Till exempel, en 50 % automatisk donation tar en transaktionsavgift på 0,005 XMR och lägger på 0,0025 XMR för att stödja utvecklingen av Monero Classic.</translation>
     </message>
     <message>
         <location filename="../wizard/WizardDonation.qml" line="176"/>
@@ -1931,8 +1931,8 @@ I fallet med spenderbevis behöver du inte ange mottagaradressen.</translation>
     </message>
     <message>
         <location filename="../wizard/WizardDonation.qml" line="194"/>
-        <source>Mining secures the Monero network, and also pays a small reward for the work done. This option will let Monero mine when your computer is on mains power and is idle. It will stop mining when you continue working.</source>
-        <translation>Brytningen säkrar Moneros nätverk, och betalar även en liten ersättning för det arbete som utförs. Detta alternativ låter Monero bryta när din dator är nätansluten men inaktiv. Brytningen stoppas när du fortsätter att arbeta igen.</translation>
+        <source>Mining secures the Monero Classic network, and also pays a small reward for the work done. This option will let Monero Classic mine when your computer is on mains power and is idle. It will stop mining when you continue working.</source>
+        <translation>Brytningen säkrar Monero Classics nätverk, och betalar även en liten ersättning för det arbete som utförs. Detta alternativ låter Monero Classic bryta när din dator är nätansluten men inaktiv. Brytningen stoppas när du fortsätter att arbeta igen.</translation>
     </message>
 </context>
 <context>
@@ -2122,8 +2122,8 @@ I fallet med spenderbevis behöver du inte ange mottagaradressen.</translation>
     <name>WizardOptions</name>
     <message>
         <location filename="../wizard/WizardOptions.qml" line="74"/>
-        <source>Welcome to Monero!</source>
-        <translation>Välkommen till Monero!</translation>
+        <source>Welcome to Monero Classic!</source>
+        <translation>Välkommen till Monero Classic!</translation>
     </message>
     <message>
         <location filename="../wizard/WizardOptions.qml" line="85"/>
@@ -2192,8 +2192,8 @@ I fallet med spenderbevis behöver du inte ange mottagaradressen.</translation>
     <name>WizardWelcome</name>
     <message>
         <location filename="../wizard/WizardWelcome.qml" line="73"/>
-        <source>Welcome to Monero!</source>
-        <translation>Välkommen till Monero!</translation>
+        <source>Welcome to Monero Classic!</source>
+        <translation>Välkommen till Monero Classic!</translation>
     </message>
     <message>
         <location filename="../wizard/WizardWelcome.qml" line="83"/>
@@ -2526,8 +2526,8 @@ Beskrivning: </translation>
     </message>
     <message>
         <location filename="../main.qml" line="1243"/>
-        <source>Monero</source>
-        <translation>Monero</translation>
+        <source>Monero Classic</source>
+        <translation>Monero Classic</translation>
     </message>
     <message>
         <location filename="../main.qml" line="1317"/>

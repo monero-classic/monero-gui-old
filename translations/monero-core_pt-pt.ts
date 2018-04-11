@@ -579,8 +579,8 @@
     </message>
     <message>
         <location filename="../pages/Mining.qml" line="83"/>
-        <source>Mining with your computer helps strengthen the Monero network. The more that people mine, the harder it is for the network to be attacked, and every little bit helps.&lt;br&gt; &lt;br&gt;Mining also gives you a small chance to earn some Monero. Your computer will create hashes looking for block solutions. If you find a block, you will get the associated reward. Good luck!</source>
-        <translation>Minerar com o seu computador ajuda a fortalecer a rede Monero. Quanto mais pessoas minerarem, mais difícil será atacar a rede e por mais pequena que seja a sua contribuição está a ajudar. &lt;br&gt; &lt;br&gt;Minerar também dá uma pequena possibilidade de ganhar Monero. O seu computador irá criar hashes procurando soluções para validade blocos. Caso consiga encontrar o hash de validação de um bloco, você ganha a recompensa associada. Boa sorte!</translation>
+        <source>Mining with your computer helps strengthen the Monero Classic network. The more that people mine, the harder it is for the network to be attacked, and every little bit helps.&lt;br&gt; &lt;br&gt;Mining also gives you a small chance to earn some Monero Classic. Your computer will create hashes looking for block solutions. If you find a block, you will get the associated reward. Good luck!</source>
+        <translation>Minerar com o seu computador ajuda a fortalecer a rede Monero Classic. Quanto mais pessoas minerarem, mais difícil será atacar a rede e por mais pequena que seja a sua contribuição está a ajudar. &lt;br&gt; &lt;br&gt;Minerar também dá uma pequena possibilidade de ganhar Monero Classic. O seu computador irá criar hashes procurando soluções para validade blocos. Caso consiga encontrar o hash de validação de um bloco, você ganha a recompensa associada. Boa sorte!</translation>
     </message>
     <message>
         <location filename="../pages/Mining.qml" line="93"/>
@@ -1198,8 +1198,8 @@ O ficheiro cache antigo da carteira será renomeado e poderá ser reposto depois
     </message>
     <message>
         <location filename="../pages/Settings.qml" line="517"/>
-        <source>Embedded Monero version: </source>
-        <translation>Versão integrada do Monero: </translation>
+        <source>Embedded Monero Classic version: </source>
+        <translation>Versão integrada do Monero Classic: </translation>
     </message>
     <message>
         <location filename="../pages/Settings.qml" line="609"/>
@@ -1818,13 +1818,13 @@ For the case with Spend Proof, you don&apos;t need to specify the recipient addr
     <name>WizardConfigure</name>
     <message>
         <location filename="../wizard/WizardConfigure.qml" line="79"/>
-        <source>Weâ€™re almost there - letâ€™s just configure some Monero preferences</source>
-        <translation>Estamos quase a terminar - vamos configurar algumas preferência do Monero</translation>
+        <source>Weâ€™re almost there - letâ€™s just configure some Monero Classic preferences</source>
+        <translation>Estamos quase a terminar - vamos configurar algumas preferência do Monero Classic</translation>
     </message>
     <message>
         <location filename="../wizard/WizardConfigure.qml" line="97"/>
-        <source>Kickstart the Monero blockchain?</source>
-        <translation>Iniciar a blockchain do Monero?</translation>
+        <source>Kickstart the Monero Classic blockchain?</source>
+        <translation>Iniciar a blockchain do Monero Classic?</translation>
     </message>
     <message>
         <location filename="../wizard/WizardConfigure.qml" line="115"/>
@@ -1838,8 +1838,8 @@ For the case with Spend Proof, you don&apos;t need to specify the recipient addr
     </message>
     <message>
         <location filename="../wizard/WizardConfigure.qml" line="144"/>
-        <source>Disk conservation mode uses substantially less disk-space, but the same amount of bandwidth as a regular Monero instance. However, storing the full blockchain is beneficial to the security of the Monero network. If you are on a device with limited disk space, then this option is appropriate for you.</source>
-        <translation>O modo de conservação de espaço no disco usa menos espaço porém a mesma quantidade de dados na internet. Armazenar a blockchain completa no seu disco ajuda a proteger a rede Monero. Caso esteja a usar um dispositivo com pouco espaço de disco livre, ative esta opção.</translation>
+        <source>Disk conservation mode uses substantially less disk-space, but the same amount of bandwidth as a regular Monero Classic instance. However, storing the full blockchain is beneficial to the security of the Monero Classic network. If you are on a device with limited disk space, then this option is appropriate for you.</source>
+        <translation>O modo de conservação de espaço no disco usa menos espaço porém a mesma quantidade de dados na internet. Armazenar a blockchain completa no seu disco ajuda a proteger a rede Monero Classic. Caso esteja a usar um dispositivo com pouco espaço de disco livre, ative esta opção.</translation>
     </message>
     <message>
         <location filename="../wizard/WizardConfigure.qml" line="157"/>
@@ -1848,8 +1848,8 @@ For the case with Spend Proof, you don&apos;t need to specify the recipient addr
     </message>
     <message>
         <location filename="../wizard/WizardConfigure.qml" line="175"/>
-        <source>Mining secures the Monero network, and also pays a small reward for the work done. This option will let Monero mine when your computer is on mains power and is idle. It will stop mining when you continue working.</source>
-        <translation>Minerar ajuda a rede Monero a ficar mais segura e poderá pagar um prémio pelo trabalho realizado. Esta opção permite que o seu computador minere quando estiver sem ser utilizado e ligado à corrente elétrica. Para de minerar assim que comece a utilizar o computador.</translation>
+        <source>Mining secures the Monero Classic network, and also pays a small reward for the work done. This option will let Monero Classic mine when your computer is on mains power and is idle. It will stop mining when you continue working.</source>
+        <translation>Minerar ajuda a rede Monero Classic a ficar mais segura e poderá pagar um prémio pelo trabalho realizado. Esta opção permite que o seu computador minere quando estiver sem ser utilizado e ligado à corrente elétrica. Para de minerar assim que comece a utilizar o computador.</translation>
     </message>
 </context>
 <context>
@@ -1872,8 +1872,8 @@ For the case with Spend Proof, you don&apos;t need to specify the recipient addr
     <name>WizardDaemonSettings</name>
     <message>
         <location filename="../wizard/WizardDaemonSettings.qml" line="114"/>
-        <source>To be able to communicate with the Monero network your wallet needs to be connected to a Monero node. For best privacy it&apos;s recommended to run your own node.                         &lt;br&gt;&lt;br&gt;                         If you don&apos;t have the option to run an own node there&apos;s an option to connect to a remote node.</source>
-        <translation>Para que possa comunicar com a rede Monero, a sua carteira necessita estar ligada a um node de Monero. É recomendável que corra o seu próprio node local, contudo se não tiver opção de correr o seu próprio node pode também ligar-se a um node remoto.</translation>
+        <source>To be able to communicate with the Monero Classic network your wallet needs to be connected to a Monero Classic node. For best privacy it&apos;s recommended to run your own node.                         &lt;br&gt;&lt;br&gt;                         If you don&apos;t have the option to run an own node there&apos;s an option to connect to a remote node.</source>
+        <translation>Para que possa comunicar com a rede Monero Classic, a sua carteira necessita estar ligada a um node de Monero Classic. É recomendável que corra o seu próprio node local, contudo se não tiver opção de correr o seu próprio node pode também ligar-se a um node remoto.</translation>
     </message>
     <message>
         <location filename="../wizard/WizardDaemonSettings.qml" line="126"/>
@@ -1905,8 +1905,8 @@ For the case with Spend Proof, you don&apos;t need to specify the recipient addr
     <name>WizardDonation</name>
     <message>
         <location filename="../wizard/WizardDonation.qml" line="93"/>
-        <source>Monero development is solely supported by donations</source>
-        <translation>O desenvolvimento do Monero é unicamente suportado através de doações</translation>
+        <source>Monero Classic development is solely supported by donations</source>
+        <translation>O desenvolvimento do Monero Classic é unicamente suportado através de doações</translation>
     </message>
     <message>
         <location filename="../wizard/WizardDonation.qml" line="113"/>
@@ -1920,8 +1920,8 @@ For the case with Spend Proof, you don&apos;t need to specify the recipient addr
     </message>
     <message>
         <location filename="../wizard/WizardDonation.qml" line="164"/>
-        <source>For every transaction, a small transaction fee is charged. This option lets you add an additional amount, as a percentage of that fee, to your transaction to support Monero development. For instance, a 50% autodonation take a transaction fee of 0.005 XMR and add a 0.0025 XMR to support Monero development.</source>
-        <translation>Para cada transação uma pequena taxa é sempre cobrada. Esta opção permite adicionar uma quantidade adicional de percentagem desta taxa para ajudar o desenvolvimento do Monero. Por exemplo, 50% de auto-doação numa taxa de transferência de 0.005 XMR adiciona 0.0025 XMR que será enviado para o fundo comum de ajuda ao desenvolvimento do Monero.</translation>
+        <source>For every transaction, a small transaction fee is charged. This option lets you add an additional amount, as a percentage of that fee, to your transaction to support Monero Classic development. For instance, a 50% autodonation take a transaction fee of 0.005 XMR and add a 0.0025 XMR to support Monero Classic development.</source>
+        <translation>Para cada transação uma pequena taxa é sempre cobrada. Esta opção permite adicionar uma quantidade adicional de percentagem desta taxa para ajudar o desenvolvimento do Monero Classic. Por exemplo, 50% de auto-doação numa taxa de transferência de 0.005 XMR adiciona 0.0025 XMR que será enviado para o fundo comum de ajuda ao desenvolvimento do Monero Classic.</translation>
     </message>
     <message>
         <location filename="../wizard/WizardDonation.qml" line="176"/>
@@ -1930,8 +1930,8 @@ For the case with Spend Proof, you don&apos;t need to specify the recipient addr
     </message>
     <message>
         <location filename="../wizard/WizardDonation.qml" line="194"/>
-        <source>Mining secures the Monero network, and also pays a small reward for the work done. This option will let Monero mine when your computer is on mains power and is idle. It will stop mining when you continue working.</source>
-        <translation>Minerar protege a rede do Monero e pode premiar o minerador com uma pequena quantidade de Monero pelo trabalho feito. Esta opção irá permitir que o seu computador seja usado para minerar Monero quando estiver sem utilização. A mineração será interrompida quando você voltar a utilizar o computador.</translation>
+        <source>Mining secures the Monero Classic network, and also pays a small reward for the work done. This option will let Monero Classic mine when your computer is on mains power and is idle. It will stop mining when you continue working.</source>
+        <translation>Minerar protege a rede do Monero Classic e pode premiar o minerador com uma pequena quantidade de Monero Classic pelo trabalho feito. Esta opção irá permitir que o seu computador seja usado para minerar Monero Classic quando estiver sem utilização. A mineração será interrompida quando você voltar a utilizar o computador.</translation>
     </message>
 </context>
 <context>
@@ -2121,8 +2121,8 @@ For the case with Spend Proof, you don&apos;t need to specify the recipient addr
     <name>WizardOptions</name>
     <message>
         <location filename="../wizard/WizardOptions.qml" line="74"/>
-        <source>Welcome to Monero!</source>
-        <translation>Bem-vindo ao Monero!</translation>
+        <source>Welcome to Monero Classic!</source>
+        <translation>Bem-vindo ao Monero Classic!</translation>
     </message>
     <message>
         <location filename="../wizard/WizardOptions.qml" line="85"/>
@@ -2191,8 +2191,8 @@ For the case with Spend Proof, you don&apos;t need to specify the recipient addr
     <name>WizardWelcome</name>
     <message>
         <location filename="../wizard/WizardWelcome.qml" line="73"/>
-        <source>Welcome to Monero!</source>
-        <translation>Bem-vindo ao Monero!</translation>
+        <source>Welcome to Monero Classic!</source>
+        <translation>Bem-vindo ao Monero Classic!</translation>
     </message>
     <message>
         <location filename="../wizard/WizardWelcome.qml" line="83"/>
@@ -2437,7 +2437,7 @@ Ringsize: </translation>
     <message>
         <location filename="../main.qml" line="1650"/>
         <source>New version of monero-wallet-gui is available: %1&lt;br&gt;%2</source>
-        <translation>Nova versão da GUI do Monero disponível: %1&lt;br&gt;%2</translation>
+        <translation>Nova versão da GUI do Monero Classic disponível: %1&lt;br&gt;%2</translation>
     </message>
     <message>
         <location filename="../main.qml" line="593"/>
@@ -2524,8 +2524,8 @@ Descrição: </translation>
     </message>
     <message>
         <location filename="../main.qml" line="1243"/>
-        <source>Monero</source>
-        <translation>Monero</translation>
+        <source>Monero Classic</source>
+        <translation>Monero Classic</translation>
     </message>
     <message>
         <location filename="../main.qml" line="1317"/>

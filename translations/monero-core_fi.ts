@@ -580,8 +580,8 @@
     </message>
     <message>
         <location filename="../pages/Mining.qml" line="83"/>
-        <source>Mining with your computer helps strengthen the Monero network. The more that people mine, the harder it is for the network to be attacked, and every little bit helps.&lt;br&gt; &lt;br&gt;Mining also gives you a small chance to earn some Monero. Your computer will create hashes looking for block solutions. If you find a block, you will get the associated reward. Good luck!</source>
-        <translation>Louhinta tietokoneellasi auttaa vahvistamaan Moneroverkkoa. Mitä enemmän ihmiset louhivat, sitä vaikeampaa on hyökätä verkkoon ja jokainen pieni osa auttaa.&lt;br&gt; &lt;br&gt;Louhinta myös antaa sinulle pienen mahdollisuuden ansaita vähän Moneroa. Tietokoneesi luo haketta etsien lohkon ratkaisuja. Jos löydät lohkon, saat siihen liittyvän palkinnon. Onnea!</translation>
+        <source>Mining with your computer helps strengthen the Monero Classic network. The more that people mine, the harder it is for the network to be attacked, and every little bit helps.&lt;br&gt; &lt;br&gt;Mining also gives you a small chance to earn some Monero Classic. Your computer will create hashes looking for block solutions. If you find a block, you will get the associated reward. Good luck!</source>
+        <translation>Louhinta tietokoneellasi auttaa vahvistamaan Monero Classicverkkoa. Mitä enemmän ihmiset louhivat, sitä vaikeampaa on hyökätä verkkoon ja jokainen pieni osa auttaa.&lt;br&gt; &lt;br&gt;Louhinta myös antaa sinulle pienen mahdollisuuden ansaita vähän Monero Classica. Tietokoneesi luo haketta etsien lohkon ratkaisuja. Jos löydät lohkon, saat siihen liittyvän palkinnon. Onnea!</translation>
     </message>
     <message>
         <location filename="../pages/Mining.qml" line="93"/>
@@ -1192,7 +1192,7 @@ The old wallet cache file will be renamed and can be restored later.
     </message>
     <message>
         <location filename="../pages/Settings.qml" line="517"/>
-        <source>Embedded Monero version: </source>
+        <source>Embedded Monero Classic version: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1805,12 +1805,12 @@ For the case with Spend Proof, you don&apos;t need to specify the recipient addr
     <name>WizardConfigure</name>
     <message>
         <location filename="../wizard/WizardConfigure.qml" line="79"/>
-        <source>We’re almost there - let’s just configure some Monero preferences</source>
+        <source>We’re almost there - let’s just configure some Monero Classic preferences</source>
         <translation>Melkein valmista - määritellään vielä mieltymyksiä </translation>
     </message>
     <message>
         <location filename="../wizard/WizardConfigure.qml" line="97"/>
-        <source>Kickstart the Monero blockchain?</source>
+        <source>Kickstart the Monero Classic blockchain?</source>
         <translation></translation>
     </message>
     <message>
@@ -1825,8 +1825,8 @@ For the case with Spend Proof, you don&apos;t need to specify the recipient addr
     </message>
     <message>
         <location filename="../wizard/WizardConfigure.qml" line="144"/>
-        <source>Disk conservation mode uses substantially less disk-space, but the same amount of bandwidth as a regular Monero instance. However, storing the full blockchain is beneficial to the security of the Monero network. If you are on a device with limited disk space, then this option is appropriate for you.</source>
-        <translation>Levynsäilytystilaa käytettäessä lompakko käyttää vähemmän tilaa levyllä, mutta saman verran kaistanleveyttä kuin normaalissa tilassa. On suositeltavaa säilyttää koko lohkoketjua Moneron verkon turvaallisudeksi. Jos olet laitteella, jolla ei olisi tarpeeksi tilaa koko lohkoketjulle, tämä vaihtoehto on sopiva. </translation>
+        <source>Disk conservation mode uses substantially less disk-space, but the same amount of bandwidth as a regular Monero Classic instance. However, storing the full blockchain is beneficial to the security of the Monero Classic network. If you are on a device with limited disk space, then this option is appropriate for you.</source>
+        <translation>Levynsäilytystilaa käytettäessä lompakko käyttää vähemmän tilaa levyllä, mutta saman verran kaistanleveyttä kuin normaalissa tilassa. On suositeltavaa säilyttää koko lohkoketjua Monero Classicn verkon turvaallisudeksi. Jos olet laitteella, jolla ei olisi tarpeeksi tilaa koko lohkoketjulle, tämä vaihtoehto on sopiva. </translation>
     </message>
     <message>
         <location filename="../wizard/WizardConfigure.qml" line="157"/>
@@ -1835,8 +1835,8 @@ For the case with Spend Proof, you don&apos;t need to specify the recipient addr
     </message>
     <message>
         <location filename="../wizard/WizardConfigure.qml" line="175"/>
-        <source>Mining secures the Monero network, and also pays a small reward for the work done. This option will let Monero mine when your computer is on mains power and is idle. It will stop mining when you continue working.</source>
-        <translation>Louhiminen turvaa Moneron verkon ja maksaa pienen palkkion tehdystä työstä. Tällä vaihtoehdolla annat Monero-lompakon suorittaa louhintaa tietokoneen ollessa käyttämättä ja kytkettynä virtalähteeseen. Louhinta lopetetaan automaattisesti jatkaessasi muita toimintoja.</translation>
+        <source>Mining secures the Monero Classic network, and also pays a small reward for the work done. This option will let Monero Classic mine when your computer is on mains power and is idle. It will stop mining when you continue working.</source>
+        <translation>Louhiminen turvaa Monero Classicn verkon ja maksaa pienen palkkion tehdystä työstä. Tällä vaihtoehdolla annat Monero Classic-lompakon suorittaa louhintaa tietokoneen ollessa käyttämättä ja kytkettynä virtalähteeseen. Louhinta lopetetaan automaattisesti jatkaessasi muita toimintoja.</translation>
     </message>
 </context>
 <context>
@@ -1859,7 +1859,7 @@ For the case with Spend Proof, you don&apos;t need to specify the recipient addr
     <name>WizardDaemonSettings</name>
     <message>
         <location filename="../wizard/WizardDaemonSettings.qml" line="114"/>
-        <source>To be able to communicate with the Monero network your wallet needs to be connected to a Monero node. For best privacy it&apos;s recommended to run your own node.                         &lt;br&gt;&lt;br&gt;                         If you don&apos;t have the option to run an own node there&apos;s an option to connect to a remote node.</source>
+        <source>To be able to communicate with the Monero Classic network your wallet needs to be connected to a Monero Classic node. For best privacy it&apos;s recommended to run your own node.                         &lt;br&gt;&lt;br&gt;                         If you don&apos;t have the option to run an own node there&apos;s an option to connect to a remote node.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1892,8 +1892,8 @@ For the case with Spend Proof, you don&apos;t need to specify the recipient addr
     <name>WizardDonation</name>
     <message>
         <location filename="../wizard/WizardDonation.qml" line="93"/>
-        <source>Monero development is solely supported by donations</source>
-        <translation>Moneron kehitys on tuettu täysin lahjoituksilla</translation>
+        <source>Monero Classic development is solely supported by donations</source>
+        <translation>Monero Classicn kehitys on tuettu täysin lahjoituksilla</translation>
     </message>
     <message>
         <location filename="../wizard/WizardDonation.qml" line="113"/>
@@ -1907,8 +1907,8 @@ For the case with Spend Proof, you don&apos;t need to specify the recipient addr
     </message>
     <message>
         <location filename="../wizard/WizardDonation.qml" line="164"/>
-        <source>For every transaction, a small transaction fee is charged. This option lets you add an additional amount, as a percentage of that fee, to your transaction to support Monero development. For instance, a 50% autodonation take a transaction fee of 0.005 XMR and add a 0.0025 XMR to support Monero development.</source>
-        <translation>Jokaisesta rahansiirrosta peritään pieni maksu, siirtopalkkio, sen lähettämiseksi. Tällä vaihtoehdolla voit lisätä vaihtoehtoisen lahjoituksen maksuun Moneron kehityksen edistämiseksi. Jos esimerkiksi valitset 50%, lisätään 0.005 XMR:n siirtopalkkioon 0.0025 XMR joka lahjoitetaan Moneron kehittäjille. </translation>
+        <source>For every transaction, a small transaction fee is charged. This option lets you add an additional amount, as a percentage of that fee, to your transaction to support Monero Classic development. For instance, a 50% autodonation take a transaction fee of 0.005 XMR and add a 0.0025 XMR to support Monero Classic development.</source>
+        <translation>Jokaisesta rahansiirrosta peritään pieni maksu, siirtopalkkio, sen lähettämiseksi. Tällä vaihtoehdolla voit lisätä vaihtoehtoisen lahjoituksen maksuun Monero Classicn kehityksen edistämiseksi. Jos esimerkiksi valitset 50%, lisätään 0.005 XMR:n siirtopalkkioon 0.0025 XMR joka lahjoitetaan Monero Classicn kehittäjille. </translation>
     </message>
     <message>
         <location filename="../wizard/WizardDonation.qml" line="176"/>
@@ -1917,8 +1917,8 @@ For the case with Spend Proof, you don&apos;t need to specify the recipient addr
     </message>
     <message>
         <location filename="../wizard/WizardDonation.qml" line="194"/>
-        <source>Mining secures the Monero network, and also pays a small reward for the work done. This option will let Monero mine when your computer is on mains power and is idle. It will stop mining when you continue working.</source>
-        <translation>Louhiminen turvaa Moneron verkon ja maksaa pienen palkkion tehdystä työstä. Tällä vaihtoehdolla annat Monero-lompakon suorittaa louhintaa tietokoneen ollessa käyttämättä ja kytkettynä virtalähteeseen. Louhinta lopetetaan automaattisesti jatkaessasi muita toimintoja.</translation>
+        <source>Mining secures the Monero Classic network, and also pays a small reward for the work done. This option will let Monero Classic mine when your computer is on mains power and is idle. It will stop mining when you continue working.</source>
+        <translation>Louhiminen turvaa Monero Classicn verkon ja maksaa pienen palkkion tehdystä työstä. Tällä vaihtoehdolla annat Monero Classic-lompakon suorittaa louhintaa tietokoneen ollessa käyttämättä ja kytkettynä virtalähteeseen. Louhinta lopetetaan automaattisesti jatkaessasi muita toimintoja.</translation>
     </message>
 </context>
 <context>
@@ -2107,8 +2107,8 @@ For the case with Spend Proof, you don&apos;t need to specify the recipient addr
     <name>WizardOptions</name>
     <message>
         <location filename="../wizard/WizardOptions.qml" line="74"/>
-        <source>Welcome to Monero!</source>
-        <translation>Tervetuloa käyttämään Moneroa!</translation>
+        <source>Welcome to Monero Classic!</source>
+        <translation>Tervetuloa käyttämään Monero Classica!</translation>
     </message>
     <message>
         <location filename="../wizard/WizardOptions.qml" line="85"/>
@@ -2176,8 +2176,8 @@ For the case with Spend Proof, you don&apos;t need to specify the recipient addr
     <name>WizardWelcome</name>
     <message>
         <location filename="../wizard/WizardWelcome.qml" line="73"/>
-        <source>Welcome to Monero!</source>
-        <translation type="unfinished">Tervetuloa käyttämään Moneroa!</translation>
+        <source>Welcome to Monero Classic!</source>
+        <translation type="unfinished">Tervetuloa käyttämään Monero Classica!</translation>
     </message>
     <message>
         <location filename="../wizard/WizardWelcome.qml" line="83"/>
@@ -2478,7 +2478,7 @@ Kuvaus:</translation>
     <message>
         <location filename="../main.qml" line="819"/>
         <source>This address received %1 monero, but the transaction is not yet mined</source>
-        <translation>Tähän osoitteeseen on saapunut %1 Moneroa, mutta rahansiirtoa ei ole vielä lisätty lohkoon</translation>
+        <translation>Tähän osoitteeseen on saapunut %1 Monero Classica, mutta rahansiirtoa ei ole vielä lisätty lohkoon</translation>
     </message>
     <message>
         <location filename="../main.qml" line="826"/>
@@ -2507,8 +2507,8 @@ Kuvaus:</translation>
     </message>
     <message>
         <location filename="../main.qml" line="1243"/>
-        <source>Monero</source>
-        <translation>Monero</translation>
+        <source>Monero Classic</source>
+        <translation>Monero Classic</translation>
     </message>
     <message>
         <location filename="../main.qml" line="1317"/>
