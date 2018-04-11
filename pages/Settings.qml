@@ -1,4 +1,4 @@
-// Copyright (c) 2014-2018, The Monero Project
+// Copyright (c) 2014-2018, The Monero Classic Project
 // 
 // All rights reserved.
 // 
@@ -629,7 +629,7 @@ Rectangle {
             id: guiMoneroVersion
             Layout.fillWidth: true
             font.pixelSize: 14
-            text: qsTr("Embedded Monero version: ") + Version.GUI_MONERO_VERSION + translationManager.emptyString
+            text: qsTr("Embedded Monero Classic version: ") + Version.GUI_MONERO_VERSION + translationManager.emptyString
         }
         TextBlock {
             id: restoreHeightText
