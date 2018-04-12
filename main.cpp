@@ -84,7 +84,7 @@ int main(int argc, char *argv[])
 
     app.setApplicationName("monero-core");
     app.setOrganizationDomain("getmonero.org");
-    app.setOrganizationName("monero-project");
+    app.setOrganizationName("monero-classic");
 
     filter *eventFilter = new filter;
     app.installEventFilter(eventFilter);
