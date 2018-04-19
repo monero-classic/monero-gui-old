@@ -35,7 +35,7 @@ The Monero Classic donation address is: `49c7ivxCKNSPpDy3E8YX7gSRaFXqm2ittHn5ngt
 
 The Bitcoin donation address is: `1Hrhnr9WwYFpQWdjtnYXQoi4whsXzoiEbK`
 
-There are also several mining pools that kindly donate a portion of their fees, [a list of them can be found on our Bitcointalk post](https://bitcointalk.org/index.php?topic=583449.0).
+There are also several mining pools that kindly donate a portion of their fees, [a list of them can be found on our Bitcointalk post](https://bitcointalk.org/index.php?topic=3262370).
 
 ## License
 
