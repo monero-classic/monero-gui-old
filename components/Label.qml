@@ -1,4 +1,4 @@
-// Copyright (c) 2014-2018, The Monero Project
+// Copyright (c) 2014-2015, The Monero Project
 // 
 // All rights reserved.
 // 
@@ -29,40 +29,55 @@
 import QtQuick 2.0
 import QtQuick.Layouts 1.1
 
-import "../components" as MoneroComponents
-
 Item {
     id: item
     property alias text: label.text
     property alias color: label.color
     property alias textFormat: label.textFormat
     property string tipText: ""
-    property int fontSize: 16 * scaleRatio
-    property bool fontBold: false
-    property string fontColor: MoneroComponents.Style.defaultFontColor
-    property string fontFamily: ""
+    property int fontSize: 12
     property alias wrapMode: label.wrapMode
-    property alias horizontalAlignment: label.horizontalAlignment
     signal linkActivated()
-    height: label.height * scaleRatio
-    width: label.width * scaleRatio
-    Layout.topMargin: 10 * scaleRatio
+    width: icon.x + icon.width
+    height: icon.height
 
     Text {
         id: label
         anchors.bottom: parent.bottom
-        anchors.bottomMargin: 2 * scaleRatio
+        anchors.bottomMargin: 2
         anchors.left: parent.left
-        font.family: {
-            if(fontFamily){
-                return fontFamily;
-            } else {
-                return MoneroComponents.Style.fontRegular.name;
-            }
-        }
-        font.pixelSize: fontSize
-        font.bold: fontBold
-        color: fontColor
+        font.family: "PingFangSC-Light"
+        font.pixelSize: parent.fontSize
+        color: "#000000"
         onLinkActivated: item.linkActivated()
     }
+
+    Image {
+        id: icon
+        anchors.verticalCenter: parent.verticalCenter
+        anchors.left: label.right
+        anchors.leftMargin: 5
+        source: "../images/whatIsIcon.png"
+        visible: appWindow.whatIsEnable
+    }
+
+//    MouseArea {
+//        anchors.fill: icon
+//        enabled: appWindow.whatIsEnable
+//        hoverEnabled: true
+//        onEntered: {
+//            icon.visible = false
+//            var pos = appWindow.mapFromItem(icon, 0, -15)
+//            tipItem.text = item.tipText
+//            tipItem.x = pos.x
+//            if(tipItem.height > 30)
+//                pos.y -= tipItem.height - 28
+//            tipItem.y = pos.y
+//            tipItem.visible = true
+//        }
+//        onExited: {
+//            icon.visible = Qt.binding(function(){ return appWindow.whatIsEnable; })
+//            tipItem.visible = false
+//        }
+//    }
 }

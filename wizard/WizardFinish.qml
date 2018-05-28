@@ -1,4 +1,4 @@
-// Copyright (c) 2014-2018, The Monero Project
+// Copyright (c) 2014-2015, The Monero Project
 // 
 // All rights reserved.
 // 
@@ -28,7 +28,6 @@
 
 import QtQuick 2.2
 import QtQuick.Layouts 1.1
-import moneroComponents.NetworkType 1.0
 
 
 ColumnLayout {
@@ -51,16 +50,14 @@ ColumnLayout {
             autoDonationAmount = wizard.settings["auto_donations_amount"] + " %",
             backgroundMiningEnabled = wizard.settings["allow_background_mining"] === true,
             backgroundMiningText = backgroundMiningEnabled ? qsTr("Enabled") : qsTr("Disabled"),
-            nettype = appWindow.persistentSettings.nettype,
-            networkText = nettype == NetworkType.TESTNET ? qsTr("Testnet") : nettype == NetworkType.STAGENET ? qsTr("Stagenet") : qsTr("Mainnet"),
+            testnetEnabled = appWindow.persistentSettings.testnet,
+            testnetText = testnetEnabled ? qsTr("Enabled") : qsTr("Disabled"),
             restoreHeightEnabled = wizard.settings['restore_height'] !== undefined;
 
         return "<table>"
             + trStart + qsTr("Language") + trMiddle + wizard.settings["language"] + trEnd
             + trStart + qsTr("Wallet name") + trMiddle + wizard.settings["account_name"] + trEnd
-            // TODO: wizard.settings['wallet'].seed doesnt work anymore; yields undefined.
-//            + trStart + qsTr("Backup seed") + trMiddle + wizard.settings["wallet"].seed + trEnd
-            + trStart + qsTr("Backup seed") + trMiddle + '****' + trEnd
+            + trStart + qsTr("Backup seed") + trMiddle + wizard.settings["wallet"].seed + trEnd
             + trStart + qsTr("Wallet path") + trMiddle + wizard.settings["wallet_path"] + trEnd
             // + trStart + qsTr("Auto donations") + trMiddle + autoDonationText + trEnd
             // + (autoDonationEnabled
@@ -68,7 +65,7 @@ ColumnLayout {
                 // : "")
             // + trStart + qsTr("Background mining") + trMiddle + backgroundMiningText + trEnd
             + trStart + qsTr("Daemon address") + trMiddle + persistentSettings.daemon_address + trEnd
-            + trStart + qsTr("Network Type") + trMiddle + networkText + trEnd
+            + trStart + qsTr("Testnet") + trMiddle + testnetText + trEnd
             + (restoreHeightEnabled
                 ? trStart + qsTr("Restore height") + trMiddle + wizard.settings['restore_height'] + trEnd
                 : "")
@@ -103,7 +100,7 @@ ColumnLayout {
             ListElement { dotColor: "#36B05B" }
             ListElement { dotColor: "#36B05B" }
             ListElement { dotColor: "#36B05B" }
-            ListElement { dotColor: "#FFE00A" }
+            //ListElement { dotColor: "#36B05B" }
         }
 
         Repeater {
@@ -123,7 +120,7 @@ ColumnLayout {
         Text {
             Layout.fillWidth: true
             font.family: "Arial"
-            font.pixelSize: 28 * scaleRatio
+            font.pixelSize: 28
             wrapMode: Text.Wrap
             horizontalAlignment: Text.AlignHCenter
             //renderType: Text.NativeRendering
@@ -135,7 +132,7 @@ ColumnLayout {
             Layout.fillWidth: true
             id: settingsText
             font.family: "Arial"
-            font.pixelSize: 16 * scaleRatio
+            font.pixelSize: 16
             wrapMode: Text.Wrap
             textFormat: Text.RichText
             horizontalAlignment: Text.AlignHLeft

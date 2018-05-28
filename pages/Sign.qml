@@ -1,4 +1,4 @@
-// Copyright (c) 2014-2018, The Monero Project
+// Copyright (c) 2014-2015, The Monero Project
 //
 // All rights reserved.
 //
@@ -39,9 +39,17 @@ import moneroComponents.WalletManager 1.0
 Rectangle {
     id: mainLayout
 
-    color: "transparent"
+    property int labelWidth: 120
+//    property int editWidth: 400
+    property int lineEditFontSize: 12
+
+    color: "#FFFFFF"
 
     Clipboard { id: clipboard }
+
+    function checkAddress(address, testnet) {
+      return walletManager.addressValid(address, testnet)
+    }
 
     MessageDialog {
         // dynamically change onclose handler
@@ -84,255 +92,374 @@ Rectangle {
 
     // sign / verify
     ColumnLayout {
-        anchors.top: parent.top
-        anchors.margins: 40 * scaleRatio
+        anchors.margins: 17
         anchors.left: parent.left
         anchors.right: parent.right
-        spacing: 20 * scaleRatio
+        anchors.top: parent.top
+        anchors.bottom: parent.bottom
+
+        spacing: 20
 
         // sign
         ColumnLayout {
             id: signBox
-            anchors.left: parent.left
-            anchors.right: parent.right
-            spacing: 20 * scaleRatio
+
+            RowLayout {
+                ColumnLayout {
+                    spacing: 8
+                    Label {
+                        text: qsTr("Sign a message or file contents with your address:") + translationManager.emptyString
+                        fontSize: 16
+                        wrapMode: Text.Wrap
+                    }
+                    Label {}
+                }
+            }
 
             Label {
-                id: signTitleLabel
-                fontSize: 24 * scaleRatio
-                text: qsTr("Sign") + translationManager.emptyString
+                id: signMessageLabel
+                fontSize: 14
+                text: qsTr("Either message:") + translationManager.emptyString
+                width: mainLayout.labelWidth
             }
 
-            Text {
-                text: qsTr("This page lets you sign/verify a message (or file contents) with your address.") + translationManager.emptyString
-                wrapMode: Text.Wrap
-                Layout.fillWidth: true
-                font.family: Style.fontRegular.name
-                font.pixelSize: 14 * scaleRatio
-                color: Style.defaultFontColor
-            }
-
-            ColumnLayout{
+            RowLayout {
                 id: signMessageRow
+                anchors.topMargin: 17
+                anchors.left: parent.left
+                anchors.right: parent.right
 
-                RowLayout {
-                    Layout.fillWidth: true
+                LineEdit {
+                    id: signMessageLine
+                    anchors.left: parent.left
+                    anchors.right: signMessageButton.left
+                    fontSize: mainLayout.lineEditFontSize
+                    placeholderText: qsTr("Message to sign") + translationManager.emptyString;
+                    readOnly: false
+//                    Layout.fillWidth: true
+                    onTextChanged: signSignatureLine.text = ""
 
-                    LineEdit {
-                        id: signMessageLine
-                        Layout.fillWidth: true
-                        placeholderText: qsTr("Message to sign") + translationManager.emptyString;
-                        labelText: qsTr("Message") + translationManager.emptyString;
-                        readOnly: false
-                        onTextChanged: signSignatureLine.text = ""
-                    }
-                }
-
-                RowLayout{
-                    Layout.fillWidth: true
-                    Layout.topMargin: 18
-
-                    StandardButton {
-                        id: signMessageButton
-                        text: qsTr("Sign") + translationManager.emptyString
-                        enabled: signMessageLine.text !== ''
-                        small: true
+                    IconButton {
+                        imageSource: "../images/copyToClipboard.png"
                         onClicked: {
-                          var signature = appWindow.currentWallet.signMessage(signMessageLine.text, false)
-                          signSignatureLine.text = signature
-                        }
-                    }
-                }
-            }
-
-            ColumnLayout {
-                id: signFileRow
-
-                RowLayout {
-                    LineEdit {
-                        id: signFileLine
-                        labelText: "Message from file"
-                        placeholderText: qsTr("Path to file") + translationManager.emptyString;
-                        readOnly: false
-                        Layout.fillWidth: true
-                        onTextChanged: signSignatureLine.text = ""
-                    }
-                }
-
-                RowLayout {
-                    Layout.fillWidth: true
-                    Layout.topMargin: 18
-
-                    StandardButton {
-                        id: loadFileToSignButton
-                        small: true
-                        text: qsTr("Browse") + translationManager.emptyString
-                        enabled: true
-                        onClicked: {
-                          signFileDialog.open();
-                        }
-                    }
-
-                    StandardButton {
-                        id: signFileButton
-                        small: true
-                        anchors.left: loadFileToSignButton.right
-                        anchors.leftMargin: 20
-                        text: qsTr("Sign") + translationManager.emptyString
-                        enabled: signFileLine.text !== ''
-                        onClicked: {
-                            var signature = appWindow.currentWallet.signMessage(signFileLine.text, true);
-                            signSignatureLine.text = signature;
+                            if (signMessageLine.text.length > 0) {
+                                clipboard.setText(signMessageLine.text)
+                            }
                         }
                     }
                 }
 
-            }
-
-            ColumnLayout {
-                id: signSignatureRow
-
-                RowLayout {
-                    LineEdit {
-                        id: signSignatureLine
-                        labelText: qsTr("Signature")
-                        placeholderText: qsTr("Signature") + translationManager.emptyString;
-                        readOnly: true
-                        Layout.fillWidth: true
-                        copyButton: true
+                StandardButton {
+                    id: signMessageButton
+                    anchors.right: parent.right
+                    width: 60
+                    text: qsTr("Sign") + translationManager.emptyString
+                    shadowReleasedColor: "#FFA800"
+                    shadowPressedColor: "#FFA800"
+                    releasedColor: "#FFA800"
+                    pressedColor: "#FFA800"
+                    enabled: true
+                    onClicked: {
+                      var signature = appWindow.currentWallet.signMessage(signMessageLine.text, false)
+                      signSignatureLine.text = signature
                     }
                 }
             }
 
             Label {
-                id: verifyTitleLabel
-                fontSize: 24 * scaleRatio
-                Layout.topMargin: 40
-                text: qsTr("Verify") + translationManager.emptyString
+                id: signMessageFileLabel
+                fontSize: 14
+                text: qsTr("Or file:") + translationManager.emptyString
+                width: mainLayout.labelWidth
             }
 
-            ColumnLayout {
-                RowLayout {
-                    id: verifyMessageRow
+            RowLayout {
+                id: signFileRow
+                anchors.topMargin: 17
+                anchors.left: parent.left
+		anchors.right: parent.right
 
-                    LineEdit {
-                        id: verifyMessageLine
-                        Layout.fillWidth: true
-                        labelText: qsTr("Verify message")
-                        placeholderText: qsTr("Message to verify") + translationManager.emptyString;
-                        readOnly: false
+                FileDialog {
+                    id: signFileDialog
+                    title: qsTr("Please choose a file to sign") + translationManager.emptyString;
+                    folder: "file://"
+                    nameFilters: [ "*"]
+
+                    onAccepted: {
+                        signFileLine.text = walletManager.urlToLocalPath(signFileDialog.fileUrl)
                     }
                 }
 
-                RowLayout{
+                StandardButton {
+                    id: loadFileToSignButton
+                    anchors.rightMargin: 17
+                    width: 60
+                    text: qsTr("Select") + translationManager.emptyString
+                    shadowReleasedColor: "#FFA800"
+                    shadowPressedColor: "#FFA800"
+                    releasedColor: "#FFA800"
+                    pressedColor: "#FFA800"
+                    enabled: true
+                    onClicked: {
+                      signFileDialog.open()
+                    }
+                }
+                LineEdit {
+                    id: signFileLine
+                    anchors.left: loadFileToSignButton.right
+                    anchors.right: signFileButton.left
+                    fontSize: mainLayout.lineEditFontSize
+                    placeholderText: qsTr("Filename with message to sign") + translationManager.emptyString;
+                    readOnly: false
                     Layout.fillWidth: true
-                    Layout.topMargin: 18
+                    onTextChanged: signSignatureLine.text = ""
 
-                    StandardButton {
-                        id: verifyMessageButton
-                        small: true
-                        text: qsTr("Verify") + translationManager.emptyString
-                        enabled: true
+                    IconButton {
+                        imageSource: "../images/copyToClipboard.png"
                         onClicked: {
-                          var verified = appWindow.currentWallet.verifySignedMessage(verifyMessageLine.text, verifyAddressLine.text, verifySignatureLine.text, false)
-                          displayVerificationResult(verified)
+                            if (signFileLine.text.length > 0) {
+                                clipboard.setText(signFileLine.text)
+                            }
                         }
+                    }
+                }
+
+                StandardButton {
+                    id: signFileButton
+                    anchors.right: parent.right
+                    width: 60
+                    text: qsTr("Sign") + translationManager.emptyString
+                    shadowReleasedColor: "#FFA800"
+                    shadowPressedColor: "#FFA800"
+                    releasedColor: "#FFA800"
+                    pressedColor: "#FFA800"
+                    enabled: true
+                    onClicked: {
+                      var signature = appWindow.currentWallet.signMessage(signFileLine.text, true)
+                      signSignatureLine.text = signature
                     }
                 }
             }
 
-            ColumnLayout {
-                RowLayout {
-                    LineEdit {
-                        id: verifyFileLine
-                        labelText: qsTr("Verify file")
-                        placeholderText: qsTr("Filename with message to verify") + translationManager.emptyString;
-                        readOnly: false
-                        Layout.fillWidth: true
-                    }
+            RowLayout {
+                id: signSignatureRow
+                anchors.topMargin: 17
+
+                Label {
+                    id: signSignatureLabel
+                    fontSize: 14
+                    text: qsTr("Signature") + translationManager.emptyString
                 }
 
-                RowLayout{
+                LineEdit {
+                    id: signSignatureLine
+                    fontSize: mainLayout.lineEditFontSize
+                    placeholderText: qsTr("Signature") + translationManager.emptyString;
+                    readOnly: true
                     Layout.fillWidth: true
-                    Layout.topMargin: 18
 
-                    StandardButton {
-                        id: loadFileToVerifyButton
-                        small: true
-                        text: qsTr("Browse") + translationManager.emptyString
-                        enabled: true
+                    IconButton {
+                        imageSource: "../images/copyToClipboard.png"
                         onClicked: {
-                          verifyFileDialog.open()
-                        }
-                    }
-
-                    StandardButton {
-                        id: verifyFileButton
-                        small: true
-                        anchors.left: loadFileToVerifyButton.right
-                        anchors.leftMargin: 20
-                        text: qsTr("Verify") + translationManager.emptyString
-                        enabled: true
-                        onClicked: {
-                          var verified = appWindow.currentWallet.verifySignedMessage(verifyFileLine.text, verifyAddressLine.text, verifySignatureLine.text, true)
-                          displayVerificationResult(verified)
+                            if (signSignatureLine.text.length > 0) {
+                                clipboard.setText(signSignatureLine.text)
+                            }
                         }
                     }
                 }
             }
+        }
 
-            ColumnLayout {
-                RowLayout{
 
-                    LineEditMulti {
-                        id: verifyAddressLine
-                        Layout.fillWidth: true
-                        labelText: qsTr("Address")
-                        addressValidation: true
-                        anchors.topMargin: 5 * scaleRatio
-                        placeholderText: "4..."
+        // verify
+        ColumnLayout {
+            id: verifyBox
+
+            RowLayout {
+                ColumnLayout {
+                    spacing: 8
+                    Label {
+                        text: qsTr("Verify a message or file signature from an address:") + translationManager.emptyString
+                        fontSize: 16
+//                        Layout.fillWidth: true
+                        wrapMode: Text.Wrap
+                    }
+                    Label {}
+                }
+            }
+
+            Label {
+                id: verifyMessageLabel
+                fontSize: 14
+                text: qsTr("Either message:") + translationManager.emptyString
+                width: mainLayout.labelWidth
+            }
+
+            RowLayout {
+                id: verifyMessageRow
+                anchors.topMargin: 17
+                anchors.left: parent.left
+                anchors.right: parent.right
+
+                LineEdit {
+                    id: verifyMessageLine
+                    anchors.left: parent.left
+                    anchors.right: verifyMessageButton.left
+                    fontSize: mainLayout.lineEditFontSize
+                    placeholderText: qsTr("Message to verify") + translationManager.emptyString;
+                    readOnly: false
+                    Layout.fillWidth: true
+
+                    IconButton {
+                        imageSource: "../images/copyToClipboard.png"
+                        onClicked: {
+                            if (verifyMessageLine.text.length > 0) {
+                                clipboard.setText(verifyMessageLine.text)
+                            }
+                        }
+                    }
+                }
+
+                StandardButton {
+                    id: verifyMessageButton
+                    anchors.right: parent.right
+                    width: 60
+                    text: qsTr("Verify") + translationManager.emptyString
+                    shadowReleasedColor: "#FFA800"
+                    shadowPressedColor: "#FFA800"
+                    releasedColor: "#FFA800"
+                    pressedColor: "#FFA800"
+                    enabled: true
+                    onClicked: {
+                      var verified = appWindow.currentWallet.verifySignedMessage(verifyMessageLine.text, verifyAddressLine.text, verifySignatureLine.text, false)
+                      displayVerificationResult(verified)
                     }
                 }
             }
 
-            ColumnLayout {
+            Label {
+                id: verifyMessageFileLabel
+                fontSize: 14
+                text: qsTr("Or file:") + translationManager.emptyString
+                width: mainLayout.labelWidth
+            }
+
+            RowLayout {
+                id: verifyFileRow
+                anchors.topMargin: 17
+                anchors.left: parent.left
+		anchors.right: parent.right
+
+                FileDialog {
+                    id: verifyFileDialog
+                    title: qsTr("Please choose a file to verify") + translationManager.emptyString;
+                    folder: "file://"
+                    nameFilters: [ "*"]
+
+                    onAccepted: {
+                        verifyFileLine.text = walletManager.urlToLocalPath(verifyFileDialog.fileUrl)
+                    }
+                }
+
+                StandardButton {
+                    id: loadFileToVerifyButton
+                    anchors.rightMargin: 17
+                    width: 60
+                    text: qsTr("Select") + translationManager.emptyString
+                    shadowReleasedColor: "#FFA800"
+                    shadowPressedColor: "#FFA800"
+                    releasedColor: "#FFA800"
+                    pressedColor: "#FFA800"
+                    enabled: true
+                    onClicked: {
+                      verifyFileDialog.open()
+                    }
+                }
+                LineEdit {
+                    id: verifyFileLine
+                    anchors.left: loadFileToVerifyButton.right
+                    anchors.right: verifyFileButton.left
+                    fontSize: mainLayout.lineEditFontSize
+                    placeholderText: qsTr("Filename with message to verify") + translationManager.emptyString;
+                    readOnly: false
+                    Layout.fillWidth: true
+
+                    IconButton {
+                        imageSource: "../images/copyToClipboard.png"
+                        onClicked: {
+                            if (verifyFileLine.text.length > 0) {
+                                clipboard.setText(verifyFileLine.text)
+                            }
+                        }
+                    }
+                }
+
+                StandardButton {
+                    id: verifyFileButton
+                    anchors.right: parent.right
+                    width: 60
+                    text: qsTr("Verify") + translationManager.emptyString
+                    shadowReleasedColor: "#FFA800"
+                    shadowPressedColor: "#FFA800"
+                    releasedColor: "#FFA800"
+                    pressedColor: "#FFA800"
+                    enabled: true
+                    onClicked: {
+                      var verified = appWindow.currentWallet.verifySignedMessage(verifyFileLine.text, verifyAddressLine.text, verifySignatureLine.text, true)
+                      displayVerificationResult(verified)
+                    }
+                }
+            }
+
+            Label {
+                id: verifyAddressLabel
+                fontSize: 14
+                width: mainLayout.labelWidth
+                textFormat: Text.RichText
+                text: qsTr("<style type='text/css'>a {text-decoration: none; color: #FF6C3C; font-size: 14px;}</style>\
+                            Signing address <font size='2'>  ( Paste in  or select from </font> <a href='#'>Address book</a><font size='2'> )</font>")
+                      + translationManager.emptyString
+//                Layout.fillWidth: true
+                wrapMode: Text.Wrap
+
+        onLinkActivated: appWindow.showPageRequest("AddressBook")
+            }
+
+            LineEdit {
+                id: verifyAddressLine
+                anchors.left: parent.left
+                anchors.right: parent.right
+                anchors.top: verifyAddressLabel.bottom
+                anchors.topMargin: 5
+                placeholderText: "4..."
+                // validator: RegExpValidator { regExp: /[0-9A-Fa-f]{95}/g }
+            }
+
+            RowLayout {
                 id: verifySignatureRow
-                anchors.topMargin: 17 * scaleRatio
+                anchors.topMargin: 17
 
                 Label {
                     id: verifySignatureLabel
+                    fontSize: 14
                     text: qsTr("Signature") + translationManager.emptyString
                 }
 
                 LineEdit {
                     id: verifySignatureLine
+                    fontSize: mainLayout.lineEditFontSize
                     placeholderText: qsTr("Signature") + translationManager.emptyString;
                     Layout.fillWidth: true
-                    copyButton: true
+
+                    IconButton {
+                        imageSource: "../images/copyToClipboard.png"
+                        onClicked: {
+                            if (verifySignatureLine.text.length > 0) {
+                                clipboard.setText(verifySignatureLine.text)
+                            }
+                        }
+                    }
                 }
-            }
-        }
-
-
-        FileDialog {
-            id: signFileDialog
-            title: qsTr("Please choose a file to sign") + translationManager.emptyString;
-            folder: "file://"
-            nameFilters: [ "*"]
-
-            onAccepted: {
-                signFileLine.text = walletManager.urlToLocalPath(signFileDialog.fileUrl)
-            }
-        }
-
-        FileDialog {
-            id: verifyFileDialog
-            title: qsTr("Please choose a file to verify") + translationManager.emptyString;
-            folder: "file://"
-            nameFilters: [ "*"]
-
-            onAccepted: {
-                verifyFileLine.text = walletManager.urlToLocalPath(verifyFileDialog.fileUrl)
             }
         }
     }

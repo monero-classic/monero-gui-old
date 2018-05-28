@@ -1,4 +1,4 @@
-// Copyright (c) 2014-2018, The Monero Project
+// Copyright (c) 2014-2015, The Monero Project
 // 
 // All rights reserved.
 // 
@@ -26,139 +26,128 @@
 // STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF
 // THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-import QtQuick 2.5
-
-import "../components" as MoneroComponents
+import QtQuick 2.0
 
 Rectangle {
     id: button
     property alias text: label.text
     property bool checked: false
-    property alias dotColor: dot.color
+    // property alias dotColor: dot.color
     property alias symbol: symbolText.text
     property int numSelectedChildren: 0
     property var under: null
     signal clicked()
 
-    function doClick() {
-        // Android workaround
-        releaseFocus();
-        clicked();
-    }
-
-
     function getOffset() {
         var offset = 0
         var item = button
         while (item.under) {
-            offset += 20 * scaleRatio
+            offset += 20
             item = item.under
         }
         return offset
     }
 
-    color: "transparent"
+    color: checked ? "#FFFFFF" : "#327FC7"
     property bool present: !under || under.checked || checked || under.numSelectedChildren > 0
-    height: present ? ((appWindow.height >= 800) ? 44 * scaleRatio  : 38 * scaleRatio ) : 0
-
-    // button gradient while checked
-    Image {
-        height: parent.height
-        width: 260
-        anchors.verticalCenter: parent.verticalCenter
-        anchors.right: parent.right
-        anchors.rightMargin: -20
-        anchors.leftMargin: parent.getOffset()
-        source: "../images/menuButtonGradient.png"
-        visible: button.checked
-    }
-
-    // button decorations that are subject to leftMargin offsets
-    Rectangle {
-        anchors.left: parent.left
-        anchors.leftMargin: parent.getOffset() + 20 * scaleRatio
-        height: parent.height
-        width: button.checked ? 20: 10
-        color: "#00000000"
-
-        // dot if unchecked
-        Rectangle {
-            id: dot
-            anchors.centerIn: parent
-            width: button.checked ? 20 * scaleRatio : 8 * scaleRatio
-            height: button.checked ? 20 * scaleRatio : 8 * scaleRatio
-            radius: button.checked ? 20 * scaleRatio : 4 * scaleRatio
-            color: button.dotColor
-            // arrow if checked
-            Image {
-                anchors.centerIn: parent
-                anchors.left: parent.left
-                source: "../images/arrow-right-medium-white.png"
-                visible: button.checked
-            }
-        }
-
-        // button text
-        Text {
-            id: label
-            anchors.verticalCenter: parent.verticalCenter
-            anchors.left: parent.right
-            anchors.leftMargin: 8 * scaleRatio
-            font.family: MoneroComponents.Style.fontMedium.name
-            font.bold: true
-            font.pixelSize: 16 * scaleRatio
-            color: "#FFFFFF"
-        }
-    }
-
-    // menu button right arrow
-    Image {
-        anchors.verticalCenter: parent.verticalCenter
-        anchors.right: parent.right
-        anchors.rightMargin: 20 * scaleRatio
-        anchors.leftMargin: parent.getOffset()
-        source: "../images/right.png"
-        opacity: button.checked ? 1.0 : 0.4
-    }
-
-    Text {
-        id: symbolText
-        anchors.centerIn: parent
-        font.pixelSize: 11 * scaleRatio
-        font.bold: true
-        color: button.checked || buttonArea.containsMouse ? "#FFFFFF" : dot.color
-        visible: appWindow.ctrlPressed
-    }
-
-    MouseArea {
-        id: buttonArea
-        anchors.fill: parent
-        hoverEnabled: true
-        cursorShape: Qt.PointingHandCursor
-        onClicked: {
-            if(parent.checked)
-                return
-            button.doClick()
-            parent.checked = true
-        }
-    }
+    height: present ? ((appWindow.height >= 800) ? 64 : 52) : 0
 
     transform: Scale {
         yScale: button.present ? 1 : 0
 
         Behavior on yScale {
-            NumberAnimation { duration: 200; easing.type: Easing.OutCubic }
+            NumberAnimation { duration: 500; easing.type: Easing.InOutCubic }
         }
     }
 
     Behavior on height {
         SequentialAnimation {
-            NumberAnimation { duration: 200; easing.type: Easing.OutCubic }
+            NumberAnimation { duration: 500; easing.type: Easing.InOutCubic }
         }
     }
 
     Behavior on checked {
         // we get the value of checked before the change
         ScriptAction { script: if (under) under.numSelectedChildren += checked > 0 ? -1 : 1 }
+    }
+
+    Item {
+        anchors.top: parent.top
+        anchors.bottom: parent.bottom
+        anchors.left: parent.left
+        anchors.leftMargin: parent.getOffset()
+        width: 50
+
+        // Rectangle {
+        //     id: dot
+        //     anchors.centerIn: parent
+        //     width: 16
+        //     height: width
+        //     radius: height / 2
+
+        //     Rectangle {
+        //         anchors.centerIn: parent
+        //         width: 12
+        //         height: width
+        //         radius: height / 2
+        //         color: "#327fc7"
+        //         visible: !button.checked && !buttonArea.containsMouse
+        //     }
+        // }
+
+        Image {
+            anchors.verticalCenter: parent.verticalCenter
+            anchors.left: parent.left
+            anchors.leftMargin: 20
+            source: "../images/dot.png"
+        }
+
+        Text {
+            id: symbolText
+            anchors.centerIn: parent
+            font.pixelSize: 11
+            font.bold: true
+            color: button.checked || buttonArea.containsMouse ? "#FFFFFF" : "#000000"
+            visible: appWindow.ctrlPressed
+        }
+    }
+
+    Rectangle {
+        anchors.left: parent.left
+        anchors.top: parent.top
+        anchors.bottom: parent.bottom
+        width: 1
+        color: "#DBDBDB"
+        visible: parent.checked
+    }
+
+    // Image {
+    //     anchors.verticalCenter: parent.verticalCenter
+    //     anchors.right: parent.right
+    //     anchors.rightMargin: 20
+    //     anchors.leftMargin: parent.getOffset()
+    //     source: "../images/menuIndicator.png"
+    // }
+
+    Text {
+        id: label
+        anchors.verticalCenter: parent.verticalCenter
+        anchors.left: parent.left
+        anchors.leftMargin: parent.getOffset() + 50
+        font.family: "PingFangSC-Regular"
+        font.pixelSize: 18
+        color: parent.checked ? "#184566" : "#FFFFFF"
+    }
+
+    MouseArea {
+        id: buttonArea
+        anchors.fill: parent
+        hoverEnabled: true
+        onClicked: {
+            if(parent.checked)
+                return
+            button.clicked()
+            parent.checked = true
+        }
     }
 }

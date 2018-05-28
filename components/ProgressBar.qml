@@ -1,4 +1,4 @@
-// Copyright (c) 2014-2018, The Monero Project
+// Copyright (c) 2014-2015, The Monero Project
 // 
 // All rights reserved.
 // 
@@ -29,94 +29,78 @@
 import QtQuick 2.0
 import moneroComponents.Wallet 1.0
 
-import "../components" as MoneroComponents
-
-Rectangle {
+Item {
     id: item
     property int fillLevel: 0
-    property string syncType // Wallet or Daemon
-    property string syncText: qsTr("%1 blocks remaining: ").arg(syncType)
+    height: 22
+    anchors.margins:15
     visible: false
-    color: "transparent"
+    //clip: true
 
-    function updateProgress(currentBlock,targetBlock, blocksToSync, statusTxt){
+    function updateProgress(currentBlock,targetBlock, blocksToSync){
+        if(targetBlock == 1) {
+            fillLevel = 0
+            progressText.text = qsTr("Establishing connection...");
+            progressBar.visible = true
+            return
+        }
+
         if(targetBlock > 0) {
-            var remaining = (currentBlock < targetBlock) ? targetBlock - currentBlock : 0
-            var progressLevel = (blocksToSync > 0 && blocksToSync != remaining) ? (100*(blocksToSync - remaining)/blocksToSync).toFixed(0) : 100*(currentBlock / targetBlock).toFixed(0)
+            var remaining = targetBlock - currentBlock
+            // wallet sync
+            if(blocksToSync > 0)
+                var progressLevel = (100*(blocksToSync - remaining)/blocksToSync).toFixed(0);
+            // Daemon sync
+            else
+                var progressLevel = (100*(currentBlock/targetBlock)).toFixed(0);
             fillLevel = progressLevel
-            if(typeof statusTxt != "undefined" && statusTxt != "") {
-                progressText.text = statusTxt;
-            } else {
-                progressText.text = syncText + remaining.toFixed(0);
-            }
+            progressText.text = qsTr("Blocks remaining: %1").arg(remaining.toFixed(0));
+            progressBar.visible = currentBlock < targetBlock
         }
     }
 
-    Item {
-        anchors.top: item.top
-        anchors.topMargin: 10 * scaleRatio
-        anchors.leftMargin: 15 * scaleRatio
-        anchors.rightMargin: 15 * scaleRatio
-        anchors.fill: parent
-
-        Text {
-            id: progressText
-            anchors.top: parent.top
-            anchors.topMargin: 6
-            font.family: MoneroComponents.Style.fontMedium.name
-            font.pixelSize: 13 * scaleRatio
-            font.bold: true
-            color: "white"
-            text: qsTr("Synchronizing %1").arg(syncType)
-            height: 18 * scaleRatio
-        }
-
-        Text {
-            id: progressTextValue
-            anchors.top: parent.top
-            anchors.topMargin: 6
-            anchors.right: parent.right
-            font.family: MoneroComponents.Style.fontMedium.name
-            font.pixelSize: 13 * scaleRatio
-            font.bold: true
-            color: "white"
-            height:18 * scaleRatio
-        }
-
+    Rectangle {
+        id: bar
+        anchors.left: parent.left
+        anchors.right: parent.right
+        anchors.top: parent.top
+        height: 22
+        radius: 2
+        color: "#FFFFFF"
 
         Rectangle {
-            id: bar
+            id: fillRect
+            anchors.top: parent.top
+            anchors.bottom: parent.bottom
             anchors.left: parent.left
-            anchors.right: parent.right
-            anchors.top: progressText.bottom
-            anchors.topMargin: 4
-            height: 8 * scaleRatio
-            radius: 8 * scaleRatio
-            color: "#333333" // progressbar bg
-
-            Rectangle {
-                id: fillRect
-                anchors.top: parent.top
-                anchors.bottom: parent.bottom
-                anchors.left: parent.left
-                height: bar.height
-                property int maxWidth: bar.width - 4 * scaleRatio
-                width: (maxWidth * fillLevel) / 100
-                radius: 8
-                // could change color based on progressbar status; if(item.fillLevel < 99 )
-                color: "#FA6800"
+            anchors.margins: 2
+            height: bar.height
+            property int maxWidth: parent.width - 4
+            width: (maxWidth * fillLevel) / 100
+            color: {
+               if(item.fillLevel < 99 ) return "#FF6C3C"
+               //if(item.fillLevel < 99) return "#FFE00A"
+                return "#36B25C"
             }
 
-            Rectangle {
-                color:"#333"
-                anchors.bottom: parent.bottom
-                anchors.left: parent.left
-                anchors.leftMargin: 8 * scaleRatio
-            }
         }
 
+        Rectangle {
+            color:"#F1F6FA"
+            anchors.bottom: parent.bottom
+            anchors.left: parent.left
+            anchors.leftMargin: 8
+
+            Text {
+                id:progressText
+                anchors.bottom: parent.bottom
+                font.family: "Arial"
+                font.pixelSize: 12
+                color: "#184566"
+                text: qsTr("Synchronizing blocks")
+                height:18
+            }
+        }
     }
-
-
 
 }

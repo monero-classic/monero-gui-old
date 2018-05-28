@@ -1,6 +1,6 @@
 #include "TransactionHistory.h"
 #include "TransactionInfo.h"
-#include <wallet/api/wallet2_api.h>
+#include <wallet/wallet2_api.h>
 
 #include <QDebug>
 
@@ -22,7 +22,7 @@ TransactionInfo *TransactionHistory::transaction(int index)
 //    return nullptr;
 //}
 
-QList<TransactionInfo *> TransactionHistory::getAll(quint32 accountIndex) const
+QList<TransactionInfo *> TransactionHistory::getAll() const
 {
     // XXX this invalidates previously saved history that might be used by model
     emit refreshStarted();
@@ -37,10 +37,6 @@ QList<TransactionInfo *> TransactionHistory::getAll(quint32 accountIndex) const
     TransactionHistory * parent = const_cast<TransactionHistory*>(this);
     for (const auto i : m_pimpl->getAll()) {
         TransactionInfo * ti = new TransactionInfo(i, parent);
-        if (ti->subaddrAccount() != accountIndex) {
-            delete ti;
-            continue;
-        }
         m_tinfo.append(ti);
         // looking for transactions timestamp scope
         if (ti->timestamp() >= lastDateTime) {
@@ -73,12 +69,12 @@ QList<TransactionInfo *> TransactionHistory::getAll(quint32 accountIndex) const
     return m_tinfo;
 }
 
-void TransactionHistory::refresh(quint32 accountIndex)
+void TransactionHistory::refresh()
 {
     // rebuilding transaction list in wallet_api;
     m_pimpl->refresh();
     // copying list here and keep track on every item to avoid memleaks
-    getAll(accountIndex);
+    getAll();
 }
 
 quint64 TransactionHistory::count() const

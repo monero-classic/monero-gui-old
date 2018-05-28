@@ -1,4 +1,4 @@
-// Copyright (c) 2014-2018, The Monero Project
+// Copyright (c) 2014-2015, The Monero Project
 //
 // All rights reserved.
 //
@@ -27,7 +27,7 @@
 // THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 import QtQuick 2.0
-import QtQuick.Controls 2.0
+import QtQuick.Controls 1.4
 import QtQuick.Controls.Styles 1.4
 import QtQuick.Layouts 1.1
 import QtQuick.Dialogs 1.2
@@ -38,25 +38,52 @@ import moneroComponents.Wallet 1.0
 import moneroComponents.WalletManager 1.0
 import moneroComponents.TransactionHistory 1.0
 import moneroComponents.TransactionHistoryModel 1.0
-import moneroComponents.Subaddress 1.0
-import moneroComponents.SubaddressModel 1.0
 
 Rectangle {
-    id: pageReceive
-    color: "transparent"
+
+    color: "#FFFFFF"
+    property alias addressText : addressLine.text
+    property alias paymentIdText : paymentIdLine.text
+    property alias integratedAddressText : integratedAddressLine.text
     property var model
-    property var current_address
-    property alias addressText : pageReceive.current_address
     property string trackingLineText: ""
+
+    function updatePaymentId(payment_id) {
+        if (typeof appWindow.currentWallet === 'undefined' || appWindow.currentWallet == null)
+            return
+
+        // generate a new one if not given as argument
+        if (typeof payment_id === 'undefined') {
+            payment_id = appWindow.currentWallet.generatePaymentId()
+            paymentIdLine.text = payment_id
+        }
+
+        if (payment_id.length > 0) {
+            integratedAddressLine.text = appWindow.currentWallet.integratedAddress(payment_id)
+            if (integratedAddressLine.text === "")
+              integratedAddressLine.text = qsTr("Invalid payment ID")
+        }
+        else {
+            paymentIdLine.text = ""
+            integratedAddressLine.text = ""
+        }
+
+        update()
+    }
 
     function makeQRCodeString() {
         var s = "monero:"
         var nfields = 0
-        s += current_address;
+        s += addressLine.text
         var amount = amountLine.text.trim()
         if (amount !== "") {
           s += (nfields++ ? "&" : "?")
           s += "tx_amount=" + amount
+        }
+        var pid = paymentIdLine.text.trim()
+        if (pid !== "") {
+          s += (nfields++ ? "&" : "?")
+          s += "tx_payment_id=" + pid
         }
         return s
     }
@@ -85,14 +112,13 @@ Rectangle {
         var count = model.rowCount()
         var totalAmount = 0
         var nTransactions = 0
-        var list = []
+        var list = ""
         var blockchainHeight = 0
         for (var i = 0; i < count; ++i) {
             var idx = model.index(i, 0)
             var isout = model.data(idx, TransactionHistoryModel.TransactionIsOutRole);
-            var subaddrAccount = model.data(idx, TransactionHistoryModel.TransactionSubaddrAccountRole);
-            var subaddrIndex = model.data(idx, TransactionHistoryModel.TransactionSubaddrIndexRole);
-            if (!isout && subaddrAccount == appWindow.currentWallet.currentSubaddressAccount && subaddrIndex == table.currentIndex) {
+            var payment_id = model.data(idx, TransactionHistoryModel.TransactionPaymentIdRole);
+            if (!isout && payment_id == paymentIdLine.text) {
                 var amount = model.data(idx, TransactionHistoryModel.TransactionAtomicAmountRole);
                 totalAmount = walletManager.addi(totalAmount, amount)
                 nTransactions += 1
@@ -100,24 +126,20 @@ Rectangle {
                 var txid = model.data(idx, TransactionHistoryModel.TransactionHashRole);
                 var blockHeight = model.data(idx, TransactionHistoryModel.TransactionBlockHeightRole);
                 if (blockHeight == 0) {
-                    list.push(qsTr("in the txpool: %1").arg(txid) + translationManager.emptyString)
+                    list += qsTr("in the txpool: %1").arg(txid) + translationManager.emptyString
                 } else {
                     if (blockchainHeight == 0)
                         blockchainHeight = walletManager.blockchainHeight()
                     var confirmations = blockchainHeight - blockHeight - 1
                     var displayAmount = model.data(idx, TransactionHistoryModel.TransactionDisplayAmountRole);
                     if (confirmations > 1) {
-                        list.push(qsTr("%2 confirmations: %3 (%1)").arg(txid).arg(confirmations).arg(displayAmount) + translationManager.emptyString)
+                        list += qsTr("%2 confirmations: %3 (%1)").arg(txid).arg(confirmations).arg(displayAmount) + translationManager.emptyString
                     } else {
-                        list.push(qsTr("1 confirmation: %2 (%1)").arg(txid).arg(displayAmount) + translationManager.emptyString)
+                        list += qsTr("1 confirmation: %2 (%1)").arg(txid).arg(displayAmount) + translationManager.emptyString
                     }
                 }
+                list += "<br>"
             }
-        }
-        // if there are too many txes, only show the first 3
-        if (list.length > 3) {
-            list.length = 3;
-            list.push("...");
         }
 
         if (nTransactions == 0) {
@@ -137,135 +159,145 @@ Rectangle {
             }
         }
 
-        setTrackingLineText(text + "<br>" + list.join("<br>"))
+        setTrackingLineText(text + "<br>" + list)
     }
 
     Clipboard { id: clipboard }
+
 
     /* main layout */
     ColumnLayout {
         id: mainLayout
         anchors.margins: (isMobile)? 17 : 40
-        anchors.topMargin: 40 * scaleRatio
+        anchors.topMargin: 40
 
         anchors.left: parent.left
         anchors.top: parent.top
         anchors.right: parent.right
 
-        spacing: 20 * scaleRatio
-        property int labelWidth: 120 * scaleRatio
-        property int editWidth: 400 * scaleRatio
-        property int lineEditFontSize: 12 * scaleRatio
-        property int qrCodeSize: 240 * scaleRatio
+        spacing: 20
+        property int labelWidth: 120
+        property int editWidth: 400
+        property int lineEditFontSize: 12
+        property int qrCodeSize: 240
+
 
         ColumnLayout {
             id: addressRow
-            spacing: 0
             Label {
                 id: addressLabel
-                text: qsTr("Addresses") + translationManager.emptyString
+                fontSize: 14
+                text: qsTr("Address") + translationManager.emptyString
                 width: mainLayout.labelWidth
             }
 
-            Rectangle {
-                id: header
+            LineEdit {
+                id: addressLine
+                fontSize: mainLayout.lineEditFontSize
+                placeholderText: qsTr("ReadOnly wallet address displayed here") + translationManager.emptyString;
+                readOnly: true
+                width: mainLayout.editWidth
                 Layout.fillWidth: true
-                Layout.topMargin: 10
-                visible: table.count > 0
+                onTextChanged: cursorPosition = 0
 
-                height: 10
-                color: "transparent"
-
-                Rectangle {
-                    anchors.top: parent.top
-                    anchors.left: parent.left
-                    anchors.right: parent.right
-                    anchors.rightMargin: 10
-                    anchors.leftMargin: 10
-
-                    height: 1
-                    color: "#404040"
-                }
-
-                Image {
-                    anchors.top: parent.top
-                    anchors.left: parent.left
-
-                    width: 10
-                    height: 10
-
-                    source: "../images/historyBorderRadius.png"
-                }
-
-                Image {
-                    anchors.top: parent.top
-                    anchors.right: parent.right
-
-                    width: 10
-                    height: 10
-
-                    source: "../images/historyBorderRadius.png"
-                    rotation: 90
+                IconButton {
+                    imageSource: "../images/copyToClipboard.png"
+                    onClicked: {
+                        if (addressLine.text.length > 0) {
+                            console.log(addressLine.text + " copied to clipboard")
+                            clipboard.setText(addressLine.text)
+                        }
+                    }
                 }
             }
+        }
 
-            Rectangle {
-                id: tableRect
-                property int table_max_height: 260
+        GridLayout {
+            id: paymentIdRow
+            columns:2
+            Label {
+                Layout.columnSpan: 2
+                id: paymentIdLabel
+                fontSize: 14
+                text: qsTr("Payment ID") + translationManager.emptyString
+                width: mainLayout.labelWidth
+            }
+
+
+            LineEdit {
+                id: paymentIdLine
+                fontSize: mainLayout.lineEditFontSize
+                placeholderText: qsTr("16 hexadecimal characters") + translationManager.emptyString;
+                readOnly: false
+                onTextChanged: updatePaymentId(paymentIdLine.text)
+
+                width: mainLayout.editWidth
                 Layout.fillWidth: true
-                Layout.preferredHeight: table.contentHeight < table_max_height ? table.contentHeight : table_max_height
-                color: "transparent"
 
-                Scroll {
-                    id: flickableScroll
-                    anchors.right: table.right
-                    anchors.top: table.top
-                    anchors.bottom: table.bottom
-                    flickable: table
-                }
-
-                SubaddressTable {
-                    id: table
-                    anchors.fill: parent
-                    onContentYChanged: flickableScroll.flickableContentYChanged()
-                    onCurrentItemChanged: {
-                        current_address = appWindow.currentWallet.address(appWindow.currentWallet.currentSubaddressAccount, table.currentIndex);
+                IconButton {
+                    imageSource: "../images/copyToClipboard.png"
+                    onClicked: {
+                        if (paymentIdLine.text.length > 0) {
+                            clipboard.setText(paymentIdLine.text)
+                        }
                     }
                 }
             }
 
-            RowLayout {
-                spacing: 20
-                Layout.topMargin: 20
+            StandardButton {
+                id: generatePaymentId
+                width: 80
+                shadowReleasedColor: "#FFA800"
+                shadowPressedColor: "#FFA800"
+                releasedColor: "#FFA800"
+                pressedColor: "#FFA800"
+                text: qsTr("Generate") + translationManager.emptyString;
+                onClicked: updatePaymentId()
+            }
 
-                StandardButton {
-                    small: true
-                    text: qsTr("Create new address") + translationManager.emptyString;
+            StandardButton {
+                id: clearPaymentId
+                enabled: !!paymentIdLine.text
+                width: 80
+                shadowReleasedColor: "#FFA800"
+                shadowPressedColor: "#FFA800"
+                releasedColor: "#FFA800"
+                pressedColor: "#FFA800"
+                text: qsTr("Clear") + translationManager.emptyString;
+                onClicked: updatePaymentId("")
+            }
+        }
+         
+        ColumnLayout {
+            id: integratedAddressRow
+            Label {
+                id: integratedAddressLabel
+                fontSize: 14
+                text: qsTr("Integrated address") + translationManager.emptyString
+                width: mainLayout.labelWidth
+            }
+
+
+            LineEdit {
+
+                id: integratedAddressLine
+                fontSize: mainLayout.lineEditFontSize
+                placeholderText: qsTr("Generate payment ID for integrated address") + translationManager.emptyString
+                readOnly: true
+                width: mainLayout.editWidth
+                Layout.fillWidth: true
+
+                onTextChanged: cursorPosition = 0
+
+                IconButton {
+                    imageSource: "../images/copyToClipboard.png"
                     onClicked: {
-                        inputDialog.labelText = qsTr("Set the label of the new address:") + translationManager.emptyString
-                        inputDialog.inputText = qsTr("(Untitled)")
-                        inputDialog.onAcceptedCallback = function() {
-                            appWindow.currentWallet.subaddress.addRow(appWindow.currentWallet.currentSubaddressAccount, inputDialog.inputText)
-                            table.currentIndex = appWindow.currentWallet.numSubaddresses() - 1
+                        if (integratedAddressLine.text.length > 0) {
+                            clipboard.setText(integratedAddressLine.text)
                         }
-                        inputDialog.onRejectedCallback = null;
-                        inputDialog.open()
                     }
                 }
-                StandardButton {
-                    small: true
-                    enabled: table.currentIndex > 0
-                    text: qsTr("Rename") + translationManager.emptyString;
-                    onClicked: {
-                        inputDialog.labelText = qsTr("Set the label of the selected address:") + translationManager.emptyString
-                        inputDialog.inputText = appWindow.currentWallet.getSubaddressLabel(appWindow.currentWallet.currentSubaddressAccount, table.currentIndex)
-                        inputDialog.onAcceptedCallback = function() {
-                            appWindow.currentWallet.subaddress.setLabel(appWindow.currentWallet.currentSubaddressAccount, table.currentIndex, inputDialog.inputText)
-                        }
-                        inputDialog.onRejectedCallback = null;
-                        inputDialog.open()
-                    }
-                }
+
             }
         }
 
@@ -273,6 +305,7 @@ Rectangle {
             id: amountRow
             Label {
                 id: amountLabel
+                fontSize: 14
                 text: qsTr("Amount") + translationManager.emptyString
                 width: mainLayout.labelWidth
             }
@@ -280,6 +313,7 @@ Rectangle {
 
             LineEdit {
                 id: amountLine
+                fontSize: mainLayout.lineEditFontSize
                 placeholderText: qsTr("Amount to receive") + translationManager.emptyString
                 readOnly: false
                 width: mainLayout.editWidth
@@ -294,23 +328,22 @@ Rectangle {
             }
         }
 
-        ColumnLayout {
+        RowLayout {
             id: trackingRow
-            visible: !isAndroid && !isIOS
+
             Label {
                 id: trackingLabel
+                fontSize: 14
                 textFormat: Text.RichText
-                text: "<style type='text/css'>a {text-decoration: none; color: #FF6C3C; font-size: 14px;}</style>" +
-                      qsTr("Tracking") +
-                      "<font size='2'> (</font><a href='#'>" +
-                      qsTr("help") +
-                      "</a><font size='2'>)</font>" +
-                      translationManager.emptyString
+                text: qsTr("<style type='text/css'>a {text-decoration: none; color: #FF6C3C; font-size: 14px;}</style>\
+                           Tracking <font size='2'> (</font><a href='#'>help</a><font size='2'>)</font>")
+                           + translationManager.emptyString
                 width: mainLayout.labelWidth
                 onLinkActivated: {
                     trackingHowToUseDialog.title  = qsTr("Tracking payments") + translationManager.emptyString;
                     trackingHowToUseDialog.text = qsTr(
                         "<p><font size='+2'>This is a simple sales tracker:</font></p>" +
+                        "<p>Click Generate to create a random payment id for a new customer</p> " +
                         "<p>Let your customer scan that QR code to make a payment (if that customer has software which " +
                         "supports QR code scanning).</p>" +
                         "<p>This page will automatically scan the blockchain and the tx pool " +
@@ -327,14 +360,15 @@ Rectangle {
 
             TextEdit {
                 id: trackingLine
+                anchors.top: trackingRow.top
+                textFormat: Text.RichText
+                text: ""
                 readOnly: true
                 width: mainLayout.editWidth
                 Layout.fillWidth: true
-                textFormat: Text.RichText
-                text: ""
                 selectByMouse: true
-                color: 'white'
             }
+
         }
 
         MessageDialog {
@@ -358,33 +392,33 @@ Rectangle {
                 }
             }
         }
-        ColumnLayout {
-            Menu {
-                id: qrMenu
-                title: "QrCode"
-                MenuItem {
-                   text: qsTr("Save As") + translationManager.emptyString;
-                   onTriggered: qrFileDialog.open()
-                }
-            }
 
-            Image {
-                id: qrCode
-                anchors.margins: 50 * scaleRatio
-                Layout.fillWidth: true
-                Layout.minimumHeight: mainLayout.qrCodeSize
-                smooth: false
-                fillMode: Image.PreserveAspectFit
-                source: "image://qrcode/" + makeQRCodeString()
-                MouseArea {
-                    anchors.fill: parent
-                    acceptedButtons: Qt.RightButton
-                    onClicked: {
-                        if (mouse.button == Qt.RightButton)
-                            qrMenu.popup()
-                    }
-                    onPressAndHold: qrFileDialog.open()
+        Menu {
+            id: qrMenu
+            title: "QrCode"
+            MenuItem {
+               text: qsTr("Save As") + translationManager.emptyString;
+               onTriggered: qrFileDialog.open()
+            }
+        }
+
+        Image {
+            id: qrCode
+            anchors.margins: 50
+            anchors.top: trackingRow.bottom
+            Layout.fillWidth: true
+            Layout.minimumHeight: mainLayout.qrCodeSize
+            smooth: false
+            fillMode: Image.PreserveAspectFit
+            source: "image://qrcode/" + makeQRCodeString()
+            MouseArea {
+                anchors.fill: parent
+                acceptedButtons: Qt.RightButton
+                onClicked: {
+                    if (mouse.button == Qt.RightButton)
+                        qrMenu.popup()
                 }
+                onPressAndHold: qrFileDialog.open()
             }
         }
     }
@@ -397,12 +431,11 @@ Rectangle {
 
     function onPageCompleted() {
         console.log("Receive page loaded");
-        table.model = currentWallet.subaddressModel;
 
         if (appWindow.currentWallet) {
-            current_address = appWindow.currentWallet.address(appWindow.currentWallet.currentSubaddressAccount, 0)
-            appWindow.currentWallet.subaddress.refresh(appWindow.currentWallet.currentSubaddressAccount)
-            table.currentIndex = 0
+            if (addressLine.text.length === 0 || addressLine.text !== appWindow.currentWallet.address) {
+                addressLine.text = appWindow.currentWallet.address
+            }
         }
 
         update()

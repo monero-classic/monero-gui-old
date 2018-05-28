@@ -32,7 +32,7 @@ DaemonManager *DaemonManager::instance(const QStringList *args)
     return m_instance;
 }
 
-bool DaemonManager::start(const QString &flags, NetworkType::Type nettype, const QString &dataDir, const QString &bootstrapNodeAddress)
+bool DaemonManager::start(const QString &flags, bool testnet, const QString &dataDir)
 {
     // prepare command line arguments and pass to monerod
     QStringList arguments;
@@ -42,10 +42,8 @@ bool DaemonManager::start(const QString &flags, NetworkType::Type nettype, const
     arguments << "--detach";
 #endif
 
-    if (nettype == NetworkType::TESTNET)
+    if(testnet)
         arguments << "--testnet";
-    else if (nettype == NetworkType::STAGENET)
-        arguments << "--stagenet";
 
     foreach (const QString &str, m_clArgs) {
           qDebug() << QString(" [%1] ").arg(str);
@@ -62,12 +60,11 @@ bool DaemonManager::start(const QString &flags, NetworkType::Type nettype, const
 
     // Custom data-dir
     if(!dataDir.isEmpty()) {
-        arguments << "--data-dir" << dataDir;
-    }
-
-    // Bootstrap node address
-    if(!bootstrapNodeAddress.isEmpty()) {
-        arguments << "--bootstrap-daemon-address" << bootstrapNodeAddress;
+        if(testnet)
+            arguments << "--testnet-data-dir";
+        else
+            arguments << "--data-dir";
+        arguments << dataDir;
     }
 
     arguments << "--check-updates" << "disabled";
@@ -97,7 +94,7 @@ bool DaemonManager::start(const QString &flags, NetworkType::Type nettype, const
     }
 
     // Start start watcher
-    QFuture<bool> future = QtConcurrent::run(this, &DaemonManager::startWatcher, nettype);
+    QFuture<bool> future = QtConcurrent::run(this, &DaemonManager::startWatcher, testnet);
     QFutureWatcher<bool> * watcher = new QFutureWatcher<bool>();
     connect(watcher, &QFutureWatcher<bool>::finished,
             this, [this, watcher]() {
@@ -114,14 +111,14 @@ bool DaemonManager::start(const QString &flags, NetworkType::Type nettype, const
     return true;
 }
 
-bool DaemonManager::stop(NetworkType::Type nettype)
+bool DaemonManager::stop(bool testnet)
 {
     QString message;
-    sendCommand("exit", nettype, message);
+    sendCommand("exit",testnet,message);
     qDebug() << message;
 
     // Start stop watcher - Will kill if not shutting down
-    QFuture<bool> future = QtConcurrent::run(this, &DaemonManager::stopWatcher, nettype);
+    QFuture<bool> future = QtConcurrent::run(this, &DaemonManager::stopWatcher, testnet);
     QFutureWatcher<bool> * watcher = new QFutureWatcher<bool>();
     connect(watcher, &QFutureWatcher<bool>::finished,
             this, [this, watcher]() {
@@ -136,14 +133,14 @@ bool DaemonManager::stop(NetworkType::Type nettype)
     return true;
 }
 
-bool DaemonManager::startWatcher(NetworkType::Type nettype) const
+bool DaemonManager::startWatcher(bool testnet) const
 {
     // Check if daemon is started every 2 seconds
     QTime timer;
     timer.restart();
     while(true && !m_app_exit && timer.elapsed() / 1000 < DAEMON_START_TIMEOUT_SECONDS  ) {
         QThread::sleep(2);
-        if(!running(nettype)) {
+        if(!running(testnet)) {
             qDebug() << "daemon not running. checking again in 2 seconds.";
         } else {
             qDebug() << "daemon is started. Waiting 5 seconds to let daemon catch up";
@@ -154,14 +151,14 @@ bool DaemonManager::startWatcher(NetworkType::Type nettype) const
     return false;
 }
 
-bool DaemonManager::stopWatcher(NetworkType::Type nettype) const
+bool DaemonManager::stopWatcher(bool testnet) const
 {
     // Check if daemon is running every 2 seconds. Kill if still running after 10 seconds
     int counter = 0;
     while(true && !m_app_exit) {
         QThread::sleep(2);
         counter++;
-        if(running(nettype)) {
+        if(running(testnet)) {
             qDebug() << "Daemon still running.  " << counter;
             if(counter >= 5) {
                 qDebug() << "Killing it! ";
@@ -209,10 +206,10 @@ void DaemonManager::printError()
     }
 }
 
-bool DaemonManager::running(NetworkType::Type nettype) const
+bool DaemonManager::running(bool testnet) const
 { 
     QString status;
-    sendCommand("status", nettype, status);
+    sendCommand("status",testnet, status);
     qDebug() << status;
     // `./monerod status` returns BUSY when syncing.
     // Treat busy as connected, until fixed upstream.
@@ -221,23 +218,21 @@ bool DaemonManager::running(NetworkType::Type nettype) const
     }
     return false;
 }
-bool DaemonManager::sendCommand(const QString &cmd, NetworkType::Type nettype) const
+bool DaemonManager::sendCommand(const QString &cmd,bool testnet) const
 {
     QString message;
-    return sendCommand(cmd, nettype, message);
+    return sendCommand(cmd, testnet, message);
 }
 
-bool DaemonManager::sendCommand(const QString &cmd, NetworkType::Type nettype, QString &message) const
+bool DaemonManager::sendCommand(const QString &cmd,bool testnet, QString &message) const
 {
     QProcess p;
     QStringList external_cmd;
     external_cmd << cmd;
 
-    // Add network type flag if needed
-    if (nettype == NetworkType::TESTNET)
+    // Add testnet flag if needed
+    if (testnet)
         external_cmd << "--testnet";
-    else if (nettype == NetworkType::STAGENET)
-        external_cmd << "--stagenet";
 
     qDebug() << "sending external cmd: " << external_cmd;
 

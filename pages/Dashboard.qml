@@ -1,4 +1,4 @@
-// Copyright (c) 2014-2018, The Monero Project
+// Copyright (c) 2014-2015, The Monero Project
 // 
 // All rights reserved.
 // 
@@ -30,7 +30,7 @@ import QtQuick 2.0
 import "../components"
 
 Rectangle {
-    color: "#F0EEEE"
+    color: "#FFFFFF"
 
     SearchInput {
         id: searchInput
@@ -53,7 +53,7 @@ Rectangle {
         anchors.margins: 17
         font.family: "Arial"
         font.pixelSize: 18
-        color: "#4A4949"
+        color: "#000000"
         text: qsTr("Quick transfer") + translationManager.emptyString
     }
 
@@ -87,17 +87,17 @@ Rectangle {
             id: sendButton
             width: 60
             text: qsTr("SEND")
-            shadowReleasedColor: "#FF4304"
-            shadowPressedColor: "#B32D00"
-            releasedColor: "#FF6C3C"
-            pressedColor: "#FF4304"
+            shadowReleasedColor: "#FFA800"
+            shadowPressedColor: "#FFA800"
+            releasedColor: "#FFA800"
+            pressedColor: "#FFA800"
         }
 
         Text {
             anchors.verticalCenter: parent.verticalCenter
             font.family: "Arial"
             font.pixelSize: 12
-            color: "#545454"
+            color: "#000000"
             textFormat: Text.RichText
             text: qsTr("<style type='text/css'>a {text-decoration: none; color: #FF6C3C; font-size: 14px;}</style>\
                         looking for security level and address book? go to <a href='#'>Transfer</a> tab")

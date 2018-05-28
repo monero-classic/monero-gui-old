@@ -1,4 +1,4 @@
-// Copyright (c) 2014-2018, The Monero Project
+// Copyright (c) 2014-2015, The Monero Project
 // 
 // All rights reserved.
 // 
@@ -29,57 +29,50 @@
 import QtQuick 2.0
 import QtQuick.Layouts 1.1
 
-import "../components" as MoneroComponents
-
 Item {
     id: button
-    property string rightIcon: ""
+    height: 37
+    property string shadowPressedColor
+    property string shadowReleasedColor
+    property string pressedColor
+    property string releasedColor
     property string icon: ""
-    property string textColor: button.enabled? MoneroComponents.Style.buttonTextColor: MoneroComponents.Style.buttonTextColorDisabled
-    property bool small: false
+    property string textColor: "#FFFFFF"
+    property int fontSize: 12
     property alias text: label.text
-    property int fontSize: {
-        if(small) return 14 * scaleRatio;
-        else return 16 * scaleRatio;
-    }
     signal clicked()
 
-    // Dynamic height/width
-    Layout.minimumWidth: (label.contentWidth > 50)? label.contentWidth + 22 : 60
-    height: small ?  30 * scaleRatio : 36 * scaleRatio
+    // Dynamic label width
+    Layout.minimumWidth: (label.contentWidth > 80)? label.contentWidth + 20 : 100
 
+    Rectangle {
+        anchors.left: parent.left
+        anchors.right: parent.right
+        height: parent.height - 1
+        y: buttonArea.pressed ? 0 : 1
+        //radius: 4
+        color: {
+            parent.enabled ? (buttonArea.pressed ? parent.shadowPressedColor : parent.shadowReleasedColor)
+                           : Qt.lighter(parent.shadowReleasedColor)
+        }
+        border.color: Qt.darker(parent.releasedColor)
+        border.width: parent.focus ? 1 : 0
 
-    function doClick() {
-        // Android workaround
-        releaseFocus();
-        clicked();
     }
 
     Rectangle {
         anchors.left: parent.left
         anchors.right: parent.right
         height: parent.height - 1
-        radius: 3
-        color: parent.enabled ? MoneroComponents.Style.buttonBackgroundColor : MoneroComponents.Style.buttonBackgroundColorDisabled
-        border.width: parent.focus ? 1 : 0
+        y: buttonArea.pressed ? 1 : 0
+        color: {
+            parent.enabled ? (buttonArea.pressed ? parent.pressedColor : parent.releasedColor)
+                           : Qt.lighter(parent.releasedColor)
 
-        MouseArea {
-            anchors.fill: parent
-            cursorShape: Qt.PointingHandCursor
-            hoverEnabled: true
-
-            propagateComposedEvents: true
-
-            // possibly do some hover effects here
-            onEntered: {
-//                if(button.enabled) parent.color = Style.buttonBackgroundColorHover;
-//                else parent.color = Style.buttonBackgroundColorDisabledHover;
-            }
-            onExited: {
-//                if(button.enabled) parent.color = Style.buttonBackgroundColor;
-//                else parent.color = Style.buttonBackgroundColorDisabled;
-            }
         }
+        //radius: 4
+
+
     }
 
     Text {
@@ -88,11 +81,12 @@ Item {
         anchors.left: parent.left
         anchors.right: parent.right
         horizontalAlignment: Text.AlignHCenter
-        font.family: MoneroComponents.Style.fontBold.name
+        font.family: "Arial"
         font.bold: true
-        font.pixelSize: buttonArea.pressed ? button.fontSize - 1 : button.fontSize
+        font.pixelSize: button.fontSize
         color: parent.textColor
         visible: parent.icon === ""
+//        font.capitalization : Font.Capitalize
     }
 
     Image {
@@ -104,10 +98,9 @@ Item {
     MouseArea {
         id: buttonArea
         anchors.fill: parent
-        onClicked: doClick()
-        cursorShape: Qt.PointingHandCursor
+        onClicked: parent.clicked()
     }
 
-    Keys.onSpacePressed: doClick()
-    Keys.onReturnPressed: doClick()
+    Keys.onSpacePressed: clicked()
+    Keys.onReturnPressed: clicked()
 }

@@ -1,4 +1,5 @@
-// Copyright (c) 2014-2018, The Monero Project
+// Copyright (c) 2014-2015, The Monero Project
+// Copyright (c) 2017-2018, The Monero Classic Project
 // 
 // All rights reserved.
 // 
@@ -30,11 +31,8 @@
 #include <QQmlApplicationEngine>
 #include <QtQml>
 #include <QStandardPaths>
-#include <QIcon>
 #include <QDebug>
 #include <QObject>
-#include <QDesktopWidget>
-#include <QScreen>
 #include "clipboardAdapter.h"
 #include "filter.h"
 #include "oscursor.h"
@@ -51,9 +49,7 @@
 #include "model/TransactionHistorySortFilterModel.h"
 #include "AddressBook.h"
 #include "model/AddressBookModel.h"
-#include "Subaddress.h"
-#include "model/SubaddressModel.h"
-#include "wallet/api/wallet2_api.h"
+#include "wallet/wallet2_api.h"
 #include "MainApp.h"
 
 // IOS exclusions
@@ -68,12 +64,11 @@
 void messageHandler(QtMsgType type, const QMessageLogContext &context, const QString &msg)
 {
     // Send all message types to logger
-    Monero::Wallet::debug("qml", msg.toStdString());
+    Monero::Wallet::debug(msg.toStdString());
 }
 
 int main(int argc, char *argv[])
 {
-    Monero::Utils::onStartup();
 //    // Enable high DPI scaling on windows & linux
 //#if !defined(Q_OS_ANDROID) && QT_VERSION >= 0x050600
 //    QGuiApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
@@ -81,7 +76,7 @@ int main(int argc, char *argv[])
 //#endif
 
     // Log settings
-    Monero::Wallet::init(argv[0], "monero-wallet-gui");
+    Monero::Wallet::init(argv[0], "monero-classic-wallet-gui");
 //    qInstallMessageHandler(messageHandler);
 
     MainApp app(argc, argv);
@@ -89,12 +84,8 @@ int main(int argc, char *argv[])
     qDebug() << "app startd";
 
     app.setApplicationName("monero-core");
-    app.setOrganizationDomain("getmonero.org");
-    app.setOrganizationName("monero-project");
-
-    #if defined(Q_OS_LINUX) && !defined(Q_OS_ANDROID)
-    app.setWindowIcon(QIcon(":/images/appicon.ico"));
-    #endif
+    app.setOrganizationDomain("monero-classic.org");
+    app.setOrganizationName("monero-classic");
 
     filter *eventFilter = new filter;
     app.installEventFilter(eventFilter);
@@ -140,18 +131,9 @@ int main(int argc, char *argv[])
     qmlRegisterUncreatableType<AddressBook>("moneroComponents.AddressBook", 1, 0, "AddressBook",
                                                         "AddressBook can't be instantiated directly");
 
-    qmlRegisterUncreatableType<SubaddressModel>("moneroComponents.SubaddressModel", 1, 0, "SubaddressModel",
-                                                        "SubaddressModel can't be instantiated directly");
-
-    qmlRegisterUncreatableType<Subaddress>("moneroComponents.Subaddress", 1, 0, "Subaddress",
-                                                        "Subaddress can't be instantiated directly");
-
     qRegisterMetaType<PendingTransaction::Priority>();
     qRegisterMetaType<TransactionInfo::Direction>();
     qRegisterMetaType<TransactionHistoryModel::TransactionInfoRole>();
-
-    qRegisterMetaType<NetworkType::Type>();
-    qmlRegisterType<NetworkType>("moneroComponents.NetworkType", 1, 0, "NetworkType");
 
 #ifdef WITH_SCANNER
     qmlRegisterType<QrCodeScanner>("moneroComponents.QRCodeScanner", 1, 0, "QRCodeScanner");
@@ -187,7 +169,6 @@ int main(int argc, char *argv[])
     bool isWindows = false;
     bool isIOS = false;
     bool isMac = false;
-    bool isAndroid = false;
 #ifdef Q_OS_WIN
     isWindows = true;
     QStringList moneroAccountsRootDir = QStandardPaths::standardLocations(QStandardPaths::DocumentsLocation);
@@ -200,45 +181,12 @@ int main(int argc, char *argv[])
 #ifdef Q_OS_MAC
     isMac = true;
 #endif
-#ifdef Q_OS_ANDROID
-    isAndroid = true;
-#endif
 
     engine.rootContext()->setContextProperty("isWindows", isWindows);
     engine.rootContext()->setContextProperty("isIOS", isIOS);
-    engine.rootContext()->setContextProperty("isAndroid", isAndroid);
-
-    // screen settings
-    // Mobile is designed on 128dpi
-    qreal ref_dpi = 128;
-    QRect geo = QApplication::desktop()->availableGeometry();
-    QRect rect = QGuiApplication::primaryScreen()->geometry();
-    qreal height = qMax(rect.width(), rect.height());
-    qreal width = qMin(rect.width(), rect.height());
-    qreal dpi = QGuiApplication::primaryScreen()->logicalDotsPerInch();
-    qreal physicalDpi = QGuiApplication::primaryScreen()->physicalDotsPerInch();
-    qreal calculated_ratio = physicalDpi/ref_dpi;
-
-    engine.rootContext()->setContextProperty("screenWidth", geo.width());
-    engine.rootContext()->setContextProperty("screenHeight", geo.height());
-#ifdef Q_OS_ANDROID
-    engine.rootContext()->setContextProperty("scaleRatio", calculated_ratio);
-#else
-    engine.rootContext()->setContextProperty("scaleRatio", 1);
-#endif
-
-    qDebug() << "available width: " << geo.width();
-    qDebug() << "available height: " << geo.height();
-    qDebug() << "devicePixelRatio: " << app.devicePixelRatio();
-    qDebug() << "screen height: " << height;
-    qDebug() << "screen width: " << width;
-    qDebug() << "screen logical dpi: " << dpi;
-    qDebug() << "screen Physical dpi: " << physicalDpi;
-    qDebug() << "screen calculated ratio: " << calculated_ratio;
-
 
     if (!moneroAccountsRootDir.empty()) {
-        QString moneroAccountsDir = moneroAccountsRootDir.at(0) + "/Monero/wallets";
+        QString moneroAccountsDir = moneroAccountsRootDir.at(0) + "/MoneroClassic/wallets";
         engine.rootContext()->setContextProperty("moneroAccountsDir", moneroAccountsDir);
     }
 
@@ -249,7 +197,7 @@ int main(int argc, char *argv[])
         accountName = qgetenv("USERNAME"); // Windows
     }
     if (accountName.isEmpty()) {
-        accountName = "My monero Account";
+        accountName = "My monero classic Account";
     }
 
     engine.rootContext()->setContextProperty("defaultAccountName", accountName);
@@ -263,17 +211,7 @@ int main(int argc, char *argv[])
 
     // Load main window (context properties needs to be defined obove this line)
     engine.load(QUrl(QStringLiteral("qrc:///main.qml")));
-    if (engine.rootObjects().isEmpty())
-    {
-        qCritical() << "Error: no root objects";
-        return 1;
-    }
     QObject *rootObject = engine.rootObjects().first();
-    if (!rootObject)
-    {
-        qCritical() << "Error: no root objects";
-        return 1;
-    }
 
 #ifdef WITH_SCANNER
     QObject *qmlCamera = rootObject->findChild<QObject*>("qrCameraQML");

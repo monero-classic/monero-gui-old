@@ -1,4 +1,4 @@
-// Copyright (c) 2014-2018, The Monero Classic Project
+// Copyright (c) 2014-2015, The Monero Project
 // 
 // All rights reserved.
 // 
@@ -64,6 +64,7 @@ ColumnLayout {
 
     function onPageClosed(settingsObject) {
         // TODO: set password on the final page
+        // settingsObject.wallet.setPassword(passwordItem.password)
         settingsObject['wallet_password'] = passwordUI.password
         return true
     }
@@ -81,8 +82,8 @@ ColumnLayout {
         ListModel {
             id: dotsModel
             ListElement { dotColor: "#36B05B" }
-            ListElement { dotColor: "#FFE00A" }
-            ListElement { dotColor: "#DBDBDB" }
+            ListElement { dotColor: "#36B05B" }
+            //ListElement { dotColor: "#FFE00A" }
             ListElement { dotColor: "#DBDBDB" }
         }
 
@@ -106,7 +107,7 @@ ColumnLayout {
             Layout.fillWidth: true
             id: titleText
             font.family: "Arial"
-            font.pixelSize: 28 * scaleRatio
+            font.pixelSize: 28
             wrapMode: Text.Wrap
             horizontalAlignment: Text.AlignHCenter
             //renderType: Text.NativeRendering
@@ -116,9 +117,9 @@ ColumnLayout {
 
         Text {
             Layout.fillWidth: true
-            Layout.bottomMargin: 30 * scaleRatio
+            Layout.bottomMargin: 30
             font.family: "Arial"
-            font.pixelSize: 18 * scaleRatio
+            font.pixelSize: 18
             wrapMode: Text.Wrap
             //renderType: Text.NativeRendering
             color: "#4A4646"

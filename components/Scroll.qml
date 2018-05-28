@@ -1,4 +1,4 @@
-// Copyright (c) 2014-2018, The Monero Project
+// Copyright (c) 2014-2015, The Monero Project
 // 
 // All rights reserved.
 // 
@@ -51,7 +51,7 @@ Item {
     Rectangle {
         id: scroll
 
-        width: 4
+        width: 15
         height: {
             var t = (flickable.height * flickable.height) / flickable.contentHeight
             return t < 20 ? 20 : t
@@ -62,7 +62,7 @@ Item {
         visible: flickable.contentHeight > flickable.height
 
         Behavior on opacity {
-            NumberAnimation { duration: 200; easing.type: Easing.InQuad }
+            NumberAnimation { duration: 100; easing.type: Easing.InQuad }
         }
 
         MouseArea {

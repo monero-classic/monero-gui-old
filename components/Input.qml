@@ -1,4 +1,4 @@
-// Copyright (c) 2014-2018, The Monero Project
+// Copyright (c) 2014-2015, The Monero Project
 // 
 // All rights reserved.
 // 
@@ -26,20 +26,21 @@
 // STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF
 // THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-import QtQuick.Controls 2.0
-import QtQuick 2.7
-
-import "../components" as MoneroComponents
+import QtQuick.Controls 1.2
+import QtQuick.Controls.Styles 1.2
+import QtQuick 2.2
 
 TextField {
-    font.family: MoneroComponents.Style.fontRegular.name
-    font.pixelSize: 18 * scaleRatio
-    font.bold: true
+    font.family: "Arial"
     horizontalAlignment: TextInput.AlignLeft
-    selectByMouse: true
-    color: MoneroComponents.Style.defaultFontColor
 
-    background: Rectangle {
-        color: "transparent"
+    style: TextFieldStyle {
+        textColor: "#3F3F3F"
+        placeholderTextColor: "#BABABA"
+
+        background: Rectangle {
+            border.width: 0
+            color: "transparent"
+        }
     }
 }

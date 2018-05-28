@@ -17,15 +17,12 @@ if [ ! -d $MONERO_DIR/src ]; then
 fi
 git submodule update --remote
 git -C $MONERO_DIR fetch
-git -C $MONERO_DIR checkout release-v0.12
+#git -C $MONERO_DIR checkout release-v0.11.0.0
 
 # get monero core tag
-get_tag
+#get_tag
 # create local monero branch
-git -C $MONERO_DIR checkout -B $VERSIONTAG
-
-git -C $MONERO_DIR submodule init
-git -C $MONERO_DIR submodule update
+#git -C $MONERO_DIR checkout -B $VERSIONTAG
 
 # Merge monero PR dependencies
 
@@ -33,7 +30,7 @@ git -C $MONERO_DIR submodule update
 # Save current user settings and revert back when we are done with merging PR's
 OLD_GIT_USER=$(git -C $MONERO_DIR config --local user.name)
 OLD_GIT_EMAIL=$(git -C $MONERO_DIR config --local user.email)
-git -C $MONERO_DIR config user.name "Monero Classic GUI"
+git -C $MONERO_DIR config user.name "Monero GUI"
 git -C $MONERO_DIR config user.email "gui@monero.local"
 # check for PR requirements in most recent commit message (i.e requires #xxxx)
 for PR in $(git log --format=%B -n 1 | grep -io "requires #[0-9]*" | sed 's/[^0-9]*//g'); do
@@ -111,7 +108,6 @@ elif [ "$BUILD_TYPE" == "debug-android" ]; then
 elif [ "$BUILD_TYPE" == "debug" ]; then
     echo "Building libwallet debug"
     CMAKE_BUILD_TYPE=Debug
-    STATIC=true
 else
     echo "Valid build types are release, release-static, release-android, debug-android and debug"
     exit 1;
@@ -119,14 +115,14 @@ fi
 
 
 echo "cleaning up existing monero build dir, libs and includes"
-rm -fr $MONERO_DIR/build
+#rm -fr $MONERO_DIR/build
 rm -fr $MONERO_DIR/lib
 rm -fr $MONERO_DIR/include
 rm -fr $MONERO_DIR/bin
 
 
-mkdir -p $MONERO_DIR/build/$BUILD_TYPE
-pushd $MONERO_DIR/build/$BUILD_TYPE
+mkdir -p $MONERO_DIR/build/release
+pushd $MONERO_DIR/build/release
 
 # reusing function from "utils.sh"
 platform=$(get_platform)
@@ -212,7 +208,7 @@ if test -z "$CPU_CORE_COUNT"; then
 fi
 
 # Build libwallet_merged
-pushd $MONERO_DIR/build/$BUILD_TYPE/src/wallet
+pushd $MONERO_DIR/build/release/src/wallet
 eval $make_exec version -C ../..
 eval $make_exec  -j$CPU_CORE_COUNT
 eval $make_exec  install -j$CPU_CORE_COUNT
@@ -221,24 +217,21 @@ popd
 # Build monerod
 # win32 need to build daemon manually with msys2 toolchain
 if [ "$platform" != "mingw32" ] && [ "$ANDROID" != true ]; then
-    pushd $MONERO_DIR/build/$BUILD_TYPE/src/daemon
+    pushd $MONERO_DIR/build/release/src/daemon
     eval make  -j$CPU_CORE_COUNT
     eval make install -j$CPU_CORE_COUNT
     popd
 fi
 
 # build install epee
-eval make -C $MONERO_DIR/build/$BUILD_TYPE/contrib/epee all install
+eval make -C $MONERO_DIR/build/release/contrib/epee all install
 
 # install easylogging
-eval make -C $MONERO_DIR/build/$BUILD_TYPE/external/easylogging++ all install
+eval make -C $MONERO_DIR/build/release/external/easylogging++ all install
 
-# install lmdb
-eval make -C $MONERO_DIR/build/$BUILD_TYPE/external/db_drivers/liblmdb all install
-
-# Install libunbound
+# Install libunwind
 echo "Installing libunbound..."
-pushd $MONERO_DIR/build/$BUILD_TYPE/external/unbound
+pushd $MONERO_DIR/build/release/external/unbound
 # no need to make, it was already built as dependency for libwallet
 # make -j$CPU_CORE_COUNT
 $make_exec install -j$CPU_CORE_COUNT

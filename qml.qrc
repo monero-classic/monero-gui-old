@@ -14,6 +14,7 @@
         <file>images/lockIcon.png</file>
         <file>components/MenuButton.qml</file>
         <file>images/menuIndicator.png</file>
+        <file>images/dot.png</file>
         <file>pages/Dashboard.qml</file>
         <file>pages/Transfer.qml</file>
         <file>pages/History.qml</file>
@@ -51,7 +52,6 @@
         <file>tabs/TweetsModel.qml</file>
         <file>components/Scroll.qml</file>
         <file>components/AddressBookTable.qml</file>
-        <file>components/SubaddressTable.qml</file>
         <file>images/deleteIcon.png</file>
         <file>images/moneroIcon.png</file>
         <file>components/StandardDropdown.qml</file>
@@ -73,7 +73,6 @@
         <file>images/expandTable.png</file>
         <file>images/dropdownDel.png</file>
         <file>components/HistoryTable.qml</file>
-        <file>components/HistoryTableMobile.qml</file>
         <file>images/gotoBasicVersion.png</file>
         <file>images/goToBasicVersionHovered.png</file>
         <file>BasicPanel.qml</file>
@@ -103,48 +102,35 @@
         <file>lang/flags/brazil.png</file>
         <file>lang/flags/china.png</file>
         <file>lang/flags/croatia.png</file>
-        <file>lang/flags/czech.png</file>
-        <file>lang/flags/denmark.png</file>
-        <file>lang/flags/egypt.png</file>
         <file>lang/flags/esperanto.png</file>
         <file>lang/flags/finland.png</file>
         <file>lang/flags/france.png</file>
         <file>lang/flags/german.png</file>
         <file>lang/flags/india.png</file>
         <file>lang/flags/indonesia.png</file>
-        <file>lang/flags/israel.png</file>
         <file>lang/flags/italy.png</file>
         <file>lang/flags/japan.png</file>
         <file>lang/flags/netherlands.png</file>
         <file>lang/flags/palestine.png</file>
         <file>lang/flags/poland.png</file>
-        <file>lang/flags/portugal.png</file> 
-        <file>lang/flags/romania.png</file>
         <file>lang/flags/rpa.png</file>
         <file>lang/flags/russia.png</file>
-        <file>lang/flags/slovakia.png</file>
-        <file>lang/flags/slovenia.png</file>
-        <file>lang/flags/south_korea.png</file>
         <file>lang/flags/spain.png</file>
         <file>lang/flags/sweden.png</file>
         <file>lang/flags/taiwan.png</file>
         <file>lang/flags/uk.png</file>
         <file>lang/flags/usa.png</file>
-        <file>lang/flags/srbija.png</file>
-        <file>lang/flags/catalonia.png</file>
-        <file>lang/flags/tr.png</file>
-        <file>lang/flags/ukraine.png</file>
+        <file>lang/flags/israel.png</file>
+        <file>lang/flags/south_korea.png</file>        
+        <file>lang/flags/romania.png</file>
         <file>wizard/WizardManageWalletUI.qml</file>
         <file>wizard/WizardRecoveryWallet.qml</file>
         <file>wizard/WizardMemoTextInput.qml</file>
         <file>wizard/utils.js</file>
         <file>pages/Receive.qml</file>
         <file>pages/TxKey.qml</file>
-        <file>pages/SharedRingDB.qml</file>
         <file>components/IconButton.qml</file>
         <file>components/PasswordDialog.qml</file>
-        <file>components/NewPasswordDialog.qml</file>
-        <file>components/InputDialog.qml</file>
         <file>components/ProcessingSplash.qml</file>
         <file>components/ProgressBar.qml</file>
         <file>components/StandardDialog.qml</file>
@@ -158,52 +144,5 @@
         <file>components/Notifier.qml</file>
         <file>components/MobileHeader.qml</file>
         <file>components/TextBlock.qml</file>
-        <file>wizard/WizardDaemonSettings.qml</file>
-        <file>components/RemoteNodeEdit.qml</file>
-        <file>pages/Keys.qml</file>
-        <file>images/menu.png</file>
-        <file>images/appicon.ico</file>
-        <file>images/right.png</file>
-        <file>images/card-background.png</file>
-        <file>images/minimize.png</file>
-        <file>images/fullscreen.png</file>
-        <file>images/close.png</file>
-        <file>images/moneroLogo_white.png</file>
-        <file>images/moneroIcon-trans28x28.png</file>
-        <file>images/moneroIcon-trans84x84.png</file>
-        <file>images/moneroIcon-trans56x56.png</file>
-        <file>images/question.png</file>
-        <file>images/expand.png</file>
-        <file>images/titlebarGradient.jpg</file>
-        <file>images/titlebarLogo.png</file>
-        <file>images/menuArrow.png</file>
-        <file>images/menuButtonGradient.png</file>
-        <file>fonts/SFUIDisplay-Medium.otf</file>
-        <file>fonts/SFUIDisplay-Regular.otf</file>
-        <file>fonts/SFUIDisplay-Light.otf</file>
-        <file>fonts/SFUIDisplay-Bold.otf</file>
-        <file>components/Style.qml</file>
-        <file>components/qmldir</file>
-        <file>components/InlineButton.qml</file>
-        <file>images/lightning.png</file>
-        <file>images/leftPanelBg.jpg</file>
-        <file>images/moneroIcon-28x28.png</file>
-        <file>images/lightning-white.png</file>
-        <file>images/middlePanelBg.jpg</file>
-        <file>components/InputMulti.qml</file>
-        <file>images/checkedIcon-black.png</file>
-        <file>components/LineEditMulti.qml</file>
-        <file>components/LabelButton.qml</file>
-        <file>components/LabelSubheader.qml</file>
-        <file>images/arrow-right-medium-white.png</file>
-        <file>images/rightArrow.png</file>
-        <file>images/upArrow-green.png</file>
-        <file>images/downArrow.png</file>
-        <file>images/historyBorderRadius.png</file>
-        <file>components/HistoryTableInnerColumn.qml</file>
-        <file>components/CheckBox2.qml</file>
-        <file>js/TxUtils.js</file>
-        <file>images/warning.png</file>
-        <file>images/checkedBlackIcon.png</file>
     </qresource>
 </RCC>

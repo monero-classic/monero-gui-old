@@ -1,4 +1,4 @@
-// Copyright (c) 2014-2018, The Monero Project
+// Copyright (c) 2014-2015, The Monero Project
 // 
 // All rights reserved.
 // 
@@ -28,84 +28,53 @@
 
 import QtQuick 2.2
 import QtQuick.Window 2.0
-import QtQuick.Layouts 1.1
 
 Rectangle {
     id: titleBar
-
+    color: "#184566"
     property int mouseX: 0
     property bool containsMouse: false
     property alias basicButtonVisible: goToBasicVersionButton.visible
     property bool customDecorations: true
     signal goToBasicVersion(bool yes)
-    height: customDecorations && !isMobile ? 50 : 0
+    height: customDecorations ? 30 : 0
     y: -height
     property string title
     property alias maximizeButtonVisible: maximizeButton.visible
     z: 1
 
-    Item {
-        id: test
-        width: parent.width
-        height: 50
-        z: 1
-
-        // use jpg for gradiency
-        Image {
-           anchors.fill: parent
-           height: parent.height
-           width: parent.width
-           source: "../images/titlebarGradient.jpg"
-        }
-    }
-
-    Item{
-        id: titlebarlogo
-        width: 125
-        height: 50
+    Text {
         anchors.centerIn: parent
+        font.family: "Arial"
+        font.pixelSize: 15
+        color: "#FFFFFF"
+        text: titleBar.title
         visible: customDecorations
-        z: 1
-
-        Image {
-            anchors.left: parent.left
-            anchors.top: parent.top
-            anchors.topMargin: 11
-            width: 221
-            height: 28
-            source: "../images/titlebarLogo.png"
-        }
     }
 
-    // collapse left panel
     Rectangle {
         id: goToBasicVersionButton
         property bool containsMouse: titleBar.mouseX >= x && titleBar.mouseX <= x + width
         property bool checked: false
         anchors.top: parent.top
         anchors.left: parent.left
-        color:  "transparent"
-        height: 50 * scaleRatio
+        color:  basicMouseArea.containsMouse || !leftPanel.visible ? "#FFA800" : "#184566"
+        height: 30
         width: height
         visible: isMobile
-        z: 2
 
         Image {
-            width: 14
-            height: 14
             anchors.centerIn: parent
-            source: "../images/expand.png"
+            rotation: !leftPanel.visible ? 180 : 0
+            source: parent.customDecorations || !leftPanel.visible ? "../images/goToBasicVersionHovered.png" :
+                                                             "../images/gotoBasicVersion.png"
         }
 
         MouseArea {
             id: basicMouseArea
             hoverEnabled: true
             anchors.fill: parent
-            cursorShape: Qt.PointingHandCursor
-            onEntered: goToBasicVersionButton.color = "#262626";
-            onExited: goToBasicVersionButton.color = "transparent";
             onClicked: {
-                releaseFocus()
                 parent.checked = !parent.checked
                 titleBar.goToBasicVersion(leftPanel.visible)
             }
@@ -118,28 +87,22 @@ Rectangle {
         anchors.top: parent.top
         anchors.bottom: parent.bottom
         visible: parent.customDecorations
-        z: 2
 
         Rectangle {
-            id: whatIsAreaButton
+            property bool containsMouse: titleBar.mouseX >= x + row.x && titleBar.mouseX <= x + row.x + width && titleBar.containsMouse
             anchors.top: parent.top
             anchors.bottom: parent.bottom
-            width: 42
-            color: containsMouse ? "#6B0072" : "#00000000"
+            width: height
+            color: containsMouse ? "#6B0072" : "#184566"
 
             Image {
                 anchors.centerIn: parent
-                width: 9
-                height: 16
-                source: "../images/question.png"
+                source: "../images/helpIcon.png"
             }
 
             MouseArea {
                 id: whatIsArea
                 anchors.fill: parent
-                cursorShape: Qt.PointingHandCursor
-                onEntered: whatIsAreaButton.color = "#262626";
-                onExited: whatIsAreaButton.color = "transparent";
                 onClicked: {
 
                 }
@@ -147,24 +110,20 @@ Rectangle {
         }
 
         Rectangle {
-            id: minimizeButton
+            property bool containsMouse: titleBar.mouseX >= x + row.x && titleBar.mouseX <= x + row.x + width && titleBar.containsMouse
             anchors.top: parent.top
             anchors.bottom: parent.bottom
-            width: 42
-            color: "transparent"
+            width: height
+            color: containsMouse ? "#3665B3" : "#184566"
 
             Image {
                 anchors.centerIn: parent
-                source: "../images/minimize.png"
+                source: "../images/minimizeIcon.png"
             }
 
             MouseArea {
                 id: minimizeArea
                 anchors.fill: parent
-                hoverEnabled: true
-                cursorShape: Qt.PointingHandCursor
-                onEntered: minimizeButton.color = "#262626";
-                onExited: minimizeButton.color = "transparent";
                 onClicked: {
                     appWindow.visibility = Window.Minimized
                 }
@@ -173,26 +132,22 @@ Rectangle {
 
         Rectangle {
             id: maximizeButton
+            property bool containsMouse: titleBar.mouseX >= x + row.x && titleBar.mouseX <= x + row.x + width && titleBar.containsMouse
             anchors.top: parent.top
             anchors.bottom: parent.bottom
-            width: 42
-            color: "transparent";
+            width: height
+            color: containsMouse ? "#FF6C3C" : "#184566"
 
             Image {
                 anchors.centerIn: parent
-                height: 16
-                width: 16
                 source: appWindow.visibility === Window.FullScreen ?  "../images/backToWindowIcon.png" :
-                                                                      "../images/fullscreen.png"
+                                                                      "../images/maximizeIcon.png"
+
             }
 
             MouseArea {
                 id: maximizeArea
                 anchors.fill: parent
-                hoverEnabled: true
-                cursorShape: Qt.PointingHandCursor
-                onEntered: maximizeButton.color = "#262626";
-                onExited: maximizeButton.color = "transparent";
                 onClicked: {
                     appWindow.visibility = appWindow.visibility !== Window.FullScreen ? Window.FullScreen :
                                                                                         Window.Windowed
@@ -201,26 +156,20 @@ Rectangle {
         }
 
         Rectangle {
-            id: closeButton
+            property bool containsMouse: titleBar.mouseX >= x + row.x && titleBar.mouseX <= x + row.x + width && titleBar.containsMouse
             anchors.top: parent.top
             anchors.bottom: parent.bottom
-            width: 42
-            color: containsMouse ? "#E04343" : "#00000000"
+            width: height
+            color: containsMouse ? "#E04343" : "#184566"
 
             Image {
                 anchors.centerIn: parent
-                width: 16
-                height: 16
-                source: "../images/close.png"
+                source: "../images/closeIcon.png"
             }
 
             MouseArea {
                 anchors.fill: parent
                 onClicked: appWindow.close();
-                hoverEnabled: true
-                cursorShape: Qt.PointingHandCursor
-                onEntered: closeButton.color = "#262626";
-                onExited: closeButton.color = "transparent";
             }
         }
     }

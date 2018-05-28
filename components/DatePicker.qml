@@ -1,4 +1,4 @@
-// Copyright (c) 2014-2018, The Monero Project
+// Copyright (c) 2014-2015, The Monero Project
 // 
 // All rights reserved.
 // 
@@ -30,21 +30,17 @@ import QtQuick 2.2
 import QtQuick.Controls 1.2
 import QtQuick.Controls.Styles 1.2
 
-import "../components" as MoneroComponents
-
 Item {
     id: datePicker
     property bool expanded: false
     property date currentDate
     property bool showCurrentDate: true
-    property color backgroundColor : "#404040"
-    property color errorColor : "red"
+    property color backgroundColor : "#FFFFFF"
+    property color errorColor : "#FFDDDD"
     property bool error: false
-    property alias inputLabel: inputLabel
 
-    signal dateChanged();
-
-    height: 50
+    height: 37
+    width: 156
 
     onExpandedChanged: if(expanded) appWindow.currentItem = datePicker
 
@@ -61,49 +57,28 @@ Item {
         return true
     }
 
-    Rectangle {
-        id: inputLabelRect
-        color: "transparent"
-        height: 22
-        width: parent.width
-
-        Text {
-            id: inputLabel
-            anchors.top: parent.top
-            anchors.topMargin: 2
-            anchors.left: parent.left
-            font.family: MoneroComponents.Style.fontLight.name
-            font.pixelSize: 14
-            font.bold: false
-            textFormat: Text.RichText
-            color: MoneroComponents.Style.defaultFontColor
-
-            MouseArea {
-                anchors.fill: parent
-                acceptedButtons: Qt.NoButton
-                cursorShape: parent.hoveredLink ? Qt.PointingHandCursor : Qt.ArrowCursor
-            }
-        }
-    }
-
     Item {
         id: head
-        anchors.top: inputLabelRect.bottom
-        anchors.topMargin: 6 * scaleRatio
-        anchors.left: parent.left
-        anchors.right: parent.right
-        height: 28
+        anchors.fill: parent
+        Rectangle {
+            anchors.left: parent.left
+            anchors.right: parent.right
+            height: parent.height
+            //radius: 4
+            y: 0
+            color: "#DBDBDB"
+
+        }
 
         Rectangle {
-            anchors.top: parent.top
             anchors.left: parent.left
             anchors.right: parent.right
             height: parent.height - 1
             anchors.leftMargin: datePicker.expanded ? 1 : 0
             anchors.rightMargin: datePicker.expanded ? 1 : 0
-            radius: 4
+            //radius: 4
             y: 1
-            color: datePicker.backgroundColor
+            color: datePicker.error ? datePicker.errorColor : datePicker.backgroundColor
         }
 
         Item {
@@ -114,18 +89,28 @@ Item {
             anchors.margins: 4
             width: height
 
-            Image {
+            StandardButton {
                 id: button
+                anchors.fill: parent
+                shadowReleasedColor: "#DBDBDB"
+                shadowPressedColor: "#888888"
+                releasedColor: "#F0EEEE"
+                pressedColor: "#DBDBDB"
+                icon: "../images/datePicker.png"
+                visible: !datePicker.expanded
+                onClicked: datePicker.expanded = true
+            }
+
+            Image {
                 anchors.centerIn: parent
-                source: "../images/whiteDropIndicator.png"
-                rotation: datePicker.expanded ? 180 : 0
+                source: "../images/datePicker.png"
+                visible: datePicker.expanded
             }
 
             MouseArea {
                 anchors.fill: parent
-                onClicked: datePicker.expanded = !datePicker.expanded
-                hoverEnabled: true
-                cursorShape: Qt.PointingHandCursor
+                enabled: datePicker.expanded
+                onClicked: datePicker.expanded = false
             }
         }
 
@@ -136,7 +121,7 @@ Item {
             anchors.rightMargin: 4
             height: 16
             width: 1
-            color: "#808080"
+            color: "#DBDBDB"
             visible: datePicker.expanded
         }
 
@@ -165,9 +150,9 @@ Item {
                 id: dayInput
                 readOnly: true
                 width: 22
-                font.family: MoneroComponents.Style.fontRegular.name
-                font.pixelSize: 14
-                color: datePicker.error ? errorColor : MoneroComponents.Style.defaultFontColor
+                font.family: "Arial"
+                font.pixelSize: 18
+                // color: "#525252"
                 maximumLength: 2
                 horizontalAlignment: TextInput.AlignHCenter
                 validator: IntValidator{bottom: 01; top: 31;}
@@ -188,19 +173,19 @@ Item {
             }
 
             Text {
-                font.family: MoneroComponents.Style.fontRegular.name
-                font.pixelSize: 14
-                color: datePicker.error ? errorColor : MoneroComponents.Style.defaultFontColor
-                text: "-"
+                font.family: "Arial"
+                font.pixelSize: 18
+                // color: "#525252"
+                text: "."
             }
 
             TextInput {
                 id: monthInput
                 readOnly: true
                 width: 22
-                font.family: MoneroComponents.Style.fontRegular.name
-                font.pixelSize: 14
-                color: datePicker.error ? errorColor : MoneroComponents.Style.defaultFontColor
+                font.family: "Arial"
+                font.pixelSize: 18
+                // color: "#525252"
                 maximumLength: 2
                 horizontalAlignment: TextInput.AlignHCenter
                 validator: IntValidator{bottom: 01; top: 12;}
@@ -220,18 +205,18 @@ Item {
             }
 
             Text {
-                font.family: MoneroComponents.Style.fontRegular.name
-                font.pixelSize: 14
-                color: datePicker.error ? errorColor : MoneroComponents.Style.defaultFontColor
-                text: "-"
+                font.family: "Arial"
+                font.pixelSize: 18
+                // color: "#525252"
+                text: "."
             }
 
             TextInput {
                 id: yearInput
                 width: 44
-                font.family: MoneroComponents.Style.fontRegular.name
-                font.pixelSize: 14
-                color: datePicker.error ? errorColor : MoneroComponents.Style.defaultFontColor
+                font.family: "Arial"
+                font.pixelSize: 18
+                /// color: "#525252"
                 maximumLength: 4
                 horizontalAlignment: TextInput.AlignHCenter
                 validator: IntValidator{bottom: 1000; top: 9999;}
@@ -287,7 +272,6 @@ Item {
                 gridVisible: false
                 background: Rectangle { color: "transparent" }
                 dayDelegate: Item {
-                    z: parent.z + 1
                     implicitHeight: implicitWidth
                     implicitWidth: calendar.width / 7
 
@@ -324,8 +308,6 @@ Item {
                                     calendar.showNextMonth()
                                 else calendar.showPreviousMonth()
                             }
-
-                            dateChanged();
                         }
                     }
                 }

@@ -1,4 +1,4 @@
-// Copyright (c) 2014-2018, The Monero Classic Project
+// Copyright (c) 2014-2015, The Monero Project
 // 
 // All rights reserved.
 // 
@@ -29,7 +29,6 @@
 import QtQuick 2.2
 import QtQml 2.2
 import QtQuick.Layouts 1.1
-import moneroComponents.NetworkType 1.0
 import "../components"
 
 ColumnLayout {
@@ -39,8 +38,8 @@ ColumnLayout {
     signal openWalletClicked()
     opacity: 0
     visible: false
-    property int buttonSize: (isMobile) ? 80 * scaleRatio : 190 * scaleRatio
-    property int buttonImageSize: (isMobile) ? buttonSize - 10 * scaleRatio : buttonSize - 30 * scaleRatio
+    property int buttonSize: (isMobile) ? 80 : 190
+    property int buttonImageSize: (isMobile) ? buttonSize - 10 : buttonSize - 30
 
     function onPageClosed() {
         // Save settings used in open from file.
@@ -61,13 +60,13 @@ ColumnLayout {
         id: headerColumn
         Layout.leftMargin: wizardLeftMargin
         Layout.rightMargin: wizardRightMargin
-        Layout.bottomMargin: (!isMobile) ? 40 * scaleRatio : 20
-        spacing: 30 * scaleRatio
+        Layout.bottomMargin: (!isMobile) ? 40 : 20
+        spacing: 30
 
         Text {
             Layout.fillWidth: true
             font.family: "Arial"
-            font.pixelSize: 28 * scaleRatio
+            font.pixelSize: 28
             //renderType: Text.NativeRendering
             color: "#3F3F3F"
             wrapMode: Text.Wrap
@@ -78,7 +77,7 @@ ColumnLayout {
         Text {
             Layout.fillWidth: true
             font.family: "Arial"
-            font.pixelSize: 18 * scaleRatio
+            font.pixelSize: 18
             //renderType: Text.NativeRendering
             color: "#4A4646"
             wrapMode: Text.Wrap
@@ -92,8 +91,8 @@ ColumnLayout {
         Layout.rightMargin: wizardRightMargin
         Layout.alignment: Qt.AlignCenter
         id: actionButtons
-        columnSpacing: 40 * scaleRatio
-        rowSpacing: 10 * scaleRatio
+        columnSpacing: 40
+        rowSpacing: 10
         Layout.fillWidth: true
         Layout.fillHeight: true
         flow: isMobile ? GridLayout.TopToBottom : GridLayout.LeftToRight
@@ -102,8 +101,8 @@ ColumnLayout {
             Layout.fillHeight: true
             Layout.fillWidth: true
             flow: !isMobile ? GridLayout.TopToBottom : GridLayout.LeftToRight
-            rowSpacing: 20 * scaleRatio
-            columnSpacing: 10 * scaleRatio
+            rowSpacing: 20
+            columnSpacing: 10
 
             Rectangle {
                 Layout.preferredHeight: page.buttonSize
@@ -133,9 +132,9 @@ ColumnLayout {
             }
 
             Text {
-                Layout.preferredWidth: page.buttonSize
+                Layout.preferredWidth: 190
                 font.family: "Arial"
-                font.pixelSize: 16 * scaleRatio
+                font.pixelSize: 16
                 color: "#4A4949"
                 horizontalAlignment: Text.AlignHCenter
                 wrapMode: Text.WordWrap
@@ -147,8 +146,8 @@ ColumnLayout {
             Layout.fillWidth: true
             Layout.fillHeight: true
             flow: !isMobile ? GridLayout.TopToBottom : GridLayout.LeftToRight
-            rowSpacing: 20 * scaleRatio
-            columnSpacing: 10 * scaleRatio
+            rowSpacing: 20
+            columnSpacing: 10
 
             Rectangle {
                 Layout.preferredHeight: page.buttonSize
@@ -157,7 +156,7 @@ ColumnLayout {
                 color: recoverWalletArea.containsMouse ? "#DBDBDB" : "#FFFFFF"
 
                 Image {
-                    width: page.buttonImageSize
+                    width: page.buttomImageSize
                     height: page.buttonImageSize
                     fillMode: Image.PreserveAspectFit
                     anchors.centerIn: parent
@@ -175,9 +174,9 @@ ColumnLayout {
             }
 
             Text {
-                Layout.preferredWidth: page.buttonSize
+                Layout.preferredWidth: 190
                 font.family: "Arial"
-                font.pixelSize: 16 * scaleRatio
+                font.pixelSize: 16
                 color: "#4A4949"
                 horizontalAlignment: Text.AlignHCenter
                 text: qsTr("Restore wallet from keys or mnemonic seed") + translationManager.emptyString
@@ -190,8 +189,8 @@ ColumnLayout {
             Layout.fillHeight: true
             Layout.fillWidth: true
             flow: !isMobile ? GridLayout.TopToBottom : GridLayout.LeftToRight
-            rowSpacing: 20 * scaleRatio
-            columnSpacing: 10 * scaleRatio
+            rowSpacing: 20
+            columnSpacing: 10
 
             Rectangle {
                 Layout.preferredHeight: page.buttonSize
@@ -218,9 +217,9 @@ ColumnLayout {
             }
 
             Text {
-                Layout.preferredWidth: page.buttonSize
+                Layout.preferredWidth: 190
                 font.family: "Arial"
-                font.pixelSize: 16 * scaleRatio
+                font.pixelSize: 16
                 color: "#4A4949"
                 horizontalAlignment: Text.AlignHCenter
                 text: qsTr("Open a wallet from file") + translationManager.emptyString
@@ -232,48 +231,27 @@ ColumnLayout {
 
     }
 
-    ColumnLayout {
+    RowLayout {
         Layout.leftMargin: wizardLeftMargin
         Layout.rightMargin: wizardRightMargin
-        Layout.topMargin: 30 * scaleRatio
+        Layout.topMargin: 30
         Layout.alignment: Qt.AlignCenter
         Layout.fillWidth: true
-        spacing: 50 * scaleRatio
 
         Rectangle {
-            width: 100 * scaleRatio
+            width: 100
             CheckBox {
                 id: testNet
                 text: qsTr("Testnet") + translationManager.emptyString
                 background: "#FFFFFF"
                 fontColor: "#4A4646"
-                fontSize: 16 * scaleRatio
-                checkedIcon: "../images/checkedBlackIcon.png"
+                fontSize: 16
+                checkedIcon: "../images/checkedVioletIcon.png"
                 uncheckedIcon: "../images/uncheckedIcon.png"
-                checked: appWindow.persistentSettings.nettype == NetworkType.TESTNET;
+                checked: appWindow.persistentSettings.testnet;
                 onClicked: {
-                    persistentSettings.nettype = testNet.checked ? NetworkType.TESTNET : NetworkType.MAINNET
-                    stageNet.checked = false;
-                    console.log("Network type set to ", persistentSettings.nettype == NetworkType.TESTNET ? "Testnet" : "Mainnet")
-                }
-            }
-        }
-
-        Rectangle {
-            width: 100 * scaleRatio
-            CheckBox {
-                id: stageNet
-                text: qsTr("Stagenet") + translationManager.emptyString
-                background: "#FFFFFF"
-                fontColor: "#4A4646"
-                fontSize: 16 * scaleRatio
-                checkedIcon: "../images/checkedBlackIcon.png"
-                uncheckedIcon: "../images/uncheckedIcon.png"
-                checked: appWindow.persistentSettings.nettype == NetworkType.STAGENET;
-                onClicked: {
-                    persistentSettings.nettype = stageNet.checked ? NetworkType.STAGENET : NetworkType.MAINNET
-                    testNet.checked = false;
-                    console.log("Network type set to ", persistentSettings.nettype == NetworkType.STAGENET ? "Stagenet" : "Mainnet")
+                    persistentSettings.testnet = testNet.checked
+                    console.log("testnet set to ", persistentSettings.testnet)
                 }
             }
         }

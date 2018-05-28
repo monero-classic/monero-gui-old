@@ -1,4 +1,4 @@
-// Copyright (c) 2014-2018, The Monero Project
+// Copyright (c) 2014-2015, The Monero Project
 // 
 // All rights reserved.
 // 
@@ -40,19 +40,17 @@ ColumnLayout {
     property alias nextButton : nextButton
     property var settings : ({})
     property int currentPage: 0
-    property int wizardLeftMargin: (!isMobile) ?  150 : 25 * scaleRatio
-    property int wizardRightMargin: (!isMobile) ? 150 : 25 * scaleRatio
-    property int wizardBottomMargin: (isMobile) ? 150 : 25 * scaleRatio
-    property int wizardTopMargin: (isMobile) ? 15 * scaleRatio : 50
-    // Storing wallet in Settings object doesn't work in qt 5.8 on android
-    property var m_wallet;
+    property int wizardLeftMargin: (!isMobile) ?  150 : 25
+    property int wizardRightMargin: (!isMobile) ? 150 : 25
+    property int wizardBottomMargin: (isMobile) ? 150 : 25
+    property int wizardTopMargin: (isMobile) ? 15 : 50
 
     property var paths: {
      //   "create_wallet" : [welcomePage, optionsPage, createWalletPage, passwordPage, donationPage, finishPage ],
      //   "recovery_wallet" : [welcomePage, optionsPage, recoveryWalletPage, passwordPage, donationPage, finishPage ],
         // disable donation page
-        "create_wallet" : [welcomePage, optionsPage, createWalletPage, passwordPage, daemonSettingsPage, finishPage ],
-        "recovery_wallet" : [welcomePage, optionsPage, recoveryWalletPage, passwordPage, daemonSettingsPage, finishPage ],
+        "create_wallet" : [welcomePage, optionsPage, createWalletPage, passwordPage,  finishPage ],
+        "recovery_wallet" : [welcomePage, optionsPage, recoveryWalletPage, passwordPage,  finishPage ],
         "create_view_only_wallet" : [ createViewOnlyWalletPage, passwordPage ],
 
     }
@@ -83,10 +81,6 @@ ColumnLayout {
     }
 
     function switchPage(next) {
-
-        // Android focus workaround
-        releaseFocus();
-
         // save settings for current page;
         if (next && typeof pages[currentPage].onPageClosed !== 'undefined') {
             if (pages[currentPage].onPageClosed(settings) !== true) {
@@ -136,8 +130,6 @@ ColumnLayout {
         print ("show recovery wallet page");
         currentPath = "recovery_wallet"
         pages = paths[currentPath]
-        // Create temporary wallet
-        createWalletPage.createWallet(settings)
         wizard.nextButton.visible = true
         // goto next page
         switchPage(true);
@@ -145,8 +137,9 @@ ColumnLayout {
 
     function openOpenWalletPage() {
         console.log("open wallet from file page");
-        if (typeof m_wallet !== 'undefined' && m_wallet != null) {
-            walletManager.closeWallet()
+        if (typeof wizard.settings['wallet'] !== 'undefined') {
+            settings.wallet.destroy();
+            delete wizard.settings['wallet'];
         }
         optionsPage.onPageClosed(settings)
         wizard.openWalletFromFileClicked();
@@ -185,6 +178,14 @@ ColumnLayout {
             return false;
         }
 
+        // Don't allow non ascii characters in path on windows platforms until supported by Wallet2
+        if (isWindows) {
+            if (!isAscii(path)) {
+                walletErrorDialog.text = qsTr("Non-ASCII characters are not allowed in wallet path or account name")  + translationManager.emptyString;
+                walletErrorDialog.open();
+                return false;
+            }
+        }
         return true;
     }
 
@@ -202,10 +203,11 @@ ColumnLayout {
         var new_wallet_filename = createWalletPath(settings.wallet_path,settings.account_name)
         if(isIOS) {
             console.log("saving in ios: "+ moneroAccountsDir + new_wallet_filename)
-            m_wallet.store(moneroAccountsDir + new_wallet_filename);
+            settings.wallet.store(moneroAccountsDir + new_wallet_filename);
         } else {
             console.log("saving in wizard: "+ new_wallet_filename)
-            m_wallet.store(new_wallet_filename);
+            settings.wallet.store(new_wallet_filename);
+
         }
 
 
@@ -215,10 +217,10 @@ ColumnLayout {
         oshelper.removeTemporaryWallet(settings.tmp_wallet_filename)
 
         // protecting wallet with password
-        m_wallet.setPassword(settings.wallet_password);
+        settings.wallet.setPassword(settings.wallet_password);
 
         // Store password in session to be able to use password protected functions (e.g show seed)
-        appWindow.walletPassword = settings.wallet_password
+        appWindow.password = settings.wallet_password
 
         // saving wallet_filename;
         settings['wallet_filename'] = new_wallet_filename;
@@ -289,12 +291,6 @@ ColumnLayout {
         Layout.topMargin: wizardTopMargin
     }
 
-    WizardDaemonSettings {
-        id: daemonSettingsPage
-        Layout.bottomMargin: wizardBottomMargin
-        Layout.topMargin: wizardTopMargin
-    }
-
     WizardDonation {
         id: donationPage
         Layout.bottomMargin: wizardBottomMargin
@@ -312,10 +308,10 @@ ColumnLayout {
         anchors.verticalCenter: wizard.verticalCenter
         anchors.left: parent.left
         anchors.leftMargin: isMobile ?  20 :  50
-        anchors.bottomMargin: isMobile ?  20 * scaleRatio :  50
+        anchors.bottomMargin: isMobile ?  20 :  50
         visible: parent.currentPage > 0
 
-        width: 50 * scaleRatio; height: 50 * scaleRatio
+        width: 50; height: 50
         radius: 25
         color: prevArea.containsMouse ? "#FF4304" : "#FF6C3C"
 
@@ -337,10 +333,10 @@ ColumnLayout {
         id: nextButton
         anchors.verticalCenter: wizard.verticalCenter
         anchors.right: parent.right
-        anchors.rightMargin: isMobile ?  20 * scaleRatio :  50
-        anchors.bottomMargin: isMobile ?  20 * scaleRatio :  50
+        anchors.rightMargin: isMobile ?  20 :  50
+        anchors.bottomMargin: isMobile ?  20 :  50
         visible: currentPage > 1 && currentPage < pages.length - 1
-        width: 50 * scaleRatio; height: 50 * scaleRatio
+        width: 50; height: 50
         radius: 25
         color: enabled ? nextArea.containsMouse ? "#FF4304" : "#FF6C3C" : "#DBDBDB"
 
@@ -363,8 +359,12 @@ ColumnLayout {
         id: sendButton
         anchors.right: parent.right
         anchors.bottom: parent.bottom
-        anchors.margins:  (isMobile) ? 20 * scaleRatio : 50 * scaleRatio
-        text: qsTr("USE MONERO CLASSIC") + translationManager.emptyString
+        anchors.margins:  (isMobile) ? 20 : 50
+        text: qsTr("USE Monero Classic") + translationManager.emptyString
+        shadowReleasedColor: "#FF4304"
+        shadowPressedColor: "#B32D00"
+        releasedColor: "#FF6C3C"
+        pressedColor: "#FF4304"
         visible: parent.paths[currentPath][currentPage] === finishPage
         onClicked: {
             wizard.applySettings();
@@ -376,8 +376,12 @@ ColumnLayout {
        id: createViewOnlyWalletButton
        anchors.right: parent.right
        anchors.bottom: parent.bottom
-       anchors.margins: (isMobile) ? 20 * scaleRatio : 50
+       anchors.margins: (isMobile) ? 20 : 50
        text: qsTr("Create wallet") + translationManager.emptyString
+       shadowReleasedColor: "#FF4304"
+       shadowPressedColor: "#B32D00"
+       releasedColor: "#FF6C3C"
+       pressedColor: "#FF4304"
        visible: currentPath === "create_view_only_wallet" &&  parent.paths[currentPath][currentPage] === passwordPage
        enabled: passwordPage.passwordsMatch
        onClicked: {
@@ -404,8 +408,12 @@ ColumnLayout {
        id: abortViewOnlyButton
        anchors.right: createViewOnlyWalletButton.left
        anchors.bottom: parent.bottom
-       anchors.margins:  (isMobile) ? 20 * scaleRatio : 50
+       anchors.margins:  (isMobile) ? 20 : 50
        text: qsTr("Abort") + translationManager.emptyString
+       shadowReleasedColor: "#FF4304"
+       shadowPressedColor: "#B32D00"
+       releasedColor: "#FF6C3C"
+       pressedColor: "#FF4304"
        visible: currentPath === "create_view_only_wallet" &&  parent.paths[currentPath][currentPage] === passwordPage
        onClicked: {
            wizard.restart();

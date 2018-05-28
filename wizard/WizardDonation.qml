@@ -1,4 +1,4 @@
-// Copyright (c) 2014-2018, The Monero Classic Project
+// Copyright (c) 2014-2015, The Monero Project
 // 
 // All rights reserved.
 // 
@@ -114,6 +114,8 @@ Item {
                 background: "#F0EEEE"
                 fontColor: "#4A4646"
                 fontSize: 18
+                checkedIcon: "../images/checkedVioletIcon.png"
+                uncheckedIcon: "../images/uncheckedIcon.png"
                 checked: true
             }
 
@@ -160,8 +162,8 @@ Item {
             color: "#4A4646"
             wrapMode: Text.Wrap
             text: qsTr("For every transaction, a small transaction fee is charged. This option lets you add an additional amount, " +
-                       "as a percentage of that fee, to your transaction to support Monero Classic development. For instance, a 50% " +
-                       "autodonation take a transaction fee of 0.005 XMR and add a 0.0025 XMR to support Monero Classic development.")
+                       "as a percentage of that fee, to your transaction to support Monero-Classic development. For instance, a 50% " +
+                       "autodonation take a transaction fee of 0.005 XMC and add a 0.0025 XMC to support Monero-Classic development.")
                     + translationManager.emptyString
         }
         Column {
@@ -177,6 +179,8 @@ Item {
                 background: "#F0EEEE"
                 fontColor: "#4A4646"
                 fontSize: 18
+                checkedIcon: "../images/checkedVioletIcon.png"
+                uncheckedIcon: "../images/uncheckedIcon.png"
                 checked: true
             }
 

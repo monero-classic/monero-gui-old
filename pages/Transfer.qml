@@ -1,4 +1,4 @@
-// Copyright (c) 2014-2018, The Monero Classic Project
+// Copyright (c) 2014-2015, The Monero Project
 // 
 // All rights reserved.
 // 
@@ -29,11 +29,9 @@
 import QtQuick 2.0
 import QtQuick.Layouts 1.1
 import QtQuick.Dialogs 1.2
-import moneroComponents.Clipboard 1.0
 import moneroComponents.PendingTransaction 1.0
-import moneroComponents.Wallet 1.0
 import "../components"
-import "." 1.0
+import moneroComponents.Wallet 1.0
 
 
 Rectangle {
@@ -42,14 +40,12 @@ Rectangle {
                           int priority, string description)
     signal sweepUnmixableClicked()
 
-    color: "transparent"
+    color: "#FFFFFF"
     property string startLinkText: qsTr("<style type='text/css'>a {text-decoration: none; color: #FF6C3C; font-size: 14px;}</style><font size='2'> (</font><a href='#'>Start daemon</a><font size='2'>)</font>") + translationManager.emptyString
     property bool showAdvanced: false
 
-    Clipboard { id: clipboard }
-
     function scaleValueToMixinCount(scaleValue) {
-        var scaleToMixinCount = [6,7,8,9,10,11,12,13,14,16,18,20,22,25];
+        var scaleToMixinCount = [4,5,6,7,8,9,10,11,12,14,16,18,21,25];
         if (scaleValue < scaleToMixinCount.length) {
             return scaleToMixinCount[scaleValue];
         } else {
@@ -75,10 +71,10 @@ Rectangle {
     }
 
     function updateMixin() {
-        var fillLevel = (isMobile) ? privacyLevelItemSmall.fillLevel : privacyLevelItem.fillLevel
+        var fillLevel = privacyLevelItem.fillLevel
         var mixin = scaleValueToMixinCount(fillLevel)
-        console.log("PrivacyLevel changed:"  + fillLevel)
-        console.log("mixin count: "  + mixin)
+        print ("PrivacyLevel changed:"  + fillLevel)
+        print ("mixin count: "  + mixin)
         privacyLabel.text = qsTr("Privacy level (ringsize %1)").arg(mixin+1) + translationManager.emptyString
     }
 
@@ -111,161 +107,193 @@ Rectangle {
         }
     }
 
-    ColumnLayout {
+    Item {
       id: pageRoot
-      anchors.margins: (isMobile)? 17 : 20
-      anchors.topMargin: 40 * scaleRatio
-
-      anchors.left: parent.left
       anchors.top: parent.top
+      anchors.left: parent.left
       anchors.right: parent.right
+      anchors.topMargin: 20
+      height: 400
 
-      spacing: 30 * scaleRatio
+      Label {
+          id: amountLabel
+          anchors.left: parent.left
+          anchors.top: parent.top
+          anchors.leftMargin: 17
+          anchors.rightMargin: 17
+          anchors.topMargin: 17
+          text: qsTr("Amount") + translationManager.emptyString
+          fontSize: 14
+      }
 
-      RowLayout{
-          visible: warningText.text !== ""
+      Label {
+          id: transactionPriority
+          anchors.top: parent.top
+          anchors.topMargin: 17
+          fontSize: 14
+          x: (parent.width - 17) / 2 + 17
+          text: qsTr("Transaction priority") + translationManager.emptyString
+      }
 
-          Rectangle {
-              id: statusRect
-              Layout.preferredHeight: warningText.height + 40
-              Layout.fillWidth: true
 
-              radius: 2
-              border.color: Qt.rgba(255, 255, 255, 0.25)
-              border.width: 1
-              color: "transparent"
+      Row {
+          id: amountRow
+          anchors.top: amountLabel.bottom
+          anchors.topMargin: 5
+          anchors.left: parent.left
+          anchors.leftMargin: 7
+          width: (parent.width - 17) / 2 + 10
+          Item {
+              width: 37
+              height: 37
 
-              GridLayout{
-                  Layout.fillWidth: true
-                  Layout.preferredHeight: warningText.height + 40
-
-                  Image {
-                      Layout.alignment: Qt.AlignVCenter
-                      Layout.preferredHeight: 33
-                      Layout.preferredWidth: 33
-                      Layout.leftMargin: 10
-                      Layout.topMargin: 10
-                      source: "../images/warning.png"
-                  }
-
-                  Text {
-                      id: warningText
-                      Layout.topMargin: 12 * scaleRatio
-                      Layout.preferredWidth: statusRect.width - 80
-                      Layout.leftMargin: 6
-                      text: qsTr("This page lets you sign/verify a message (or file contents) with your address.") + translationManager.emptyString
-                      wrapMode: Text.Wrap
-                      font.family: Style.fontRegular.name
-                      font.pixelSize: 14 * scaleRatio
-                      color: Style.defaultFontColor
-                      textFormat: Text.RichText
-                      onLinkActivated: {
-                          appWindow.startDaemon(appWindow.persistentSettings.daemonFlags);
-                      }
-                  }
+              Image {
+                  anchors.centerIn: parent
+                  source: "../images/moneroIcon.png"
               }
+          }
+          // Amount input
+          LineEdit {
+              id: amountLine
+              placeholderText: qsTr("") + translationManager.emptyString
+              width: parent.width - 37 - 17 - 60
+              validator: DoubleValidator {
+                  bottom: 0.0
+                  top: 18446744.073709551615
+                  decimals: 12
+                  notation: DoubleValidator.StandardNotation
+                  locale: "C"
+              }
+          }
+
+          StandardButton {
+              id: amountAllButton
+              //anchors.left: amountLine.right
+              //anchors.top: amountLine.top
+              //anchors.bottom: amountLine.bottom
+              width: 60
+              text: qsTr("All") + translationManager.emptyString
+              shadowReleasedColor: "#FFA800"
+              shadowPressedColor: "#FFA800"
+              releasedColor: "#FFA800"
+              pressedColor: "#FFA800"
+              enabled : true
+              onClicked: amountLine.text = "(all)"
           }
       }
 
-      GridLayout {
-          columns: (isMobile)? 1 : 2
-          Layout.fillWidth: true
-          columnSpacing: 32
 
-          ColumnLayout {
-              Layout.fillWidth: true
+      // Note: workaround for translations in listElements
+      // ListElement: cannot use script for property value, so
+      // code like this wont work:
+      // ListElement { column1: qsTr("LOW") + translationManager.emptyString ; column2: ""; priority: PendingTransaction.Priority_Low }
+      // For translations to work, the strings need to be listed in
+      // the file components/StandardDropdown.qml too.
 
-              RowLayout {
-                  id: amountRow
+      // Priorities before v5
+      ListModel {
+           id: priorityModel
 
-                  Layout.fillWidth: true
-                  Layout.minimumWidth: 200
+           ListElement { column1: qsTr("Low (x1 fee)") ; column2: ""; priority: PendingTransaction.Priority_Low }
+           ListElement { column1: qsTr("Medium (x20 fee)") ; column2: ""; priority: PendingTransaction.Priority_Medium }
+           ListElement { column1: qsTr("High (x166 fee)")  ; column2: "";  priority: PendingTransaction.Priority_High }
+       }
 
-                  // Amount input
-                  LineEdit {
-                      id: amountLine
-                      Layout.fillWidth: true
-                      inlineIcon: true
-                      labelText: qsTr("Amount") + translationManager.emptyString
-                      placeholderText: qsTr("") + translationManager.emptyString
-                      width: 100
-                      fontBold: true
-                      inlineButtonText: qsTr("All") + translationManager.emptyString
-                      inlineButton.onClicked: amountLine.text = "(all)"
+      // Priorites after v5
+      ListModel {
+           id: priorityModelV5
 
-                      validator: DoubleValidator {
-                          bottom: 0.0
-                          top: 18446744.073709551615
-                          decimals: 12
-                          notation: DoubleValidator.StandardNotation
-                          locale: "C"
-                      }
-                  }
-              }
-          }
+           ListElement { column1: qsTr("Slow (x0.25 fee)") ; column2: ""; priority: 1}
+           ListElement { column1: qsTr("Default (x1 fee)") ; column2: ""; priority: 2 }
+           ListElement { column1: qsTr("Fast (x5 fee)") ; column2: ""; priority: 3 }
+           ListElement { column1: qsTr("Fastest (x41.5 fee)")  ; column2: "";  priority: 4 }
 
-          ColumnLayout {
-              Layout.fillWidth: true
-              Label {
-                  id: transactionPriority
-                  Layout.topMargin: 14
-                  text: qsTr("Transaction priority") + translationManager.emptyString
-                  fontBold: false
-                  fontSize: 16
-              }
-              // Note: workaround for translations in listElements
-              // ListElement: cannot use script for property value, so
-              // code like this wont work:
-              // ListElement { column1: qsTr("LOW") + translationManager.emptyString ; column2: ""; priority: PendingTransaction.Priority_Low }
-              // For translations to work, the strings need to be listed in
-              // the file components/StandardDropdown.qml too.
+       }
 
-              // Priorites after v5
-              ListModel {
-                   id: priorityModelV5
-
-                   ListElement { column1: qsTr("Default") ; column2: ""; priority: 0}
-                   ListElement { column1: qsTr("Slow (x0.25 fee)") ; column2: ""; priority: 1}
-                   ListElement { column1: qsTr("Normal (x1 fee)") ; column2: ""; priority: 2 }
-                   ListElement { column1: qsTr("Fast (x5 fee)") ; column2: ""; priority: 3 }
-                   ListElement { column1: qsTr("Fastest (x41.5 fee)")  ; column2: "";  priority: 4 }
-               }
-
-              StandardDropdown {
-                  Layout.fillWidth: true
-                  id: priorityDropdown
-                  Layout.topMargin: 6
-                  shadowReleasedColor: "#FF4304"
-                  shadowPressedColor: "#B32D00"
-                  releasedColor: "#363636"
-                  pressedColor: "#202020"
-              }
-          }
-          // Make sure dropdown is on top
-          z: parent.z + 1
+      StandardDropdown {
+          id: priorityDropdown
+          anchors.top: transactionPriority.bottom
+          anchors.right: parent.right
+          anchors.rightMargin: 17
+          anchors.topMargin: 5
+          anchors.left: transactionPriority.left
+          shadowReleasedColor: "#FFA800"
+          shadowPressedColor: "#FFA800"
+          releasedColor: "#FFA800"
+          pressedColor: "#FFA800"
+          z: 1
       }
 
+      Label {
+          id: addressLabel
+          anchors.left: parent.left
+          anchors.right: parent.right
+          anchors.top: amountRow.bottom
+          anchors.leftMargin: 17
+          anchors.rightMargin: 17
+          anchors.topMargin: 30
+          fontSize: 14
+          textFormat: Text.RichText
+          text: qsTr("<style type='text/css'>a {text-decoration: none; color: #FF6C3C; font-size: 14px;}</style>\
+                      Address <font size='2'>  ( Paste in or select from </font> <a href='#'>Address book</a><font size='2'> )</font>")
+                + translationManager.emptyString
+
+          onLinkActivated: appWindow.showPageRequest("AddressBook")
+      }
       // recipient address input
       RowLayout {
           id: addressLineRow
-          Layout.fillWidth: true
+          anchors.left: parent.left
+          anchors.right: parent.right
+          anchors.top: addressLabel.bottom
 
-          LineEditMulti {
+          StandardButton {
+              id: qrfinderButton
+              anchors.left: parent.left
+              anchors.leftMargin: 17
+              anchors.topMargin: 5
+              text: qsTr("QR Code") + translationManager.emptyString
+              shadowReleasedColor: "#FFA800"
+              shadowPressedColor: "#FFA800"
+              releasedColor: "#FFA800"
+              pressedColor: "#FFA800"
+              visible : appWindow.qrScannerEnabled
+              enabled : visible
+              width: visible ? 60 : 0
+              onClicked: {
+                  cameraUi.state = "Capture"
+                  cameraUi.qrcode_decoded.connect(updateFromQrCode)
+              }
+          }
+          LineEdit {
               id: addressLine
-              spacing: 0
-              fontBold: true
-              labelText: qsTr("<style type='text/css'>a {text-decoration: none; color: #858585; font-size: 14px;}</style>\
-                Address <font size='2'>  ( </font> <a href='#'>Address book</a><font size='2'> )</font>")
-                + translationManager.emptyString
-              labelButtonText: qsTr("Resolve") + translationManager.emptyString
-              placeholderText: "4.."
-              onInputLabelLinkActivated: { appWindow.showPageRequest("AddressBook") }
-              onLabelButtonClicked: {
+              anchors.left: qrfinderButton.right
+              anchors.right: resolveButton.left
+              //anchors.leftMargin: 17
+              anchors.topMargin: 5
+              placeholderText: "4..."
+              // validator: RegExpValidator { regExp: /[0-9A-Fa-f]{95}/g }
+          }
+
+          StandardButton {
+              id: resolveButton
+              anchors.right: parent.right
+              anchors.leftMargin: 17
+              anchors.topMargin: 17
+              anchors.rightMargin: 17
+              width: 60
+              text: qsTr("Resolve") + translationManager.emptyString
+              shadowReleasedColor: "#FFA800"
+              shadowPressedColor: "#FFA800"
+              releasedColor: "#FFA800"
+              pressedColor: "#FFA800"
+              enabled : isValidOpenAliasAddress(addressLine.text)
+              onClicked: {
                   var result = walletManager.resolveOpenAlias(addressLine.text)
                   if (result) {
                     var parts = result.split("|")
                     if (parts.length == 2) {
-                      var address_ok = walletManager.addressValid(parts[1], appWindow.persistentSettings.nettype)
+                      var address_ok = walletManager.addressValid(parts[1], appWindow.persistentSettings.testnet)
                       if (parts[0] === "true") {
                         if (address_ok) {
                           addressLine.text = parts[1]
@@ -292,73 +320,93 @@ Rectangle {
                   }
               }
           }
-
-          StandardButton {
-              id: qrfinderButton
-              text: qsTr("QR Code") + translationManager.emptyString
-              visible : appWindow.qrScannerEnabled
-              enabled : visible
-              width: visible ? 60 * scaleRatio : 0
-              onClicked: {
-                  cameraUi.state = "Capture"
-                  cameraUi.qrcode_decoded.connect(updateFromQrCode)
-              }
-          }
       }
 
-      RowLayout {
-          // payment id input
-          LineEdit {
-              id: paymentIdLine
-              fontBold: true
-              labelText: qsTr("Payment ID <font size='2'>( Optional )</font>") + translationManager.emptyString
-              placeholderText: qsTr("16 or 64 hexadecimal characters") + translationManager.emptyString
-              Layout.fillWidth: true
-          }
+      Label {
+          id: paymentIdLabel
+          anchors.left: parent.left
+          anchors.right: parent.right
+          anchors.top: addressLineRow.bottom
+          anchors.leftMargin: 17
+          anchors.rightMargin: 17
+          anchors.topMargin: 17
+          fontSize: 14
+          text: qsTr("Payment ID <font size='2'>( Optional )</font>") + translationManager.emptyString
       }
 
-      RowLayout {
-          LineEdit {
-              id: descriptionLine
-              labelText: qsTr("Description <font size='2'>( Optional )</font>") + translationManager.emptyString
-              placeholderText: qsTr("Saved to local wallet history") + translationManager.emptyString
-              Layout.fillWidth: true
-          }
+      // payment id input
+      LineEdit {
+          id: paymentIdLine
+          anchors.left: parent.left
+          anchors.right: parent.right
+          anchors.top: paymentIdLabel.bottom
+          anchors.leftMargin: 17
+          anchors.rightMargin: 17
+          anchors.topMargin: 5
+          placeholderText: qsTr("16 or 64 hexadecimal characters") + translationManager.emptyString
+          // validator: DoubleValidator { top: 0.0 }
       }
 
+      Label {
+          id: descriptionLabel
+          anchors.left: parent.left
+          anchors.right: parent.right
+          anchors.top: paymentIdLine.bottom
+          anchors.leftMargin: 17
+          anchors.rightMargin: 17
+          anchors.topMargin: 17
+          fontSize: 14
+          text: qsTr("Description <font size='2'>( Optional )</font>")
+                + translationManager.emptyString
+      }
+
+      LineEdit {
+          id: descriptionLine
+          anchors.left: parent.left
+          anchors.right: parent.right
+          anchors.top: descriptionLabel.bottom
+          anchors.leftMargin: 17
+          anchors.rightMargin: 17
+          anchors.topMargin: 5
+          placeholderText: qsTr("Saved to local wallet history") + translationManager.emptyString
+      }
+
+      function checkInformation(amount, address, payment_id, testnet) {
+        address = address.trim()
+        payment_id = payment_id.trim()
+
+        var amount_ok = amount.length > 0
+        var address_ok = walletManager.addressValid(address, testnet)
+        var payment_id_ok = payment_id.length == 0 || walletManager.paymentIdValid(payment_id)
+        var ipid = walletManager.paymentIdFromAddress(address, testnet)
+        if (ipid.length > 0 && payment_id.length > 0)
+           payment_id_ok = false
+
+        addressLine.error = !address_ok
+        amountLine.error = !amount_ok
+        paymentIdLine.error = !payment_id_ok
+
+        return amount_ok && address_ok && payment_id_ok
+      }
+
+
       RowLayout {
+          anchors.left: parent.left
+          anchors.top: descriptionLine.bottom
+          anchors.leftMargin: 17
+          anchors.topMargin: 17
+
           StandardButton {
               id: sendButton
-              rightIcon: "../images/rightIcon.png"
-              Layout.topMargin: 4 * scaleRatio
               text: qsTr("Send") + translationManager.emptyString
-              // Send button is enabled when:
-              enabled : {
-                  // Currently opened wallet is not view-only
-                  if(appWindow.viewOnly){
-                      return false;
-                  }
-                  
-                  // There is no warning box displayed
-                  if(warningText.text !== ''){
-                      return false;
-                  }
-                  
-                  // The transactional information is correct
-                  if(!pageRoot.checkInformation(amountLine.text, addressLine.text, paymentIdLine.text, appWindow.persistentSettings.nettype)){
-                      return false;
-                  }
-                  
-                  // There are sufficient unlocked funds available
-                  if(parseFloat(amountLine.text) > parseFloat(unlockedBalanceText)){
-                      return false;
-                  }
-                  
-                  return true;
-              }
+              shadowReleasedColor: "#FFA800"
+              shadowPressedColor: "#FFA800"
+              releasedColor: "#FFA800"
+              pressedColor: "#FFA800"
+              enabled : !appWindow.viewOnly && pageRoot.checkInformation(amountLine.text, addressLine.text, paymentIdLine.text, appWindow.persistentSettings.testnet)
               onClicked: {
                   console.log("Transfer: paymentClicked")
-                  var priority = priorityModelV5.get(priorityDropdown.currentIndex).priority
+                  var priority = priorityModel.get(priorityDropdown.currentIndex).priority
                   console.log("priority: " + priority)
                   console.log("amount: " + amountLine.text)
                   addressLine.text = addressLine.text.trim()
@@ -370,28 +418,11 @@ Rectangle {
           }
       }
 
-      function checkInformation(amount, address, payment_id, nettype) {
-        address = address.trim()
-        payment_id = payment_id.trim()
-
-        var amount_ok = amount.length > 0
-        var address_ok = walletManager.addressValid(address, nettype)
-        var payment_id_ok = payment_id.length == 0 || walletManager.paymentIdValid(payment_id)
-        var ipid = walletManager.paymentIdFromAddress(address, nettype)
-        if (ipid.length > 0 && payment_id.length > 0)
-           payment_id_ok = false
-
-        addressLine.error = !address_ok
-        amountLine.error = !amount_ok
-        paymentIdLine.error = !payment_id_ok
-
-        return amount_ok && address_ok && payment_id_ok
-      }
 
     } // pageRoot
 
     Rectangle {
-        id: desaturate
+        id:desaturate
         color:"black"
         anchors.fill: parent
         opacity: 0.1
@@ -402,19 +433,20 @@ Rectangle {
         anchors.top: pageRoot.bottom
         anchors.left: parent.left
         anchors.right: parent.right
-        anchors.margins: (isMobile)? 17 : 20
-        anchors.topMargin: 32 * scaleRatio
-        spacing: 26 * scaleRatio
+        anchors.margins: 17
+        spacing:10
         enabled: !viewOnly || pageRoot.enabled
 
         RowLayout {
-            CheckBox2 {
+            CheckBox {
                 id: showAdvancedCheckbox
                 checked: persistentSettings.transferShowAdvanced
                 onClicked: {
                     persistentSettings.transferShowAdvanced = !persistentSettings.transferShowAdvanced
                 }
-                text: qsTr("Advanced options") + translationManager.emptyString
+                text: qsTr("Show advanced options") + translationManager.emptyString
+                checkedIcon: "../images/checkedVioletIcon.png"
+                uncheckedIcon: "../images/uncheckedIcon.png"
             }
         }
 
@@ -422,19 +454,17 @@ Rectangle {
             visible: persistentSettings.transferShowAdvanced
             Layout.fillWidth: true
             height: 1
-            color: Style.dividerColor
-            opacity: Style.dividerOpacity
-            Layout.bottomMargin: 30 * scaleRatio
+            color: "#DEDEDE"
+            Layout.bottomMargin: 30
         }
 
         RowLayout {
             visible: persistentSettings.transferShowAdvanced
             anchors.left: parent.left
             anchors.right: parent.right
-            Layout.fillWidth: true
             Label {
                 id: privacyLabel
-                fontSize: 15
+                fontSize: 14
                 text: ""
             }
 
@@ -446,27 +476,20 @@ Rectangle {
             }
         }
 
+
+
         PrivacyLevel {
-            visible: persistentSettings.transferShowAdvanced && !isMobile
+            visible: persistentSettings.transferShowAdvanced
             id: privacyLevelItem
             anchors.left: parent.left
             anchors.right: parent.right
-            anchors.rightMargin: 17 * scaleRatio
             onFillLevelChanged: updateMixin()
         }
 
-        PrivacyLevelSmall {
-            visible: persistentSettings.transferShowAdvanced && isMobile
-            id: privacyLevelItemSmall
-            anchors.left: parent.left
-            anchors.right: parent.right
-            anchors.rightMargin: 17 * scaleRatio
-            onFillLevelChanged: updateMixin()
-        }
 
         GridLayout {
             visible: persistentSettings.transferShowAdvanced
-            Layout.topMargin: 50 * scaleRatio
+            Layout.topMargin: 50
 
 
             columns: (isMobile) ? 2 : 6
@@ -474,8 +497,11 @@ Rectangle {
             StandardButton {
                 id: sweepUnmixableButton
                 text: qsTr("Sweep Unmixable") + translationManager.emptyString
+                shadowReleasedColor: "#FFA800"
+                shadowPressedColor: "#FFA800"
+                releasedColor: "#FFA800"
+                pressedColor: "#FFA800"
                 enabled : pageRoot.enabled
-                small: true
                 onClicked: {
                     console.log("Transfer: sweepUnmixableClicked")
                     root.sweepUnmixableClicked()
@@ -485,12 +511,15 @@ Rectangle {
             StandardButton {
                 id: saveTxButton
                 text: qsTr("Create tx file") + translationManager.emptyString
+                shadowReleasedColor: "#FFA800"
+                shadowPressedColor: "#FFA800"
+                releasedColor: "#FFA800"
+                pressedColor: "#FFA800"
                 visible: appWindow.viewOnly
-                enabled: pageRoot.checkInformation(amountLine.text, addressLine.text, paymentIdLine.text, appWindow.persistentSettings.nettype)
-                small: true
+                enabled: pageRoot.checkInformation(amountLine.text, addressLine.text, paymentIdLine.text, appWindow.persistentSettings.testnet)
                 onClicked: {
                     console.log("Transfer: saveTx Clicked")
-                    var priority = priorityModelV5.get(priorityDropdown.currentIndex).priority
+                    var priority = priorityModel.get(priorityDropdown.currentIndex).priority
                     console.log("priority: " + priority)
                     console.log("amount: " + amountLine.text)
                     addressLine.text = addressLine.text.trim()
@@ -504,7 +533,10 @@ Rectangle {
             StandardButton {
                 id: signTxButton
                 text: qsTr("Sign tx file") + translationManager.emptyString
-                small: true
+                shadowReleasedColor: "#FFA800"
+                shadowPressedColor: "#FFA800"
+                releasedColor: "#FFA800"
+                pressedColor: "#FFA800"
                 visible: !appWindow.viewOnly
                 onClicked: {
                     console.log("Transfer: sign tx clicked")
@@ -515,7 +547,10 @@ Rectangle {
             StandardButton {
                 id: submitTxButton
                 text: qsTr("Submit tx file") + translationManager.emptyString
-                small: true
+                shadowReleasedColor: "#FFA800"
+                shadowPressedColor: "#FFA800"
+                releasedColor: "#FFA800"
+                pressedColor: "#FFA800"
                 visible: appWindow.viewOnly
                 enabled: pageRoot.enabled
                 onClicked: {
@@ -524,7 +559,11 @@ Rectangle {
                 }
             }
         }
+
+
     }
+
+
 
     //SignTxDialog
     FileDialog {
@@ -603,7 +642,7 @@ Rectangle {
                 informationPopup.open();
             } else {
                 informationPopup.title = qsTr("Information") + translationManager.emptyString
-                informationPopup.text  = qsTr("Monero Classic sent successfully") + translationManager.emptyString
+                informationPopup.text  = qsTr("Money sent successfully") + translationManager.emptyString
                 informationPopup.icon  = StandardIcon.Information
                 informationPopup.onCloseCallback = null
                 informationPopup.open();
@@ -615,7 +654,23 @@ Rectangle {
 
     }
 
+    Rectangle {
+        x: root.width/2 - width/2
+        y: root.height/2 - height/2
+        height:statusText.paintedHeight + 50
+        width:statusText.paintedWidth + 40
+        visible: statusText.text != ""
+        opacity: 0.9
 
+        Text {
+            id: statusText
+            anchors.fill:parent
+            horizontalAlignment: Text.AlignHCenter
+            verticalAlignment: Text.AlignVCenter
+            textFormat: Text.RichText
+            onLinkActivated: { appWindow.startDaemon(appWindow.persistentSettings.daemonFlags); }
+        }
+    }
 
     Component.onCompleted: {
         //Disable password page until enabled by updateStatus
@@ -632,7 +687,7 @@ Rectangle {
 
     function updatePriorityDropdown() {
         priorityDropdown.dataModel = priorityModelV5;
-        priorityDropdown.currentIndex = 0
+        priorityDropdown.currentIndex = 1
         priorityDropdown.update()
     }
 
@@ -640,35 +695,34 @@ Rectangle {
     //TODO: enable send page when we're connected and daemon is synced
 
     function updateStatus() {
-        pageRoot.enabled = true;
         if(typeof currentWallet === "undefined") {
-            warningText.text = qsTr("Wallet is not connected to daemon.") + root.startLinkText
+            statusText.text = qsTr("Wallet is not connected to daemon.") + "<br>" + root.startLinkText
             return;
         }
 
         if (currentWallet.viewOnly) {
-           // warningText.text = qsTr("Wallet is view only.")
+           // statusText.text = qsTr("Wallet is view only.")
            //return;
         }
-        //pageRoot.enabled = false;
+        pageRoot.enabled = false;
 
         switch (currentWallet.connected()) {
         case Wallet.ConnectionStatus_Disconnected:
-            warningText.text = qsTr("Wallet is not connected to daemon.") + root.startLinkText
+            statusText.text = qsTr("Wallet is not connected to daemon.") + "<br>" + root.startLinkText
             break
         case Wallet.ConnectionStatus_WrongVersion:
-            warningText.text = qsTr("Connected daemon is not compatible with GUI. \n" +
+            statusText.text = qsTr("Connected daemon is not compatible with GUI. \n" +
                                    "Please upgrade or connect to another daemon")
             break
         default:
             if(!appWindow.daemonSynced){
-                warningText.text = qsTr("Waiting on daemon synchronization to finish")
+                statusText.text = qsTr("Waiting on daemon synchronization to finish")
             } else {
                 // everything OK, enable transfer page
-                // Light wallet is always ready
                 pageRoot.enabled = true;
-                warningText.text = "";
+                statusText.text = "";
             }
+
         }
     }
 

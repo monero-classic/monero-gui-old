@@ -1,4 +1,5 @@
-// Copyright (c) 2014-2018, The Monero Classic Project
+// Copyright (c) 2014-2015, The Monero Project
+// Copyright (c) 2018-2018, The Monero Classic Project
 // 
 // All rights reserved.
 // 
@@ -71,12 +72,6 @@ bool filter::eventFilter(QObject *obj, QEvent *ev) {
             m_tabPressed = false;
 
         QString sks;
-#ifdef Q_OS_ANDROID
-        if(ke->key() == Qt::Key_Back) {
-            qDebug() << "Android back hit";
-            sks = "android_back";
-        }
-#endif
         if(ke->key() == Qt::Key_Control) {
             sks = "Ctrl";
 #ifdef Q_OS_MAC

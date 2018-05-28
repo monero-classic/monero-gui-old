@@ -1,4 +1,4 @@
-// Copyright (c) 2014-2018, The Monero Project
+// Copyright (c) 2014-2015, The Monero Project
 //
 // All rights reserved.
 //
@@ -31,25 +31,16 @@ import QtQuick.Window 2.1
 import QtQuick.Controls 1.4
 import QtQuick.Layouts 1.1
 
-Rectangle {
+Window {
     id: root
-    color: "white"
-    visible: false
-    z:11
+    modality: Qt.ApplicationModal
+    flags: Qt.Window
     property alias messageText: messageTitle.text
     property alias heightProgressText : heightProgress.text
 
-    width: 200 * scaleRatio
-    height: 100 * scaleRatio
+    width: 200
+    height: 100
     opacity: 0.7
-
-    function show() {
-        root.visible = true;
-    }
-
-    function close() {
-        root.visible = false;
-    }
 
     ColumnLayout {
         id: rootLayout
@@ -58,8 +49,8 @@ Rectangle {
         anchors.right: parent.right
         anchors.verticalCenter: parent.verticalCenter
 
-        anchors.leftMargin: 30 * scaleRatio
-        anchors.rightMargin: 30 * scaleRatio
+        anchors.leftMargin: 30
+        anchors.rightMargin: 30
 
         BusyIndicator {
             running: parent.visible
@@ -70,7 +61,7 @@ Rectangle {
             id: messageTitle
             text: "Please wait..."
             font {
-                pixelSize: 22 * scaleRatio
+                pixelSize: 22
             }
             horizontalAlignment: Text.AlignHCenter
             Layout.alignment: Qt.AlignVCenter | Qt.AlignHCenter
@@ -81,7 +72,7 @@ Rectangle {
         Text {
             id: heightProgress
             font {
-                pixelSize: 18 * scaleRatio
+                pixelSize: 18
             }
             horizontalAlignment: Text.AlignHCenter
             Layout.alignment: Qt.AlignVCenter | Qt.AlignHCenter

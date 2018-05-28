@@ -1,4 +1,4 @@
-// Copyright (c) 2014-2018, The Monero Project
+// Copyright (c) 2014-2015, The Monero Project
 //
 // All rights reserved.
 //
@@ -39,13 +39,13 @@ Window {
     id: root
     modality: Qt.ApplicationModal
     flags: Qt.Window | Qt.FramelessWindowHint
-    property int countDown: 10;
+    property int countDown: 5;
     signal rejected()
     signal started();
 
     function open() {
         show()
-        countDown = 10;
+        countDown = 5;
         timer.start();
     }
 
@@ -90,7 +90,7 @@ Window {
             }
 
             Text {
-                text: qsTr("Starting local node in %1 seconds").arg(countDown);
+                text: qsTr("Starting Monero Classic daemon in %1 seconds").arg(countDown);
                 font.pixelSize: 18
                 Layout.alignment: Qt.AlignHCenter
                 Layout.fillWidth: true
@@ -108,6 +108,10 @@ Window {
                 id: okButton
                 visible:false
                 fontSize: 14
+                shadowReleasedColor: "#FF4304"
+                shadowPressedColor: "#B32D00"
+                releasedColor: "#FF6C3C"
+                pressedColor: "#FF4304"
                 text: qsTr("Start daemon (%1)").arg(countDown)
                 KeyNavigation.tab: cancelButton
                 onClicked: {
@@ -121,6 +125,10 @@ Window {
             MoneroComponents.StandardButton {
                 id: cancelButton
                 fontSize: 14
+                shadowReleasedColor: "#FF4304"
+                shadowPressedColor: "#B32D00"
+                releasedColor: "#FF6C3C"
+                pressedColor: "#FF4304"
                 text: qsTr("Use custom settings")
 
                 onClicked: {
