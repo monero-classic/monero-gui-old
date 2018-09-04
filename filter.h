@@ -1,5 +1,4 @@
-// Copyright (c) 2014-2015, The Monero Project
-// Copyright (c) 2018-2018, The Monero Classic Project
+// Copyright (c) 2014-2018, The Monero Project
 // 
 // All rights reserved.
 // 
@@ -37,7 +36,7 @@ class filter : public QObject
     Q_OBJECT
 private:
     bool m_tabPressed;
-
+    bool m_backtabPressed;
 public:
     explicit filter(QObject *parent = 0);
 

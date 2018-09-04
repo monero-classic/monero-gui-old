@@ -1,5 +1,4 @@
-// Copyright (c) 2014-2017, The Monero Project
-// Copyright (c) 2018-2018, The Monero Classic Project
+// Copyright (c) 2014-2018, The Monero Project
 //
 // All rights reserved.
 //
@@ -111,6 +110,7 @@ void QrScanThread::processVideoFrame(const QVideoFrame &frame)
 void QrScanThread::stop()
 {
     m_running = false;
+    m_waitCondition.wakeOne();
 }
 
 void QrScanThread::addFrame(const QVideoFrame &frame)
@@ -125,9 +125,10 @@ void QrScanThread::run()
     QVideoFrame frame;
     while(m_running) {
         QMutexLocker locker(&m_mutex);
-        while(m_queue.isEmpty())
+        while(m_queue.isEmpty() && m_running)
             m_waitCondition.wait(&m_mutex);
-        processVideoFrame(m_queue.takeFirst());
+        if(!m_queue.isEmpty())
+            processVideoFrame(m_queue.takeFirst());
     }
 }
 

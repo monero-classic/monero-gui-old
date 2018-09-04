@@ -1,4 +1,4 @@
-// Copyright (c) 2014-2015, The Monero Project
+// Copyright (c) 2014-2018, The Monero Project
 // 
 // All rights reserved.
 // 
@@ -34,7 +34,7 @@ import moneroComponents.Wallet 1.0
 
 Rectangle {
     id: root
-    color: "#FFFFFF"
+    color: "transparent"
     property var currentHashRate: 0
 
     /* main layout */
@@ -64,9 +64,17 @@ Rectangle {
             Label {
                 id: soloLocalDaemonsLabel
                 fontSize: 18
-                color: "#000000"
-                text: qsTr("(only available for local daemons)")
-                visible: !isDaemonLocal()
+                color: "#D02020"
+                text: qsTr("(only available for local daemons)") + translationManager.emptyString
+                visible: !walletManager.isDaemonLocal(appWindow.currentDaemonAddress)
+            }
+            
+            Label {
+                id: soloSyncedLabel
+                fontSize: 18
+                color: "#D02020"
+                text: qsTr("Your daemon must be synchronized before you can start mining") + translationManager.emptyString
+                visible: walletManager.isDaemonLocal(appWindow.currentDaemonAddress) && !appWindow.daemonSynced
             }
 
             Text {
@@ -74,13 +82,16 @@ Rectangle {
                 text: qsTr("Mining with your computer helps strengthen the Monero network. The more that people mine, the harder it is for the network to be attacked, and every little bit helps.<br> <br>Mining also gives you a small chance to earn some Monero. Your computer will create hashes looking for block solutions. If you find a block, you will get the associated reward. Good luck!") + translationManager.emptyString
                 wrapMode: Text.Wrap
                 Layout.fillWidth: true
+                font.family: Style.fontRegular.name
+                font.pixelSize: 14 * scaleRatio
+                color: Style.defaultFontColor
             }
 
             RowLayout {
                 id: soloMinerThreadsRow
                 Label {
                     id: soloMinerThreadsLabel
-                    color: "#000000"
+                    color: Style.defaultFontColor
                     text: qsTr("CPU threads") + translationManager.emptyString
                     fontSize: 16
                     Layout.preferredWidth: 120
@@ -102,8 +113,6 @@ Rectangle {
                     checked: persistentSettings.allow_background_mining
                     onClicked: {persistentSettings.allow_background_mining = checked}
                     text: qsTr("Background mining (experimental)") + translationManager.emptyString
-                    checkedIcon: "../images/checkedVioletIcon.png"
-                    uncheckedIcon: "../images/uncheckedIcon.png"
                 }
 
             }
@@ -118,15 +127,13 @@ Rectangle {
                     checked: !persistentSettings.miningIgnoreBattery
                     onClicked: {persistentSettings.miningIgnoreBattery = !checked}
                     text: qsTr("Enable mining when running on battery") + translationManager.emptyString
-                    checkedIcon: "../images/checkedVioletIcon.png"
-                    uncheckedIcon: "../images/uncheckedIcon.png"
                 }
             }
 
             RowLayout {
                 Label {
                     id: manageSoloMinerLabel
-                    color: "#000000"
+                    color: Style.defaultFontColor
                     text: qsTr("Manage miner") + translationManager.emptyString
                     fontSize: 16
                 }
@@ -136,19 +143,16 @@ Rectangle {
                     //enabled: !walletManager.isMining()
                     id: startSoloMinerButton
                     width: 110
+                    small: true
                     text: qsTr("Start mining") + translationManager.emptyString
-                    shadowReleasedColor: "#FFA800"
-                    shadowPressedColor: "#FFA800"
-                    releasedColor: "#FFA800"
-                    pressedColor: "#FFA800"
                     onClicked: {
-                        var success = walletManager.startMining(appWindow.currentWallet.address, soloMinerThreadsLine.text, persistentSettings.allow_background_mining, persistentSettings.miningIgnoreBattery)
+                        var success = walletManager.startMining(appWindow.currentWallet.address(0, 0), soloMinerThreadsLine.text, persistentSettings.allow_background_mining, persistentSettings.miningIgnoreBattery)
                         if (success) {
                             update()
                         } else {
                             errorPopup.title  = qsTr("Error starting mining") + translationManager.emptyString;
                             errorPopup.text = qsTr("Couldn't start mining.<br>")
-                            if (!isDaemonLocal())
+                            if (!walletManager.isDaemonLocal(appWindow.currentDaemonAddress))
                                 errorPopup.text += qsTr("Mining is only available on local daemons. Run a local daemon to be able to mine.<br>")
                             errorPopup.icon = StandardIcon.Critical
                             errorPopup.open()
@@ -161,11 +165,8 @@ Rectangle {
                     //enabled:  walletManager.isMining()
                     id: stopSoloMinerButton
                     width: 110
+                    small: true
                     text: qsTr("Stop mining") + translationManager.emptyString
-                    shadowReleasedColor: "#FFA800"
-                    shadowPressedColor: "#FFA800"
-                    releasedColor: "#FFA800"
-                    pressedColor: "#FFA800"
                     onClicked: {
                         walletManager.stopMining()
                         update()
@@ -177,6 +178,7 @@ Rectangle {
         Text {
             id: statusText
             text: qsTr("Status: not mining")
+            color: Style.defaultFontColor
             textFormat: Text.RichText
             wrapMode: Text.Wrap
         }
@@ -216,7 +218,7 @@ Rectangle {
         console.log("Mining page loaded");
 
         update()
-        timer.running = isDaemonLocal()
+        timer.running = walletManager.isDaemonLocal(appWindow.currentDaemonAddress)
 
     }
     function onPageClosed() {

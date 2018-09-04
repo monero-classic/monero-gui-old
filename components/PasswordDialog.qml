@@ -1,4 +1,4 @@
-// Copyright (c) 2014-2015, The Monero Project
+// Copyright (c) 2014-2018, The Monero Project
 //
 // All rights reserved.
 //
@@ -26,8 +26,8 @@
 // STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF
 // THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-import QtQuick 2.0
-import QtQuick.Controls 1.4
+import QtQuick 2.7
+import QtQuick.Controls 2.0
 import QtQuick.Dialogs 1.2
 import QtQuick.Layouts 1.1
 import QtQuick.Controls.Styles 1.4
@@ -35,79 +35,97 @@ import QtQuick.Window 2.0
 
 import "../components" as MoneroComponents
 
-Window {
+Item {
     id: root
-    modality: Qt.ApplicationModal
-    flags: Qt.Window | Qt.FramelessWindowHint
+    visible: false
+    z: parent.z + 2
+
     property alias password: passwordInput.text
     property string walletName
 
     // same signals as Dialog has
     signal accepted()
     signal rejected()
-
+    signal closeCallback()
 
     function open(walletName) {
+        inactiveOverlay.visible = true // draw appwindow inactive
         root.walletName = walletName ? walletName : ""
+        leftPanel.enabled = false
+        middlePanel.enabled = false
+        titleBar.enabled = false
         show()
+        root.visible = true;
+        passwordInput.forceActiveFocus();
+        passwordInput.text = ""
     }
 
-    // TODO: implement without hardcoding sizes
-    width: 480
-    height: walletName ? 240 : 200
-
-    // Make window draggable
-    MouseArea {
-        anchors.fill: parent
-        property point lastMousePos: Qt.point(0, 0)
-        onPressed: { lastMousePos = Qt.point(mouseX, mouseY); }
-        onMouseXChanged: root.x += (mouseX - lastMousePos.x)
-        onMouseYChanged: root.y += (mouseY - lastMousePos.y)
+    function close() {
+        inactiveOverlay.visible = false
+        leftPanel.enabled = true
+        middlePanel.enabled = true
+        titleBar.enabled = true
+        root.visible = false;
+        closeCallback();
     }
 
     ColumnLayout {
+        z: inactiveOverlay.z + 1
         id: mainLayout
         spacing: 10
-        anchors { fill: parent; margins: 35 }
+        anchors { fill: parent; margins: 35 * scaleRatio }
 
         ColumnLayout {
             id: column
-            //anchors {fill: parent; margins: 16 }
+
+            Layout.fillWidth: true
             Layout.alignment: Qt.AlignHCenter
+            Layout.maximumWidth: 400 * scaleRatio
 
             Label {
-                text: root.walletName.length > 0 ? qsTr("Please enter wallet password for:<br>") + root.walletName : qsTr("Please enter wallet password")
-                Layout.alignment: Qt.AlignHCenter
-                Layout.columnSpan: 2
+                text: root.walletName.length > 0 ? qsTr("Please enter wallet password for: ") + root.walletName : qsTr("Please enter wallet password")
+                anchors.left: parent.left
                 Layout.fillWidth: true
-                horizontalAlignment: Text.AlignHCenter
-                font.pixelSize: 24
-                font.family: "Arial"
-                color: "#555555"
+
+                font.pixelSize: 16 * scaleRatio
+                font.family: MoneroComponents.Style.fontLight.name
+
+                color: "white"
             }
 
             TextField {
                 id : passwordInput
-                focus: true
+                Layout.topMargin: 6
                 Layout.fillWidth: true
-                Layout.alignment: Qt.AlignHCenter
-                horizontalAlignment: TextInput.AlignHCenter
+                anchors.left: parent.left
+                horizontalAlignment: TextInput.AlignLeft
                 verticalAlignment: TextInput.AlignVCenter
-                font.family: "Arial"
-                font.pixelSize: 32
+                font.family: MoneroComponents.Style.fontLight.name
+                font.pixelSize: 24 * scaleRatio
                 echoMode: TextInput.Password
                 KeyNavigation.tab: okButton
+                bottomPadding: 10
+                leftPadding: 10
+                topPadding: 10
+                color: "white"
 
-                style: TextFieldStyle {
-                    renderType: Text.NativeRendering
-                    textColor: "#35B05A"
-                    passwordCharacter: "•"
-                    // no background
-                    background: Rectangle {
-                        radius: 0
-                        border.width: 0
+                background: Rectangle {
+                    radius: 2
+                    border.color: Qt.rgba(255, 255, 255, 0.35)
+                    border.width: 1
+                    color: "black"
+
+                    Image {
+                        width: 12
+                        height: 16
+                        source: "../images/lockIcon.png"
+                        anchors.verticalCenter: parent.verticalCenter
+                        anchors.right: parent.right
+                        anchors.rightMargin: 20
                     }
                 }
+
+                Keys.enabled: root.visible
                 Keys.onReturnPressed: {
                     root.close()
                     root.accepted()
@@ -118,66 +136,38 @@ Window {
                     root.rejected()
 
                 }
-
-
             }
-            // underline
-            Rectangle {
-                height: 1
-                color: "#DBDBDB"
-                Layout.fillWidth: true
-                Layout.alignment: Qt.AlignHCenter
-                anchors.bottomMargin: 3
 
-            }
-            // padding
-            Rectangle {
-                Layout.fillWidth: true
-                Layout.alignment: Qt.AlignHCenter
-                height: 10
-                opacity: 0
-                color: "black"
-            }
-        }
-        // Ok/Cancel buttons
-        RowLayout {
-            id: buttons
-            spacing: 60
-            Layout.alignment: Qt.AlignHCenter
-            
-            MoneroComponents.StandardButton {
-                id: cancelButton
-                width: 120
-                fontSize: 14
-                shadowReleasedColor: "#FF4304"
-                shadowPressedColor: "#B32D00"
-                releasedColor: "#FF6C3C"
-                pressedColor: "#FF4304"
-                text: qsTr("Cancel") + translationManager.emptyString
-                KeyNavigation.tab: passwordInput
-                onClicked: {
-                    root.close()
-                    root.rejected()
+            // Ok/Cancel buttons
+            RowLayout {
+                id: buttons
+                spacing: 16 * scaleRatio
+                Layout.topMargin: 16
+                Layout.alignment: Qt.AlignRight
+
+                MoneroComponents.StandardButton {
+                    id: cancelButton
+                    small: true
+                    text: qsTr("Cancel") + translationManager.emptyString
+                    KeyNavigation.tab: passwordInput
+                    onClicked: {
+                        root.close()
+                        root.rejected()
+                    }
+                }
+
+                MoneroComponents.StandardButton {
+                    id: okButton
+                    small: true
+                    text: qsTr("Continue")
+                    KeyNavigation.tab: cancelButton
+                    onClicked: {
+                        root.close()
+                        root.accepted()
+                    }
                 }
             }
-            MoneroComponents.StandardButton {
-                id: okButton
-                width: 120
-                fontSize: 14
-                shadowReleasedColor: "#FF4304"
-                shadowPressedColor: "#B32D00"
-                releasedColor: "#FF6C3C"
-                pressedColor: "#FF4304"
-                text: qsTr("Ok")
-                KeyNavigation.tab: cancelButton
-                onClicked: {
-                    root.close()
-                    root.accepted()
-                }
-            }
+
         }
     }
 }
-
-
-

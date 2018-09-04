@@ -1,4 +1,4 @@
-// Copyright (c) 2014-2015, The Monero Project
+// Copyright (c) 2014-2018, The Monero Project
 // 
 // All rights reserved.
 // 
@@ -27,30 +27,22 @@
 // THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 import QtQuick 2.0
+import QtQuick.Layouts 1.1
+
 import moneroComponents.Wallet 1.0
+import "../components" as MoneroComponents
 
-Row {
+Rectangle {
     id: item
+    color: "transparent"
     property var connected: Wallet.ConnectionStatus_Disconnected
-
-    function getConnectionStatusImage(status) {
-        if (status == Wallet.ConnectionStatus_Connected)
-            return "../images/statusConnected.png"
-        else
-            return "../images/statusDisconnected.png"
-    }
-
-    function getConnectionStatusColor(status) {
-        if (status == Wallet.ConnectionStatus_Connected)
-            return "#FFA800"
-        else
-            return "#AAAAAA"
-    }
 
     function getConnectionStatusString(status) {
         if (status == Wallet.ConnectionStatus_Connected) {
             if(!appWindow.daemonSynced)
                 return qsTr("Synchronizing")
+            if(appWindow.remoteNodeConnected)
+                return qsTr("Remote node")
             return qsTr("Connected")
         }
         if (status == Wallet.ConnectionStatus_WrongVersion)
@@ -60,37 +52,68 @@ Row {
         return qsTr("Invalid connection status")
     }
 
-    Item {
-        id: iconItem
-        anchors.bottom: parent.bottom
-        width: 50
-        height: 50
+    RowLayout {
+        Layout.preferredHeight: 40 * scaleRatio
 
-        Image {
-            anchors.centerIn: parent
-            source: getConnectionStatusImage(item.connected)
+        Item {
+            id: iconItem
+            anchors.top: parent.top
+            width: 40 * scaleRatio
+            height: 40 * scaleRatio
+            opacity: {
+                if(item.connected == Wallet.ConnectionStatus_Connected){
+                    return 1
+                } else {
+                    return 0.5
+                }
+            }
+
+            Image {
+                anchors.top: parent.top
+                anchors.topMargin: 6
+                anchors.right: parent.right
+                anchors.rightMargin: 11
+                source: {
+                    if(item.connected == Wallet.ConnectionStatus_Connected){
+                        return "../images/lightning.png"
+                    } else {
+                        return "../images/lightning-white.png"
+                    }
+                }
+            }
+        }
+
+        Item {
+            anchors.top: parent.top
+            anchors.left: iconItem.right
+            height: 40 * scaleRatio
+            width: 260 * scaleRatio
+
+            Text {
+                id: statusText
+                anchors.left: parent.left
+                anchors.top: parent.top
+                anchors.topMargin: 0
+                font.family: MoneroComponents.Style.fontMedium.name
+                font.bold: true
+                font.pixelSize: 13 * scaleRatio
+                color: "white"
+                opacity: 0.5
+                text: qsTr("Network status") + translationManager.emptyString
+            }
+
+            Text {
+                id: statusTextVal
+                anchors.left: parent.left
+                anchors.top: parent.top
+                anchors.topMargin: 14
+                font.family: MoneroComponents.Style.fontMedium.name
+                font.pixelSize: 20 * scaleRatio
+                color: "white"
+                text: getConnectionStatusString(item.connected) + translationManager.emptyString
+            }
         }
     }
 
-    Column {
-        anchors.bottom: parent.bottom
-        height: 53
-        spacing: 3
 
-        Text {
-            anchors.left: parent.left
-            font.family: "PingFangSC-Light"
-            font.pixelSize: 12
-            color: "#FFFFFF"
-            text: qsTr("Network status") + translationManager.emptyString
-        }
-
-        Text {
-            anchors.left: parent.left
-            font.family: "PingFangSC-Light"
-            font.pixelSize: 18
-            color: getConnectionStatusColor(item.connected)
-            text: getConnectionStatusString(item.connected) + translationManager.emptyString
-        }
-    }
 }

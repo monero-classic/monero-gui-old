@@ -1,29 +1,29 @@
 <html>
 <head>
-<title>Monero Classic Helium Hydra GUI Wallet</title>
+<title>Monero Lithium Luna GUI Wallet</title>
 </head>
 
 <body style="font-family: Arial, Helvetica, sans-serif">
-<h1>Monero Classic Helium Hydra GUI Wallet</h1>
+<h1>Monero Lithium Luna GUI Wallet</h1>
 
-  <p>Copyright (c) 2014-2017, The Monero Classic Project<br>
-  Date: September 19, 2017</p>
+  <p>Copyright (c) 2014-2018, The Monero Project<br>
+  Date: July 27, 2018</p>
 
 <h2>Preface</h2>
 
-  <p>This ReadMe does not aim to be a complete introduction to Monero Classic. If you are new to Monero Classic or even to
+  <p>This ReadMe does not aim to be a complete introduction to Monero. If you are new to Monero or even to
     cryptocurrencies in general you find a good introduction on reddit at
     <a href="https://www.reddit.com/r/Monero/comments/5zgail/rmonero_newcomers_please_read_everything_you_need/">Newcomers Please Read. Everything You Need To Know</a>.
     You also find a lot of good tutorials on <a href="https://www.monero.how/">Monero.How</a>.
   </p>
 
-  <p>Please note that Monero Classic and its software are constantly evolving and progressing; it probably won't take
+  <p>Please note that Monero and its software are constantly evolving and progressing; it probably won't take
   long for some of the information here to become outdated.
   </p>
 
 <h2>Content of the Package</h2>
 
-  <p>You just installed the <i>Monero Classic GUI wallet</i> for Windows, release Helium Hydra, more exact version 0.1.0.0.
+  <p>You just installed the <i>Monero GUI wallet</i> for Windows, release Lithium Luna, more exact version 0.12.3.0.
   The wallet enables you to send and receive Moneroj in a secure and very private way.
   </p>
 
@@ -32,14 +32,14 @@
   packages in order to start.</p>
 
   <p>For checking whether there are already newer versions of this package you can go to the
-  <a href="https://getmonero.org/downloads/">Downloads</a> page on <a href="http://monero-classic.org/">monero-classic.org/</a>,
+  <a href="https://getmonero.org/downloads/">Downloads</a> page on <a href="https://getmonero.org/home">getmonero.org</a>,
   the official Monero site.</p>
 
 <h2>Upgrading</h2>
   
   <p>If you have already a release of the GUI wallet software on your computer that was installed with the help
   of this installer (in an earlier version), upgrading is easy: Just run the new installer; there is no need to
-  uninstall the old Monero Classic release first.</p>
+  uninstall the old Monero release first.</p>
 
   <p>But if you run a release of the GUI wallet software that you downloaded as a .zip file and unzipped into a
   folder, if you "installed it manually" so to say, don't try to upgrade by pointing the installer to that folder,
@@ -52,18 +52,18 @@
 
 <h2>Access to the Blockchain</h2>
 
-  <p>Any Monero Classic wallet needs access to the <i>blockchain</i>, the ongoing ledger of all Monero Classic transactions. For the
-  GUI wallet there are two principal ways to get that access: You can let Monero Classic sync with the network
+  <p>Any Monero wallet needs access to the <i>blockchain</i>, the ongoing ledger of all Monero transactions. For the
+  GUI wallet there are two principal ways to get that access: You can let Monero sync with the network
   i.e. let it download the blockchain and store it locally on your computer, or you can configure your wallet to
   access a remote <i>open node</i> to get indirect access to the blockchain.</p>
 
-  <p>Working with your own copy of the blockchain is <b>preferred</b>: It strengthens the Monero Classic network, and it
+  <p>Working with your own copy of the blockchain is <b>preferred</b>: It strengthens the Monero network, and it
   provides the most security and privacy possible for you.</p>
 
   <p>However if your Internet access makes it difficult to run a full node, or if you have simply no room to store
-  the blockchain locally (over 30 GB in fall 2017, and of course growing), you can compromise and try to connect
+  the blockchain locally (around 60 GB in summer 2018, and of course growing), you can compromise and try to connect
   to a remote node. One way of finding such a node is checking
-  <a href="https://moneroworld.com/pages/nodes.html">this page</a>.
+  <a href="https://moneroworld.com/#nodes">this page</a>.
   </p>
 
 <h2>Initial Blockchain Download</h2>
@@ -75,15 +75,13 @@
   Beside the GUI wallet there is second program, the so-called <i>Monero daemon</i>, which will carry out that download.
   You find it in the <i>Utilities</i> sub-folder of the program group.</p>
 
-  <p>Depending on your Internet access and the speed of your computer this can take
+  <p>Depending on your Internet access, the speed of your computer and the type of disk you use (HDD or SSD) this can take
   <b>several hours</b>, in some cases <b>more than a day</b>. Furthermore there are unfortunate cases where the
   download gets stuck somehow or doesn't work at all, e.g. because a firewall prevents access to other nodes of the
   Monero network.</p>
 
-  <p>The GUI wallet can start the daemon for you, but that way you will not see much during initial blockchain
-  download, especially you probably won't see any error messages in case something goes wrong. By starting the
-  daemon yourself "by hand" using the <i>Monero Daemon</i> icon in the <i>Utilities</i> sub-folder of the
-  Monero program group you will see it running and displaying messages in a separate window.</p>
+  <p>The GUI wallet can start the daemon for you. You can also use the <i>Monero Daemon</i> icon in the <i>Utilities</i>
+  sub-folder of the Monero program group.</p>
    
   <p>If all goes well the daemon will finally display a message like this:
   <i>You are now synchronized with the network.</i></p>
@@ -115,7 +113,7 @@
   <p>In the <i>Utilities</i> sub-folder there are several more icons that may help you to solve problems.
   These are the icons with a <i>x</i> in front and the name <i>(in parenthesis)</i> to make them visually stand
   apart from the "normal" ones because you will probably only need them in case of trouble, but not during normal
-  usage of Monero Classic.</p>
+  usage of Monero.</p>
 
   <p>Here an overview and short info what each icon does:</p>
 
@@ -131,7 +129,7 @@
     <tr>
       <td><i>x (Try Daemon, Exit Confirm)</i></td>
       <td>
-        Run the Monero Classic daemon in a window that does not automatically close if
+        Run the Monero daemon in a window that does not automatically close if
         the daemon should exit because of a fatal error; useful in cases where the normal daemon icon
         just leads to a window that closes right away
       </td>
@@ -140,7 +138,7 @@
     <tr>
       <td><i>x (Try Kill Daemon)</i></td>
       <td>
-        Kill any running daemon (technically, any process called <i>monerod.exe</i>), whether
+        Kill any running daemon (technically, any process called <i>moneroclassicd.exe</i>), whether
         with or without any visible window, for starting "with a clean slate"; easier than
         killing such tasks with the help of the Windows Task Manager
       </td>

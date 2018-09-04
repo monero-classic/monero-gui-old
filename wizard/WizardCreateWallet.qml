@@ -1,4 +1,4 @@
-// Copyright (c) 2014-2015, The Monero Project
+// Copyright (c) 2014-2018, The Monero Project
 // 
 // All rights reserved.
 // 
@@ -78,21 +78,21 @@ ColumnLayout {
         // page submitted or b) delete it when program closed before reaching final page
 
         // Always delete the wallet object before creating new - we could be stepping back from recovering wallet
-        if (typeof settingsObject.wallet !== 'undefined') {
+        if (typeof m_wallet !== 'undefined') {
             walletManager.closeWallet()
             console.log("deleting wallet")
         }
 
         var tmp_wallet_filename = oshelper.temporaryFilename();
         console.log("Creating temporary wallet", tmp_wallet_filename)
-        var testnet = appWindow.persistentSettings.testnet;
+        var nettype = appWindow.persistentSettings.nettype;
         var wallet = walletManager.createWallet(tmp_wallet_filename, "", settingsObject.wallet_language,
-                                                testnet)
+                                                nettype)
         uiItem.wordsTextItem.memoText = wallet.seed
         // saving wallet in "global" settings object
         // TODO: wallet should have a property pointing to the file where it stored or loaded from
-        settingsObject.wallet = wallet
-        settingsObject.tmp_wallet_filename = tmp_wallet_filename
+        m_wallet = wallet;
+        settingsObject['tmp_wallet_filename'] = tmp_wallet_filename
     }
 
     WizardManageWalletUI {

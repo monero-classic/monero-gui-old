@@ -1,5 +1,4 @@
-// Copyright (c) 2014-2015, The Monero Project
-// Copyright (c) 2018-2018, The Monero Classic Project
+// Copyright (c) 2014-2018, The Monero Project
 // 
 // All rights reserved.
 // 
@@ -90,7 +89,7 @@ Item {
             console.log("setting demo token")
             bearerToken = encodeURIComponent(Helper.demoToken())
             tweetsModel.phrase = ""
-            tweetsModel.from = "@xmccurrency"
+            tweetsModel.from = "@monerocurrency"
             // reload()
             return;
         }

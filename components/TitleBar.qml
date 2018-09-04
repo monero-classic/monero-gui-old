@@ -1,4 +1,4 @@
-// Copyright (c) 2014-2015, The Monero Project
+// Copyright (c) 2014-2018, The Monero Project
 // 
 // All rights reserved.
 // 
@@ -26,55 +26,111 @@
 // STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF
 // THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-import QtQuick 2.2
+import QtQuick 2.5
 import QtQuick.Window 2.0
+import QtQuick.Layouts 1.1
 
 Rectangle {
     id: titleBar
     color: "#184566"
+    height: {
+        if(!customDecorations || isMobile){
+            return 0;
+        }
+
+        if(small) return 38 * scaleRatio;
+        else return 50 * scaleRatio;
+    }
+    y: -height
+    z: 1
+
+    property string title
     property int mouseX: 0
     property bool containsMouse: false
     property alias basicButtonVisible: goToBasicVersionButton.visible
-    property bool customDecorations: true
-    signal goToBasicVersion(bool yes)
-    height: customDecorations ? 30 : 0
-    y: -height
-    property string title
-    property alias maximizeButtonVisible: maximizeButton.visible
-    z: 1
+    property bool customDecorations: persistentSettings.customDecorations
+    property bool showWhatIsButton: true
+    property bool showMinimizeButton: false
+    property bool showMaximizeButton: false
+    property bool showCloseButton: true
+    property bool showMoneroLogo: false
+    property bool small: false
 
-    Text {
-        anchors.centerIn: parent
-        font.family: "Arial"
-        font.pixelSize: 15
-        color: "#FFFFFF"
-        text: titleBar.title
-        visible: customDecorations
+    signal closeClicked
+    signal maximizeClicked
+    signal minimizeClicked
+    signal goToBasicVersion(bool yes)
+
+    Item {
+        // Background gradient
+        width: parent.width
+        height: parent.height
+        z: parent.z + 1
+
+        // Image {
+        //    anchors.fill: parent
+        //    height: titleBar.height
+        //    width: titleBar.width
+        //    source: "../images/titlebarGradient.jpg"
+        // }
     }
 
+    Item {
+        id: titlebarlogo
+        width: 125
+        height: parent.height
+        anchors.centerIn: parent
+        visible: customDecorations && showMoneroLogo
+        z: parent.z + 1
+
+        // Image {
+        //     anchors.left: parent.left
+        //     anchors.top: parent.top
+        //     anchors.topMargin: 11
+        //     width: 125
+        //     height: 28
+        //     source: "../images/titlebarLogo.png"
+        // }
+    }
+
+    Label {
+        id: titleLabel
+        visible: !showMoneroLogo && customDecorations && titleBar.title !== ''
+        anchors.centerIn: parent
+        fontSize: 18
+        text: titleBar.title
+        z: parent.z + 1
+    }
+
+    // collapse left panel
     Rectangle {
         id: goToBasicVersionButton
         property bool containsMouse: titleBar.mouseX >= x && titleBar.mouseX <= x + width
         property bool checked: false
         anchors.top: parent.top
         anchors.left: parent.left
-        color:  basicMouseArea.containsMouse || !leftPanel.visible ? "#FFA800" : "#184566"
-        height: 30
+        color:  "transparent"
+        height: titleBar.height
         width: height
         visible: isMobile
+        z: parent.z + 2
 
         Image {
+            width: 14
+            height: 14
             anchors.centerIn: parent
-            rotation: !leftPanel.visible ? 180 : 0
-            source: parent.customDecorations || !leftPanel.visible ? "../images/goToBasicVersionHovered.png" :
-                                                             "../images/gotoBasicVersion.png"
+            source: "../images/expand.png"
         }
 
         MouseArea {
             id: basicMouseArea
             hoverEnabled: true
             anchors.fill: parent
+            cursorShape: Qt.PointingHandCursor
+            onEntered: goToBasicVersionButton.color = "#262626";
+            onExited: goToBasicVersionButton.color = "transparent";
             onClicked: {
+                releaseFocus()
                 parent.checked = !parent.checked
                 titleBar.goToBasicVersion(leftPanel.visible)
             }
@@ -87,91 +143,102 @@ Rectangle {
         anchors.top: parent.top
         anchors.bottom: parent.bottom
         visible: parent.customDecorations
+        z: parent.z + 2
 
         Rectangle {
-            property bool containsMouse: titleBar.mouseX >= x + row.x && titleBar.mouseX <= x + row.x + width && titleBar.containsMouse
+            id: minimizeButton
+            visible: showMinimizeButton
             anchors.top: parent.top
             anchors.bottom: parent.bottom
-            width: height
-            color: containsMouse ? "#6B0072" : "#184566"
+            width: 42
+            color: "transparent"
 
             Image {
                 anchors.centerIn: parent
-                source: "../images/helpIcon.png"
-            }
-
-            MouseArea {
-                id: whatIsArea
-                anchors.fill: parent
-                onClicked: {
-
-                }
-            }
-        }
-
-        Rectangle {
-            property bool containsMouse: titleBar.mouseX >= x + row.x && titleBar.mouseX <= x + row.x + width && titleBar.containsMouse
-            anchors.top: parent.top
-            anchors.bottom: parent.bottom
-            width: height
-            color: containsMouse ? "#3665B3" : "#184566"
-
-            Image {
-                anchors.centerIn: parent
-                source: "../images/minimizeIcon.png"
+                source: "../images/minimize.png"
             }
 
             MouseArea {
                 id: minimizeArea
                 anchors.fill: parent
-                onClicked: {
-                    appWindow.visibility = Window.Minimized
-                }
+                hoverEnabled: true
+                cursorShape: Qt.PointingHandCursor
+                onEntered: minimizeButton.color = "#262626";
+                onExited: minimizeButton.color = "transparent";
+                onClicked: minimizeClicked();
             }
         }
 
         Rectangle {
             id: maximizeButton
-            property bool containsMouse: titleBar.mouseX >= x + row.x && titleBar.mouseX <= x + row.x + width && titleBar.containsMouse
+            visible: showMaximizeButton
             anchors.top: parent.top
             anchors.bottom: parent.bottom
-            width: height
-            color: containsMouse ? "#FF6C3C" : "#184566"
+            width: 42
+            color: "transparent";
 
             Image {
                 anchors.centerIn: parent
+                height: 16
+                width: 16
                 source: appWindow.visibility === Window.FullScreen ?  "../images/backToWindowIcon.png" :
-                                                                      "../images/maximizeIcon.png"
-
+                                                                      "../images/fullscreen.png"
             }
 
             MouseArea {
                 id: maximizeArea
                 anchors.fill: parent
-                onClicked: {
-                    appWindow.visibility = appWindow.visibility !== Window.FullScreen ? Window.FullScreen :
-                                                                                        Window.Windowed
-                }
+                hoverEnabled: true
+                cursorShape: Qt.PointingHandCursor
+                onEntered: maximizeButton.color = "#262626";
+                onExited: maximizeButton.color = "transparent";
+                onClicked: maximizeClicked();
             }
         }
 
         Rectangle {
-            property bool containsMouse: titleBar.mouseX >= x + row.x && titleBar.mouseX <= x + row.x + width && titleBar.containsMouse
+            id: closeButton
+            visible: showCloseButton
             anchors.top: parent.top
             anchors.bottom: parent.bottom
-            width: height
-            color: containsMouse ? "#E04343" : "#184566"
+            width: 42
+            color: containsMouse ? "#E04343" : "#00000000"
 
             Image {
                 anchors.centerIn: parent
-                source: "../images/closeIcon.png"
+                width: 16
+                height: 16
+                source: "../images/close.png"
             }
 
             MouseArea {
                 anchors.fill: parent
-                onClicked: appWindow.close();
+                onClicked: closeClicked();
+                hoverEnabled: true
+                cursorShape: Qt.PointingHandCursor
+                onEntered: closeButton.color = "#262626";
+                onExited: closeButton.color = "transparent";
             }
         }
     }
 
+    // window borders
+    Rectangle {
+        anchors.bottom: parent.bottom
+        anchors.right: parent.right
+        anchors.left: parent.left
+        height: 1
+        color: "#2F2F2F"
+        z: parent.z + 1
+    }
+
+    Rectangle {
+        anchors.top: parent.top
+        anchors.right: parent.right
+        anchors.left: parent.left
+        visible: titleBar.small
+        height: 1
+        color: "#2F2F2F"
+        z: parent.z + 1
+    }
 }

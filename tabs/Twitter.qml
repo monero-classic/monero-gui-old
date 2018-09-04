@@ -1,5 +1,4 @@
-// Copyright (c) 2014-2015, The Monero Project
-// Copyright (c) 2018-2018, The Monero Classic Project
+// Copyright (c) 2014-2018, The Monero Project
 // 
 // All rights reserved.
 // 
