@@ -53,7 +53,7 @@ ListView {
         id: delegate
         height: 64
         width: listView.width
-        color: "#000000"
+        color: "#F0EEEE"
         z: listView.count - index
         function collapseDropdown() { dropdown.expanded = false }
 
@@ -62,7 +62,7 @@ ListView {
             anchors.left: parent.left
             anchors.top: parent.top
             anchors.topMargin: 12
-            width: text.length ? (descriptionArea.containsMouse ? 139 : 139) : 0
+            width: text.length ? (descriptionArea.containsMouse ? 100 : 100) : 0
             font.family: "Arial"
             font.bold: true
             font.pixelSize: 19
